@@ -29,7 +29,8 @@ angular.module('userControllers', ['userServices'])
                     app.loading = false; // Stop bootstrap loading icon
                     app.disabled = false; // If error occurs, remove disable lock from form
                     $scope.alert = 'alert alert-danger'; // Set class for message
-                    app.errorMsg = data.data.message; // If not successful, grab message from JSON object
+                    app.errorMsg = data.data.message; // If not successful, grab message from JSON object             
+
                 }
             });
         } else {

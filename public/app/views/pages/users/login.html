@@ -27,18 +27,29 @@ html {
 }
 
 body {
-  background-image: url("assets/images/blueg.jpg");
+  background-image: url("assets/images/bk7.jpg");
+  /*-webkit-filter: grayscale(100%);*/
+
+    
+    background-size: 100% 250%; 
+   
+ 
+
+  
   font-family: "Open Sans";
   font-size: 16px;
   color: White;
   font-smoothing: antialiased;
   font-weight: 600;
-}
+}  
 
  
 a {
   color: #BBB;
 
+}
+a:hover{
+  color: #EB7823;
 }
 
 .content:before {
@@ -212,26 +223,28 @@ p{
 }
 
 
-</style></head><body>
-      <br>
+</style></head>
+
+<body class="bk">
+<br/>
 
 <div class="content">
 
-
-  <br>
-  <br>
- <a href="apps/views/index.html"><img src="assets/images/brahm.png" alt="Brahm Logo" width="50" height="50" align="middle" border="10"></a>      Log in into your Account
- <br>
- <br>                 
+  <span style="font-size: 20px; color: white">
+  <a href="apps/views/index.html"><img src="assets/images/brahm.png" alt="Brahm Logo" width="80" height="80" align="bottom" border="10"></a>Login to your account
+    </span>
+    <br/>
+    <br/>
   
   <form name="sentMessage" id="contactForm" ng-submit="main.doLogin(loginData);" novalidate>
-  <input  ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="text" name="username" placeholder="Email *" ng-model="main.loginData.username" autocomplete="off">
-  <input ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="password" name="password" placeholder="Password *" ng-model="main.loginData.password" autocomplete="off">
+  <input style="padding-top: 18px; margin-top: 15px" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="text" name="username" placeholder="Email *" ng-model="main.loginData.username" autocomplete="off">
+  <input style="padding-top: 18px; margin-top: 15px" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="password" name="password" placeholder="Password *" ng-model="main.loginData.password" autocomplete="off">
   
   <a href="/resetpassword" ><p align="right">Forgot Password?<p></a>
  <!-- <input type="checkbox" id="rememberMe"/> 
   <label for="rememberMe"></label><span>I have read and agree to the <a href="#">Terms of Use </a>and <a href="#">Privacy Policy</a></span> -->
   <button>Log in</button>
+</br>
   <div class="social"> <span>or sign up with social media</span></div>
   <div class="buttons">
     <a href="#" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" ng-click="main.facebook();"> <button class="facebook"><i class="fa fa-facebook"></i>Facebook</button> </a>
@@ -239,7 +252,7 @@ p{
     <a href="#" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" ng-click="main.google();"> <button class="google"><i class="fa fa-google-plus"></i>Google+</button> </a>
   </div>
   <div class="already">Dont have an account? <a href="/register">Sign up</a></div>
-</div>
+
 </form>
 
        <!--  Loading Icon (Bootstrap) -->
@@ -247,7 +260,7 @@ p{
             <span class="glyphicon glyphicon-repeat spinner"></span>
             <p>Loading....</p>
         </div>  
-
+        </br>
         <!-- Custom Messages -->
         <div class="row show-hide-message" ng-show="main.successMsg || main.errorMsg || facebook.errorMsg || twitter.errorMsg || google.errorMsg">
             <div ng-class="alert">{{ main.successMsg || main.errorMsg || facebook.errorMsg || twitter.errorMsg || google.errorMsg }}</div>&nbsp
@@ -259,7 +272,7 @@ p{
 
 
         <!-- For registration page-->
-        
+ </div>       
 
 
 <script src="assets/js/login.js"></script>

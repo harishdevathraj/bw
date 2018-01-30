@@ -5029,7 +5029,10 @@ a.thumbnail.active {
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
+  position: relative;
+  text-align: left;
 }
+
 .alert h4 {
   margin-top: 0;
   color: inherit;

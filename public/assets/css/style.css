@@ -34,7 +34,7 @@ p {
 }
 
 p.large {
-    font-size: 16px;
+    font-size: 17px;
 }
 
 a,
@@ -72,7 +72,7 @@ h6 {
 }
 
 .bg-light-gray {
-    background-color: #f7f7f7;
+    background-color: #f2f2f2;
 }
 
 .bg-darkest-gray {
@@ -130,17 +130,17 @@ fieldset[disabled] .btn-primary.active {
 
 .btn-xl {
     padding: 20px 40px;
-    border-color: #1ee2e7;
+    border-color: #EB7823;
     border-radius: 3px;
     text-transform: uppercase;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
-    background-color: #1ee2e7;
+    background-color: #EB7823;
 }
 
-/*.facebookbtn {
+.facebookbtn {
     padding: 20px 40px;
     border-color: #4C69BA;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#4C69BA), to(#3B55A0));
@@ -156,14 +156,24 @@ fieldset[disabled] .btn-primary.active {
 
 .twitterbtn {
     padding: 20px 40px;
-    border-color: #00FF7F;
+    border-color: #EB7823;
     border-radius: 3px;
     text-transform: uppercase;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
-    background-color: #00FF7F;
+    background-color: #EB7823;
+}
+
+.twitterbtn:hover,
+.twitterbtn:focus,
+.twitterbtn:active,
+.twitterbtn.active,
+.open .dropdown-toggle.btn-xl {
+    border-color: #FF631B    ;
+    color: #fff;
+    background-color: #FF631B    ;
 }
 
 .googlebtn {
@@ -177,7 +187,7 @@ fieldset[disabled] .btn-primary.active {
     color: #fff;
     background-color: #4682B4;
 }
-*/
+
 
 .usernamebtn {
     padding: 20px 40px;
@@ -208,9 +218,9 @@ fieldset[disabled] .btn-primary.active {
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-    border-color: #17d0d5;
+    border-color: #FF631B    ;
     color: #fff;
-    background-color: #17d0d5;
+    background-color: #FF631B    ;
 }
 
 .btn-xl:active,
@@ -339,18 +349,19 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url(../images/5826a4f0d015d89e449ccb2a_3a3586cafd678954c62dd411566278b8-dl9ejl.jpg);
+    background-image: url(../images/bk4-2.jpg);
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    background-clip: border-box; 
 }
 
 header .intro-text {
     padding-top: 100px;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
 }
 
 header .intro-text .intro-lead-in {
@@ -362,10 +373,11 @@ header .intro-text .intro-lead-in {
 }
 
 header .intro-text .intro-heading {
-    margin-bottom: 25px;
+    margin-top: 5px;
+    margin-bottom: 6px;
     text-transform: uppercase;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
     line-height: 50px;
 }
@@ -373,7 +385,7 @@ header .intro-text .intro-heading {
 @media(min-width:768px) {
     header .intro-text {
         padding-top: 300px;
-        padding-bottom: 200px;
+        padding-bottom: 250px;
     }
     header .intro-text .intro-lead-in {
         margin-bottom: 25px;
@@ -383,17 +395,18 @@ header .intro-text .intro-heading {
         line-height: 40px;
     }
     header .intro-text .intro-heading {
-        margin-bottom: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
         text-transform: uppercase;
         font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 75px;
+        font-size: 60px;
         font-weight: 700;
         line-height: 75px;
     }
 }
 
 section {
-    padding: 100px 0;
+    padding: 75px 0;
 }
 
 section h2.section-heading {
@@ -413,7 +426,7 @@ section h3.section-subheading {
 
 @media(min-width:768px) {
     section {
-        padding: 150px 0;
+        padding: 100px 0;
     }
 }
 

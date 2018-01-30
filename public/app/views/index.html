@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--#EB7823-->
 <head>
     <base href="/">
     <meta charset="utf-8">
@@ -32,106 +32,109 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/team.css">
 
-    <title>HOME</title>
-
-
-</head>
-
-<body ng-app="userApp" ng-controller="mainCtrl as main" ng-show="main.loadme" ng-cloak>
+    <title>Brahm Works - Lean Manufacturing Company</title>
+    <link rel="icon" href="assets/images/brahm.png">
 
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
-        <div class="container">
+    <!-- Navigation -->            
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-shrink">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                 </button>
-				
-				<!-- <div id="logo" class="">
-                       
-												   <a class="navbar-brand page-scroll" href="/">MEAN Stack</a>
-				
+                            
             </div>  
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/app/views/pages/index.html#home" style="padding:10px;">
+                        <img src="assets/images/brahm.png" onmouseover="zoomin(this)" onmouseout="zoomout(this)" style="height:95%;">
+                    </a>
+                    <script type="text/JavaScript">
+                        function zoomin(x){
+                            x.style.height = "100%";
+                        }
+                        function zoomout(x){
+                            x.style.height = "95%";
+                                        
+                        }
+                    </script>
+                    <!--<a class="navbar-brand" href="/">Brahm Works</a>-->
+                </div>
+                <ul class="nav navbar-nav smooth-scroll list-unstyled">
                     <li class="hidden active">
                         <a href="#page-top"></a>
                     </li>
                     <li class="">
-                        <a class="page-scroll" href="/">Home</a>
+                        <a class="page-scroll" href="/app/views/pages/index.html#home">HOME</a>
                     </li>
-                   <li class="">
-                        <a ng-show="!main.isLoggedIn" class="page-scroll" href="/login">Login</a>
+                    <li class="">
+                        <a class="page-scroll" href="/app/views/pages/index.html#services">SERVICES</a>
+                    </li>
+                    <li class="">
+                        <a class="page-scroll" href="/app/views/pages/index.html#about">ABOUT</a>
+                    </li>
+                    <!--<li class="">
+                        <a class="page-scroll" href="/fileupload">QUOTE</a>
+                    </li>     
+                    <li class="">
+                        <a ng-show="!main.isLoggedIn" class="page-scroll" href="/login">LOGIN</a>
                     </li> 
                     <li class="">
-                        <a ng-show="!main.isLoggedIn" class="page-scroll" href="/register">Register</a>
+                        <a ng-show="!main.isLoggedIn" class="page-scroll" href="/register">REGISTER</a>
+                    </li>-->
+                    <li class="">
+                        <a ng-show="main.isLoggedIn" class="page-scroll" href="#" ng-click="main.logout();">LOGOUT</a>
                     </li>
                     <li class="">
-                        <a ng-show="main.isLoggedIn" class="page-scroll" href="#" ng-click="main.logout();">Logout</a>
+                        <a ng-show="main.isLoggedIn && main.authorized" class="page-scroll" href="/management">MANAGEMENT</a>
                     </li>
                     <li class="">
-                        <a ng-show="main.isLoggedIn && main.authorized" class="page-scroll" href="/management">Management</a>
-                    </li>
-                    <li class="">
-                        <a ng-show="main.isLoggedIn" class="page-scroll" href="/profile">Hello {{ main.username }}</a>
+                        <a ng-show="main.isLoggedIn" class="page-scroll" href="/profile">HELLO {{ main.username }}</a>
                     </li>
                 </ul>
+
+                <ul class="nav navbar-nav navbar-right ">
+                    <li><a ng-show="!main.isLoggedIn" href="/login"><span class="glyphicon glyphicon-log-in"></span>    Login</a></li>
+                    <li><a ng-show="!main.isLoggedIn" href="/register"><span class="glyphicon glyphicon-user"></span>    Sign Up</a></li>
+                              
+                </ul>
             </div>
-
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
+    <!-- /.navbar-collapse -->
     </nav>
+<!-- /.container-fluid -->
 
-    <style>
-p.serif {
-    font-family: "Times New Roman", Times, serif;
-}</style>
+</head>
+
+<body ng-app="userApp" ng-controller="mainCtrl as main" ng-show="main.loadme" ng-cloak>      
 
     <!-- Header -->
-    <header ng-show="main.home">
+    <header id="home" ng-show="main.home">
+        
         <div class="container">
             <div class="intro-text">
-                <div class="serif" font-family="verdana">Brahmworks</div>
-
-                          <!--       <script src="https://js.instamojo.com/v1/checkout.js"></script>
-<script>
-  Instamojo.open("instamojo.com/@harishdevathraj/"); 
-</script> -->
-
                 <div class="intro-heading">Start Creating</div>
-				<p> We are  a creative agency with a passion for design & Developing</p>
-                <a ng-show="!main.isLoggedIn" href="/login" class="page-scroll btn btn-xl">Sign In</a>
+				<p class="large"> We are  a creative agency with a passion for design and Developing</p>
+                <br/>
+                <a ng-show="!main.isLoggedIn" href="/login" class="page-scroll btn btn-xl">LOGIN</a>
                 <a ng-show="!main.isLoggedIn" href="/register" class="page-scroll btn twitterbtn">Register</a>
                 <a ng-show="main.isLoggedIn" href="#" ng-click="main.logout();" class="page-scroll btn btn-xl">Logout</a>
                 <a ng-show="main.isLoggedIn && main.authorized" href="/management" class="page-scroll btn facebookbtn">View</a>
-                <a href="https://www.instamojo.com/@harishdevathraj/" rel="im-checkout" data-behaviour="remote" data-style="light" data-text="Checkout With Instamojo"></a>
-                    <script src="https://js.instamojo.com/v1/button.js"></script>
 
-
-                    <form action="/purchase" method="POST">
-
-
-
-
-<!-- Note that the amount is in paise = 50 INR     MAPS -->
-
-         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.6845183084947!2d77.6366295!3d13.1191613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae196e80f4af69%3A0x50f69759bba227ad!2sHari+Nilaya%2C+%23143%2C+Srinivas+Garden%2C+Bagalur+main+road%2C+Satnur%2C+1%2C+SH+104%2C+Srinivasa+Nagar%2C+Bengaluru%2C+Karnataka+562149!5e0!3m2!1sen!2sin!4v1516100955981" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-
-
+<!-- RAZOR PAY
+<form action="/purchase" method="POST">
 <script
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="rzp_test_Lcue4Idi42b7fP"
-    data-amount="100000"
+    data-amount="1000"
     data-buttontext="Pay with Razorpay"
     data-name="Savan Mehta"
     data-description="CEO BRAHM WORKS"
@@ -141,11 +144,10 @@ p.serif {
     data-theme.color="#FFFFF"
 ></script>
 <input type="hidden" value="Hidden Element" name="hidden">
-</form>
-
-
+</form>-->
             </div>
         </div>
+        
     </header>
 
     <section id="services">
@@ -160,63 +162,138 @@ p.serif {
         </div>
     </section>
 
+       <!--our team-->
+    <section ng-show="main.home" class="bg-light-gray">
+        <div class="container">
+            <h2 class="section-heading text-center ">Our team members</h2>
+            <br/><br/>
+            <div class="row">
+                 <div class="col-sm-2">
+                    
+                </div>
+                
+                <div class="col-sm-2">
+                    <div class="card" >
+                        <img src="assets/images/sanjay.png" alt="Sanjay_img" style="width:100%">
+                        <h4 style="text-align: center;">Sanjay M N</h4>
+                        <p class="title" style="text-align: center;">Product Manager</p>
+                         
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="card" >
+                        <img src="assets/images/hari.png" alt="Hari_img" style="width:100%">
+                        <h4 style="text-align: center;">Hari Uchil</h4>
+                        <p class="title" style="text-align: center;">Technical Director</p>
+                         
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="card" >
+                        <img src="assets/images/puru.png" alt="Purvendra_img" style="width:100%">
+                        <h4 style="text-align: center;">Purvendra R Kamate</h4>
+                        <p class="title" style="text-align: center;">Design Manager</p>
+                         
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="card" >
+                        <img src="assets/images/pince.png" alt="Prince_img" style="width:100%">
+                        <h4 style="text-align: center;">Prince Gupta</h4>
+                        <p class="title" style="text-align: center;">Procurement Manager</p>
+                         
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    
+                </div>
+            </div>
+
+            <br/><br/>
+            <div class="row">
+                <div class="col-sm-2">
+                    
+                </div>
+                <div class="col-sm-2">
+                     <div class="card" >
+                        <img src="assets/images/savan.png" alt="Savan_img" style="width:100%">
+                        <h4 style="text-align: center;">Savan Mehta</h4>
+                        <p class="title" style="text-align: center;">Electronics Engineer</p>
+                         
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="card" >
+                        <img src="assets/images/harish.png" alt="Harish_img" style="width:100%">
+                        <h4 style="text-align: center;">Harish Devathraj</h4>
+                        <p class="title" style="text-align: center;">Software Engineer</p>
+                         
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="card" >
+                        <img src="assets/images/kushal.png" alt="Kushal_img" style="width:100%">
+                        <h4 style="text-align: center;">Kushal K</h4>
+                        <p class="title" style="text-align: center;">Software Engineer</p>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="card" >
+                        <img src="assets/images/shravya.png" alt="Shravya_img" style="width:100%">
+                        <h4 style="text-align: center;">Shravya</h4>
+                        <p class="title" style="text-align: center;">Industrial Designer</p>
+                         
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                  
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
     <!-- Portfolio Grid Section -->
-    <section ng-show="main.home" id="portfolio" class="bg-light-gray">
+    <section ng-show="main.home" id="about" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
 
                     <h2 class="section-heading">About Us</h2>
+                    <br/>
+                    <h4>India's First Maker Ship were Mentors become Makers along with Hardware Entrepreneurs</h4>
+                    <p style="font-style: italic; font-size: 18px">
+                    An exclusive Makership from Brahm.Works which incubates only Hardware startups aims to achieve along with our “Make in India” campaign to make India a leader in manufacturing by 2030. Our Makership program provides an opportunity for hardware startups in various parts of the world to be part of this revolution.
 
-                   <script
-    src="https://checkout.razorpay.com/v1/checkout.js"
-    data-key="rzp_test_Lcue4Idi42b7fP"
-    data-amount="100000"
-    data-buttontext="Pay with Razorpay"
-    data-name="BRAHM WORKS"
-    data-description="Purchase Description"
-    data-image="\Brahmworks_logo_icon.png"
-    data-prefill.name="Harshil Mathur"
-    data-prefill.email="support@razorpay.com"
-    data-theme.color="#FFFFF"
-></script>
-<input type="hidden" value="Hidden Element" name="hidden">
-</form>
-
-
-
-
-                    <a href="dashboard-sales">Clickme</a>
-                    <h3 class="section-subheading text-muted">India's First Maker Ship were Mentors become Makers along with Hardware Entrepreneurs
-An exclusive Makership from Brahm.Works which incubates only Hardware startups aims to achieve along with our “Make in India” campaign to make India a leader in manufacturing by 2030. Our Makership program provides an opportunity for hardware startups in various parts of the world to be part of this revolution.
-
-Having worked with more than 100 startups this new incubator model provides up to 10 Lakh rupees worth of credit to our selected startups. These credits can be later redeemed to be used in various services we provide. Having a collective experience of more than 100 years and being worked in Bay area in San Fransisco to shenzhen we provide Design, Innovation and Manufacturing capabilities to our selected startups. Our panel members does not consists of Mentors, It consists of Makers who can provide startups with services from Pixels to Patents.</h3>
+                    Having worked with more than 100 startups this new incubator model provides up to 10 Lakh rupees worth of credit to our selected startups. These credits can be later redeemed to be used in various services we provide. Having a collective experience of more than 100 years and being worked in Bay area in San Fransisco to shenzhen we provide Design, Innovation and Manufacturing capabilities to our selected startups. Our panel members does not consists of Mentors, It consists of Makers who can provide startups with services from Pixels to Patents.</>
                 </div>
             </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="glyphicon glyphicon-film"></span>
-                    <h4 class="service-heading">YouTube</h4>
-                    <p class="text-muted">Ensure you check out the YouTube video series associated with this web page. Visit:
-                        <a href="https://www.youtube.com/playlist?list=PL3vQyqzqjZ637sWpKvniMCxdqZhnMJC1d" target="_blank">https://www.youtube.com/playlist?list=PL3vQyqzqjZ637sWpKvniMCxdqZhnMJC1d</a>
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <span class="glyphicon glyphicon-usd"></span>
-                    <h4 class="service-heading">Facebook</h4>
-                    <p class="text-muted">Find us on Facebook</p>
-					<a href="https://www.facebook.com/brahm.works/" target="_blank">Click here</a>
-                </div>
-                <div class="col-md-4">
-                    <span class="glyphicon glyphicon-save"></span>
-                    <h4 class="service-heading">Github</h4>
-                    <p class="text-muted">Ensure you check out the GitHub page associated with this web page. Visit:
-                        <a href="https://github.com/gugui3z24" target="_blank">https://github.com/gugui3z24</a>
-                    </p>
-                </div>
-            </div>
+          
         </div>
     </section>
+
+
+    <!--location and contact-->
+    <section ng-show="main.home" id="location" class="bg-light-gray" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="section-heading">Location</h2>
+                    
+                    <p style="font-style: italic; font-size: 18px"> You can find us here.</p>
+                    <div class="card" >
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.930009807151!2d77.62358631478621!3d13.040126990810968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae176b9014a6a5%3A0xdd31201ee7e8c888!2sDesign+.+Manufacture+.+Innovation+-+Brahm+Works!5e0!3m2!1sen!2sin!4v1517246378087" width="550" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-heading">  kcontact us</h2>
+            </div>
+          
+        </div>
+    </section>
+
 
     <footer ng-show="main.home">
         <div class="container">
@@ -225,14 +302,14 @@ Having worked with more than 100 startups this new incubator model provides up t
                     <span class="copyright">@2017 Brahm Works - Lean Manufacturing Company 	</span>
                 </div>
                 <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
+                    <!--<ul class="list-inline social-buttons">
                         <li><a href="#"><i class="fa fa-twitter"></i></a>
                         </li>
                         <li><a href="#"><i class="fa fa-facebook"></i></a>
                         </li>
                         <li><a href="#"><i class="fa fa-linkedin"></i></a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
@@ -270,7 +347,10 @@ Having worked with more than 100 startups this new incubator model provides up t
             </div>
 
         </div>
+
     </div>
+
+
     <!-- BootstrapJS Modal -->
 
     <!-- Bootstrap core JavaScript

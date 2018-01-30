@@ -182,6 +182,9 @@ module.exports = function(router) {
                 // Check if user is found in the database (based on username)           
                 if (!user) {
                     res.json({ success: false, message: 'Username not found' }); // Username not found in database
+                    /* if (!req.body.password) {
+                        res.json({ success: false, message: 'blah' });
+                    }*/
                 } else if (user) {
                     // Check if user does exist, then compare password provided by user
                     if (!req.body.password) {

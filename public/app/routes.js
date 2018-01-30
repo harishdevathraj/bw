@@ -11,9 +11,9 @@ var app = angular.module('appRoutes', ['ngRoute'])
         templateUrl: 'app/views/pages/home.html'
     })
 
-    // Route: About Us (for testing purposes)
-    .when('/about', {
-        templateUrl: 'app/views/pages/about.html'
+    //Route: File upload
+    .when('/fileupload', {
+        templateUrl: 'app/views/pages/users/indexfileupload.html'
     })
 
     // Route: User Registration
