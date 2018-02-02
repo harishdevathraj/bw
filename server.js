@@ -21,7 +21,7 @@ app.use('/api', appRoutes); // Assign name to end points (e.g., '/api/management
 // 
 mongoose.connect('mongodb://localhost:27017/bwdatabase', function(err) {
     if (err) {
-        console.log('Not connected to the database: ' + err); // Log to console if unable to connect to database
+        console.log('Not connected to the database: ' + err); // Log to console if unable to connect to database   //mongodb://root:password@ds027215.mlab.com:27215/gugui3z24
     } else {
         console.log('Successfully connected to MongoDB'); // Log to console if able to connect to database
     }

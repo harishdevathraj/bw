@@ -27,11 +27,13 @@ html {
 }
 
 body {
-  background-image: url("assets/images/bk7.jpg");
-  /*-webkit-filter: grayscale(100%);*/
-
-    
-    background-size: 100% 250%; 
+	
+  
+  background-position: top;
+  /*-webkit-filter: grayscale(100%);
+  background-image: url("assets/images/22.png"); */
+    background-color: #ECF0F1;
+    background-size: 10% 20%; 
    
  
 
@@ -61,7 +63,7 @@ a:hover{
   bottom: 0;
   z-index: -1;
   display: block;
-  background-color: none;
+  background-color: NONE;
   background-image: none;
   width: 100%;
   height: 100%;
@@ -78,14 +80,14 @@ p{
 }
 
 .content {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   width: 600px;
   height: 600px;
-  background-color: rgba(10, 10, 10, 0.5);
+  background-color:rgba(10, 10, 10, 0.5);
   margin: auto auto;
   padding: 40px;
   -moz-border-radius: 4px;
@@ -93,7 +95,7 @@ p{
   border-radius: 4px;
   -moz-box-shadow: 0 0 10px ;
   -webkit-box-shadow: 0 0 10px ;
-  box-shadow: 0 0 10px ;
+  box-shadow: 0 0 20px ;
 }
 .content .title {
   text-align: left;
@@ -104,14 +106,14 @@ p{
 .content input {
     background: white;
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-family: "Open Sans";
   margin: 10px 0px;
   border: none;
-  padding: 10px;
+  padding-left: : 5px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .content input[type=checkbox] {
   display: none;
@@ -224,7 +226,7 @@ p{
 
 
 </style></head>
-
+<div class="footer">
 <body class="bk">
 <br/>
 
@@ -236,24 +238,24 @@ p{
     <br/>
     <br/>
   
-  <form name="sentMessage" id="contactForm" ng-submit="main.doLogin(loginData);" novalidate>
-  <input style="padding-top: 18px; margin-top: 15px" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="text" name="username" placeholder="Email *" ng-model="main.loginData.username" autocomplete="off">
-  <input style="padding-top: 18px; margin-top: 15px" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="password" name="password" placeholder="Password *" ng-model="main.loginData.password" autocomplete="off">
+        <form name="sentMessage" id="contactForm" ng-submit="main.doLogin(loginData);" novalidate>
+            <input  ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="text" name="username" placeholder="Email *" ng-model="main.loginData.username" autocomplete="off">
+            <input  ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="password" name="password" placeholder="Password *" ng-model="main.loginData.password" autocomplete="off">
   
-  <a href="/resetpassword" ><p align="right">Forgot Password?<p></a>
- <!-- <input type="checkbox" id="rememberMe"/> 
-  <label for="rememberMe"></label><span>I have read and agree to the <a href="#">Terms of Use </a>and <a href="#">Privacy Policy</a></span> -->
-  <button>Log in</button>
-</br>
-  <div class="social"> <span>or sign up with social media</span></div>
-  <div class="buttons">
-    <a href="#" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" ng-click="main.facebook();"> <button class="facebook"><i class="fa fa-facebook"></i>Facebook</button> </a>
-   <a href="#" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" ng-click="main.twitter();"> <button class="twitter"><i class="fa fa-twitter"></i>Twitter</button> </a>
-    <a href="#" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" ng-click="main.google();"> <button class="google"><i class="fa fa-google-plus"></i>Google+</button> </a>
-  </div>
-  <div class="already">Dont have an account? <a href="/register">Sign up</a></div>
+           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a href="/resetpassword" >Forgot Password?</a>
+            <button>Log in</button>
+           
+      </br>
+            <div class="social"> <span>or sign up with social media</span></div>
+            <div class="buttons">
+                <a href="#" ng-disabled="facebook.disabled || twitter.disabled || google.disabled" ng-click="main.facebook();"> <button class="facebook"><i class="fa fa-facebook"></i>Facebook</button> </a>
+                <a href="#" ng-disabled="facebook.disabled || twitter.disabled || google.disabled" ng-click="main.twitter();"> <button class="twitter"><i class="fa fa-twitter"></i>Twitter</button> </a>
+                <a href="#" ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" ng-click="main.google();"> <button class="google"><i class="fa fa-google-plus"></i>Google+</button> </a>
+            </div>
+             <div class="already">Dont have an account? <a href="/register">Sign up</a></div>
 
-</form>
+        </form>
+        
 
        <!--  Loading Icon (Bootstrap) -->
          <div class="jumbotron text-center" ng-show="main.loading">
@@ -270,12 +272,16 @@ p{
             </a>
         </div>
 
+</div>
+                
 
-        <!-- For registration page-->
- </div>       
+	
 
 
 <script src="assets/js/login.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 
-</body></html>
+</body>
+</div>
+
+</html>

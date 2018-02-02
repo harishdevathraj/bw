@@ -29,15 +29,16 @@ module.exports = function(router) {
     // Route to register new users  
     router.post('/users', function(req, res) {
         var user = new User(); // Create new User object
-        user.username = req.body.username; // Save username from request to User object
+        user.username = req.body.email; // Save username from request to User object
         user.password = req.body.password; // Save password from request to User object
         user.email = req.body.email; // Save email from request to User object
+        user.phone = req.body.phone; // Save phone from request to user object
         user.name = req.body.name; // Save name from request to User object
         user.temporarytoken = jwt.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' }); // Create a token for activating account through e-mail
 
         // Check if request is valid and not empty or null
-        if (req.body.username === null || req.body.username === '' || req.body.password === null || req.body.password === '' || req.body.email === null || req.body.email === '' || req.body.name === null || req.body.name === '') {
-            res.json({ success: false, message: 'Ensure username, email, and password were provided' });
+        if (req.body.username === null || req.body.username === '' || req.body.password === null || req.body.password === '' || req.body.email === null || req.body.email === '' ||req.body.phone === null || req.body.phone === '' || req.body.name === null || req.body.name === '') {
+            res.json({ success: false, message: 'Ensure username, email, phone no, and password were provided' });
         } else {
             // Save new user to database
             user.save(function(err) {
@@ -48,6 +49,8 @@ module.exports = function(router) {
                             res.json({ success: false, message: err.errors.name.message }); // Display error in validation (name)
                         } else if (err.errors.email) {
                             res.json({ success: false, message: err.errors.email.message }); // Display error in validation (email)
+                        } else if (err.errors.phone) {
+                            res.json({success: false, message: err.errors.phone.message }); // Display error in validation (phone)
                         } else if (err.errors.username) {
                             res.json({ success: false, message: err.errors.username.message }); // Display error in validation (username)
                         } else if (err.errors.password) {
@@ -157,7 +160,12 @@ module.exports = function(router) {
 
     // Route for user logins
     router.post('/authenticate', function(req, res) {
+        if(req.body.username == null || req.body.username == '' ){
+            res.json({ success: false, message: 'Please enter your Email-id' });
+        }
+        else{
         var loginUser = (req.body.username).toLowerCase(); // Ensure username is checked in lowercase against database
+        
         User.findOne({ username: loginUser }).select('email username password active').exec(function(err, user) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
@@ -181,7 +189,7 @@ module.exports = function(router) {
             } else {
                 // Check if user is found in the database (based on username)           
                 if (!user) {
-                    res.json({ success: false, message: 'Username not found' }); // Username not found in database
+                    res.json({ success: false, message: 'Email-id not found' }); // Username not found in database
                     /* if (!req.body.password) {
                         res.json({ success: false, message: 'blah' });
                     }*/
@@ -192,7 +200,7 @@ module.exports = function(router) {
                     } else {
                         var validPassword = user.comparePassword(req.body.password); // Check if password matches password provided by user 
                         if (!validPassword) {
-                            res.json({ success: false, message: 'Could not authenticate password' }); // Password does not match password in database
+                            res.json({ success: false, message: 'Incorrect password' }); // Password does not match password in database
                         } else if (!user.active) {
                             res.json({ success: false, message: 'Account is not yet activated. Please check your e-mail for activation link.', expired: true }); // Account is not activated 
                         } else {
@@ -203,8 +211,9 @@ module.exports = function(router) {
                 }
             }
         });
+    
+    }
     });
-
     // Route to activate the user's account 
     router.put('/activate/:token', function(req, res) {
         User.findOne({ temporarytoken: req.params.token }, function(err, user) {

@@ -43,7 +43,7 @@ var usernameValidator = [
         validator: 'isAlphanumeric',
         message: 'Username must contain letters and numbers only'
     })
-];
+]; 
 
 // Password Validator
 var passwordValidator = [
@@ -62,8 +62,9 @@ var passwordValidator = [
 // User Mongoose Schema
 var UserSchema = new Schema({
     name: { type: String, required: true, validate: nameValidator },
-    username: { type: String, lowercase: true, required: true, unique: true, validate: usernameValidator },
+    username: { type: String, lowercase: true, required: true},
     password: { type: String, required: true, validate: passwordValidator, select: false },
+    phone: { type: String},
     email: { type: String, required: true, lowercase: true, unique: true, validate: emailValidator },
     active: { type: Boolean, required: true, default: false },
     temporarytoken: { type: String, required: true },

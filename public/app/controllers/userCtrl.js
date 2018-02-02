@@ -80,6 +80,28 @@ angular.module('userControllers', ['userServices'])
             }
         });
     };
+
+
+
+// Custom function that checks if phone is available for user to use       
+    this.checkphone = function(regData) {
+        app.checkingphone = true; // Start bootstrap loading icon
+        app.phoneMsg = false; // Clear emailMsg each time user activates ngBlur
+        app.phoneInvalid = false; // Clear emailInvalid each time user activates ngBlur
+
+        // Runs custom function that checks if phone is available for user to use          
+        User.checkphone(app.regData).then(function(data) {
+            // Check if phone is available for the user
+            if (data.data.success) {
+                app.checkingphone = false; // Stop bootstrap loading icon
+                app.phoneMsg = data.data.message; // If successful, grab message from JSON object
+            } else {
+                app.checkingphone = false; // Stop bootstrap loading icon
+                app.phoneInvaild = true; // User variable to let user know that the chosen e-mail is taken already
+                app.phoneMsg = data.data.message; // If not successful, grab message from JSON object
+            }
+        });
+    };
 })
 
 // Custom directive to check matching passwords 

@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang='en'>
+<head>
+    <title>Sign in</title>
+    <meta charset="UTF-8">
+  <!--  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <script src="assets/js/login.js"></script>
+   <script src="assets/js/login2.js"></script>
+   <script src="assets/js/login3.js"></script>
+
+
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="assets/images/brahm.png" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><!--<link rel="canonical" href="https://codepen.io/icebob/pen/LEbQVY?editors=1000" />-->
+
+
+<style class="cp-pen-styles">@import url(https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background:none;
+}
+
+body {
+  background-image: url("assets/images/blueg.jpg");
+  font-family: "Open Sans";
+  font-size: 16px;
+  color: White;
+  font-smoothing: antialiased;
+  font-weight: 600;
+}
+
+ 
+a {
+  color: #BBB;
+
+}
+
+.content:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  display: block;
+  background-color: none;
+  background-image: none;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+p{
+    position: center;
+
+}
+
+.content {
+  position: absolute;
+  top: 200px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 600px;
+  height: 600px;
+  background-color: rgba(10, 10, 10, 0.5);
+  margin: auto auto;
+  padding: 40px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0 0 10px ;
+  -webkit-box-shadow: 0 0 10px ;
+  box-shadow: 0 0 10px ;
+}
+.content .title {
+  text-align: left;
+  font-size: 2.0rem;
+  font-weight: 600;
+  padding-bottom: 30px;
+}
+.content input {
+    background: white;
+  width: 100%;
+  font-size: 1.2rem;
+  font-family: "Open Sans";
+  margin: 10px 0px;
+  border: none;
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.content input[type=checkbox] {
+  display: none;
+  background: transparent;
+}
+.content label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 5px;
+  margin-right: 10px;
+  top: 5px;
+}
+.content label:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  background-color: #aaa;
+  -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+}
+.content input[type=checkbox]:checked + label:before {
+  content: "\2713";
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  color: ;
+  text-align: center;
+  line-height: 20px;
+}
+.content span {
+  font-size: 1.5rem;
+}
+.content button {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 10px;
+  margin: 20px 0px;
+  background-color: #66A756;
+  color: white;
+  border: none;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.content .social {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.content .social span {
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 0 20px;
+}
+.content .social span:before, .content .social span:after {
+  content: '';
+  display: block;
+  width: 500px;
+  position: absolute;
+  top: 0.9em;
+  border-top: 1px solid White;
+}
+.content .social span:before {
+  right: 75%;
+}
+.content .social span:after {
+  left: 75%;
+}
+.content .buttons {
+  width: 100%;
+  margin: 30px 0px;
+}
+.content .buttons button {
+  float: left;
+  width: 30%;
+  margin: 0px 1.5%;
+}
+.content .buttons button i {
+  padding-right: 7px;
+}
+.content .buttons button.facebook {
+  background-color: #4464B2;
+}
+.content .buttons button.twitter {
+  background-color: #28A9E0;
+}
+.content .buttons button.google {
+  background-color: #DA4735;
+}
+.content .buttons:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.content .already {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+
+</style></head><body>
+      <br>
+
+<div class="content">
+
+ <a href="apps/views/index.html"><img src="assets/images/brahm.png" alt="Brahm Logo" width="50" height="50" align="middle" border="10"><p>Home</a>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Register Here
+                  
+  <br>
+  <br>
+
+  <form name="regForm" ng-submit="register.regUser(regData, regForm.$valid, confirmed);" id="contactForm" novalidate>
+  <div class="form-group">
+                                <div ng-class="{ 'has-success':(regForm.firstName.$valid && !regForm.firstName.$pristine), 'has-error':(!regForm.firstName.$valid && !regForm.firstName.$pristine) || (!regForm.firstName.$valid && regForm.$submitted) }">
+                                    <!-- First Name Input -->
+                                  
+                                    <input ng-disabled="register.disabled" class="form-control" type="text" name="firstName" placeholder="First Name *" ng-model="register.regData.firstName" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="20" required>
+                                    <!-- First Name Validation -->
+                                    <p class="help-block" ng-show="(!regForm.firstName.$pristine && regForm.firstName.$error.required) || (regForm.$submitted && regForm.firstName.$error.required)">This field is required</p>
+                                    <ul ng-show="(!regForm.firstName.$pristine && regForm.firstName.$error.pattern) || (!regForm.firstName.$pristine && regForm.firstName.$error.minlength) || (!regForm.firstName.$pristine && regForm.firstName.$error.maxlength)" class="help-block">
+                                        <li>Must have a space in between first and last firstName</li>
+                                        <li>Must not contain any special characters</li>
+                                        <li>Must not contain any numbers</li>
+                                        <li>Must be at least 3 characters but no more than 20</li>
+                                    </ul>
+                                </div>
+                                <div ng-class="{ 'has-success':(regForm.lastName.$valid && !regForm.lastName.$pristine), 'has-error':(!regForm.lastName.$valid && !regForm.lastName.$pristine) || (!regForm.lastName.$valid && regForm.$submitted) }">
+                                    <!-- Last Name Input -->
+                                   
+                                    <input ng-disabled="register.disabled" class="form-control" type="text" name="lastName" placeholder="Last Name *" ng-model="register.regData.lastName" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="20" required>
+                                    <!-- Last Name Validation -->
+                                    <p class="help-block" ng-show="(!regForm.lastName.$pristine && regForm.lastName.$error.required) || (regForm.$submitted && regForm.lastName.$error.required)">This field is required</p>
+                                    <ul ng-show="(!regForm.lastName.$pristine && regForm.lastName.$error.pattern) || (!regForm.lastName.$pristine && regForm.lastName.$error.minlength) || (!regForm.lastName.$pristine && regForm.lastName.$error.maxlength)" class="help-block">
+                                        <li>Must have a space in between first and last lastName</li>
+                                        <li>Must not contain any special characters</li>
+                                        <li>Must not contain any numbers</li>
+                                        <li>Must be at least 3 characters but no more than 20</li>
+                                    </ul>
+                                </div>
+                                <div ng-class="{ 'has-success':(regForm.email.$valid && !regForm.email.$pristine && !register.emailInvalid), 'has-error':(!regForm.email.$valid && !regForm.email.$pristine) || (!regForm.email.$valid && regForm.$submitted) || register.emailInvalid }">
+                                    <!-- Email Input -->
+                                   
+                                    <input ng-disabled="register.disabled" class="form-control" type="text" name="email" placeholder="E-mail *" ng-model="register.regData.email" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" ng-blur="register.checkEmail(regData);" required>
+                                    <!-- Email Validation -->
+                                    <p class="help-block" ng-show="(!regForm.email.$pristine && regForm.email.$error.required) || (regForm.$submitted && regForm.email.$error.required)">This field is required</p>
+                                    <span ng-show="register.checkingEmail && regForm.email.$valid" class="glyphicon glyphicon-repeat"></span>
+                                    <p class="help-block" ng-show="register.emailMsg && !regForm.email.$error.required && regForm.email.$valid">{{ register.emailMsg }}</p>
+                                    <ul ng-show="(!regForm.email.$pristine && regForm.email.$error.pattern) || (!regForm.email.$pristine && regForm.email.$error.minlength) || (!regForm.email.$pristine && regForm.email.$error.maxlength)" class="help-block">
+                                        <li>Must contain "@"</li>
+                                        <li>Must not contain any special characters</li>
+                                        <li>Must be at least 3 characters but no more than 25</li>
+                                    </ul>
+                                </div>
+                                <!--
+                                <div ng-class="{ 'has-success':(regForm.phone.$valid && !regForm.phone.$pristine && !register.phoneInvalid), 'has-error':(!regForm.phone.$valid && !regForm.phone.$pristine) || (!regForm.phone.$valid && regForm.$submitted) || register.phoneInvalid }">
+
+                                     phone
+                                   
+                                    <input ng-disabled="register.disabled" class="form-control" type="text" name="phone" placeholder="Mobile-no. " ng-model="register.regData.phone" ng-minlength="10" ng-maxlength="10" ng-pattern="/^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/" ng-blur="register.checkphone(regData);" required>
+                                   <!--  phone Validation 
+                                    <p class="help-block" ng-show="(!regForm.phone.$pristine && regForm.phone.$error.required) || (regForm.$submitted && regForm.phone.$error.required)">This field is required</p>
+                                    <span ng-show="register.checkingphone && regForm.phone.$valid" class="glyphicon glyphicon-repeat"></span>
+                                    <p class="help-block" ng-show="register.phoneMsg && !regForm.phone.$error.required && regForm.phone.$valid">{{ register.phoneMsg }}</p>
+                                    <ul ng-show="(!regForm.phone.$pristine && regForm.phone.$error.pattern) || (!regForm.phone.$pristine && regForm.phone.$error.minlength) || (!regForm.phone.$pristine && regForm.phone.$error.maxlength)" class="help-block">
+                                        <li>Must contain numbers</li>
+                                        <li>Must not contain any special characters</li>
+                                        <li>Must be at least 10 numbers</li>
+                                    </ul>
+                                </div> -->
+                                 
+                                 <div ng-class="{ 'has-success':(regForm.phone.$valid && !regForm.phone.$pristine), 'has-error':(!regForm.phone.$valid && !regForm.phone.$pristine) || (!regForm.phone.$valid && regForm.$submitted) }">
+                                    <!-- First Name Input -->
+                                  
+                                    <input ng-disabled="register.disabled" class="form-control" type="text" name="phone" placeholder="mobile *" ng-model="register.regData.phone" ng-pattern="/^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/" ng-minlength="10" ng-maxlength="10" required>
+                                    <!-- First Name Validation -->
+                                    <p class="help-block" ng-show="(!regForm.phone.$pristine && regForm.phone.$error.required) || (regForm.$submitted && regForm.phone.$error.required)">This field is required</p>
+                                    <ul ng-show="(!regForm.phone.$pristine && regForm.phone.$error.pattern) || (!regForm.phone.$pristine && regForm.phone.$error.minlength) || (!regForm.phone.$pristine && regForm.phone.$error.maxlength)" class="help-block">
+                                        <li>Must have a space in between first and last firstName</li>
+                                        <li>Must not contain any special characters</li>
+                                        <li>Must not contain any numbers</li>
+                                        <li>Must be at least 3 characters but no more than 20</li>
+                                    </ul>
+                                </div>
+
+
+
+
+
+
+
+                                
+                                 <div ng-class="{ 'has-success':(regForm.username.$valid && !regForm.username.$pristine && !register.usernameInvalid), 'has-error':(!regForm.username.$valid && !regForm.username.$pristine) || (!regForm.username.$valid && regForm.$submitted) || register.usernameInvalid }">
+                                    <!-- Username Input -->
+                                   
+                                    <input ng-disabled="register.disabled" class="form-control" type="text" name="username" placeholder="Username *" ng-model="register.regData.username" ng-minlength="3" ng-maxlength="25" ng-pattern="/^(?!.*?[\W])(?=.*?[a-zA-Z]|=.*?[A-Z]).{3,16}$/" ng-blur="register.checkUsername(regData);" required>
+                                    <!-- Username Validation -->
+                                    <p class="help-block" ng-show="(!regForm.username.$pristine && regForm.username.$error.required) || (regForm.$submitted && regForm.username.$error.required)">This field is required</p>
+                                    <span ng-show="register.checkingUsername && regForm.username.$valid" class="glyphicon glyphicon-repeat"></span>
+                                    <p class="help-block" ng-show="register.usernameMsg && !regForm.username.$error.required && regForm.username.$valid">{{ register.usernameMsg }}</p>
+                                    <ul ng-show="(!regForm.username.$pristine && regForm.username.$error.pattern) || (!regForm.username.$pristine && regForm.username.$error.minlength) || (!regForm.username.$pristine && regForm.username.$error.maxlength)" class="help-block">
+                                        <li>Must not contain any special characters or spaces</li>
+                                        <li>Must be at least 3 characters but no more than 25</li>
+                                    </ul>
+                                </div>
+                                <div ng-class="{ 'has-success':(regForm.firstPassword.$valid && !regForm.firstPassword.$pristine), 'has-error':(!regForm.firstPassword.$valid && !regForm.firstPassword.$pristine) || (!regForm.firstPassword.$valid && regForm.$submitted) }">
+                                    <!-- Password Input -->
+                                   
+                                    <input ng-disabled="register.disabled" class="form-control" type="password" name="firstPassword" placeholder="Password *" ng-model="firstPassword" ng-minlength="8" ng-maxlength="35" ng-pattern="/^(?=.*?[a-z])(?=.*?[A-Z]).{8,35}$/" required>
+                                    <!-- Password Validation -->
+                                    <p class="help-block" ng-show="(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.required) || (regForm.$submitted && regForm.firstPassword.$error.required)">This field is required</p>
+                                    <ul ng-show="(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.pattern) || (!regForm.firstPassword.$pristine && regForm.firstPassword.$error.minlength) || (!regForm.firstPassword.$pristine && regForm.firstPassword.$error.maxlength)" class="help-block">
+                                        <li>Must contain at least one upper case letter</li>
+                                        <li>Must contain at least one lower case letter</li>
+                                        <li>Must contain at least 8 characters but no more than 35</li>
+                                    </ul>
+                                </div>
+                                <div ng-class="{ 'has-success':confirmed && !regForm.confirmPassword.$error.required, 'has-error':(!confirmed && !regForm.confirmPassword.$error.required) || (regForm.confirmPassword.$error.required && !regForm.confirmPassword.$pristine) || (regForm.$submitted && regForm.confirmPassword.$error.required) }">
+                                    <!-- Confirm Password Input -->
+                                    
+                                    <input ng-disabled="register.disabled" class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password *" match="{{[firstPassword]}}" ng-change="register.regData.password = confirm" ng-model="confirm" required>
+                                    <!-- Confirm Password Validation -->
+                                    <p class="help-block" ng-show="(!regForm.confirmPassword.$pristine && regForm.confirmPassword.$error.required) || (regForm.$submitted && regForm.confirmPassword.$error.required)">This field is required</p>
+                                    <p class="help-block" ng-show="!confirmed && !regForm.confirmPassword.$pristine && regForm.firstPassword.$valid">Passwords do not match</p>
+                                </div>
+
+              <div class="clearfix"></div>
+                        <div class="col-lg-12 text-left">
+                            <div id="success"></div>
+
+                            <div class="already"> Already Registered? <a href="/login">Sign in></a></div>
+                            <!-- Login Button -->
+                           <button type="submit" ng-disabled="register.disabled" class="btn btn-xl">Register</button>
+
+                     </div>
+                 
+                    </div>
+                </form>
+      </div>     
+
+        <br>
+
+        <!-- Loading Icon (Bootstrap) -->
+        <div class="jumbotron text-center" ng-show="register.loading">
+            <span class="glyphicon glyphicon-repeat spinner"></span>
+            <p>Loading....</p>
+        </div>
+        <!-- Loading Icon (Bootstrap) -->
+
+        <!-- Custom Messages -->
+        <div class="row show-hide-message" ng-show="register.successMsg || register.errorMsg">
+            <div ng-class="alert">{{ register.successMsg || register.errorMsg }}</div>
+        </div> 
+        <!-- Custom Messages -->
+
+    
+</body></html>
