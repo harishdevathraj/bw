@@ -23,6 +23,7 @@
     <script src="app/controllers/mainCtrl.js"></script>
     <script src="app/controllers/emailCtrl.js"></script>
     <script src="app/controllers/managementCtrl.js"></script>
+    <script src="app/controllers/contactCtrl.js"></script>
 
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
@@ -90,6 +91,10 @@
                     <li class="">
                         <a ng-show="!main.isLoggedIn" class="page-scroll" href="/register">REGISTER</a>
                     </li>-->
+                    </ul>
+
+
+                    <ul class="nav navbar-nav navbar-right ">
                     <li class="">
                         <a ng-show="main.isLoggedIn" class="page-scroll" href="#" ng-click="main.logout();">LOGOUT</a>
                     </li>
@@ -97,11 +102,8 @@
                         <a ng-show="main.isLoggedIn && main.authorized" class="page-scroll" href="/management">MANAGEMENT</a>
                     </li>
                     <li class="">
-                        <a ng-show="main.isLoggedIn" class="page-scroll" href="/profile">HELLO {{ main.username }}</a>
+                        <a ng-show="main.isLoggedIn" class="page-scroll" href="/profile"><span class="glyphicon glyphicon-user"></span> ACCOUNT</a>
                     </li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right ">
                     <li><a ng-show="!main.isLoggedIn" href="/login"><span class="glyphicon glyphicon-log-in"></span>    Login</a></li>
                     <li><a ng-show="!main.isLoggedIn" href="/register"><span class="glyphicon glyphicon-user"></span>    Sign Up</a></li>
                               
@@ -277,7 +279,7 @@ padding:0;">
 
 
     <!--location and contact-->
-    <section ng-show="main.home" id="location" class="bg-light-gray" >
+    <section ng-controller="conCtrl as con" ng-show="main.home" id="location" class="bg-light-gray" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -288,9 +290,39 @@ padding:0;">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.930009807151!2d77.62358631478621!3d13.040126990810968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae176b9014a6a5%3A0xdd31201ee7e8c888!2sDesign+.+Manufacture+.+Innovation+-+Brahm+Works!5e0!3m2!1sen!2sin!4v1517246378087" width="550" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <h2 class="section-heading">  contact us</h2>
-            </div>
+                
+
+
+                <div class="container">
+<div class="col-md-6">
+        <h2 class="section-heading">Contact Us</h2>
+                    <p style="font-style: italic; font-size: 18px">Dreams don't work unless you do. Let's start Creating.</p>
+    <div class="form-area">  
+        <form role="form" ng-submit="con.conUser(conData);">
+        <br style="clear:both">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="con.conData.name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="con.conData.email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" ng-model="con.conData.mobile" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" ng-model="con.conData.subject" required>
+                    </div>
+                    <div class="form-group">
+                    <textarea class="form-control" type="textarea" name="text" id="message" placeholder="Message" maxlength="140" rows="7" ng-model="con.conData.text"></textarea>
+                                           
+                    </div>
+            
+        <button type="submit" id="submit" name="submit" class="btn btn-xl pull-right" style="padding: 10px 20px; font-size: 17px">Submit Form</button>
+        </form>
+    </div>
+</div>
+</div>
           
         </div>
     </section>

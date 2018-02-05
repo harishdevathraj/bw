@@ -13,7 +13,6 @@ module.exports = function(router) {
     //         api_key: 'PAssword123!@#' // Sendgrid password
     //     }
     // };
-
     // Nodemailer options (use with g-mail or SMTP)
     var client = nodemailer.createTransport({
         service: 'Zoho',
@@ -93,6 +92,46 @@ module.exports = function(router) {
             });
         }
     });
+
+    //Route to email the contact form
+    router.post('/contact', function(req, res){
+   
+
+    // setup email data with unicode symbols
+  var email = {
+      from: '"ADMIN", harish@brahm.works', // sender address
+      to: ['k1u2s3h4a5l6@gmail.com', ''],// list of receivers
+      subject: req.body.subject, // Subject line
+     
+      html: `<p>You have a new contact request from brahm.works</p>
+            <h3> Contact details</h3>
+            <ul><li>Name: ${req.body.name}</li>
+            <li>Email: ${req.body.email}</li>
+            <li>Phone: ${req.body.mobile}</li>
+            </ul>
+            <br/>
+            <h3>Message</h3>
+            <p> ${req.body.text}</p>
+            `
+  };
+
+
+  // send mail with defined transport object
+  client.sendMail(email, function(error, info) {
+      if (error) {
+          return console.log(error);
+      }
+      
+      console.log('Message sent:');   
+      
+
+      
+  
+  });
+
+  });
+
+
 
     // Route to check if username chosen on registration page is taken
     router.post('/checkusername', function(req, res) {
