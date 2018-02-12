@@ -1,7 +1,4 @@
-/*Main CSS*/
 
-
-/*Login Signup Page*/
 a:focus,a:hover,a{
     outline:none;
     text-decoration: none;
@@ -202,6 +199,7 @@ li,ul{
 .display-table-row {
     display: table-row;
     height: 100%;
+   
 }
 
 .display-table-cell {
