@@ -12,6 +12,7 @@ var appRoutes = require('./app/routes/api')(router); // Import the application e
 var path = require('path'); // Import path module
 var passport = require('passport'); // Express-compatible authentication middleware for Node.js.
 var social = require('./app/passport/passport')(app, passport); // Import passport.js End Points/API
+var fs = require('fs');
 
 app.use(upload()); // configure middleware
 app.use(morgan('dev')); // Morgan Middleware

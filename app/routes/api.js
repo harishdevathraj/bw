@@ -1,9 +1,18 @@
 var User = require('../models/user'); // Import User Model
+var formidable = require('formidable');
+var upload = require('express-fileupload');
+var express = require('express'); // ExperssJS Framework
+var app = express(); // Invoke express to variable for use in application
+const http = require('http');
 var jwt = require('jsonwebtoken'); // Import JWT Package
+var fs = require('fs');
 var secret = 'harrypotter'; // Create custom secret for use in JWT
 var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
 
+
+
+app.use(upload()); 
 module.exports = function(router) {
 
     // Start Sendgrid Configuration Settings (Use only if using sendgrid)
@@ -131,7 +140,7 @@ module.exports = function(router) {
   });
 
    
-    router.post('/quote', function(req,res){
+    router.post('/upload', function(req,res){
         console.log(req.files.file);
         var file = req.files.file,
         name = file.name,
@@ -139,55 +148,25 @@ module.exports = function(router) {
         
         var uploadpath ='./uploads/'+name;
         console.log(uploadpath);
-        //fullpath=uploadpath;
         file.mv(uploadpath,function(err){
-        if(err){
-            console.log("File Upload Failed",name,err);
-            res.send("Error Occured!")
-        }
-        else {
-            console.log("File Uploaded",name);
-            res.send('Done! Uploading files')
-        }
-    });
-
-       
-    });
-
-    /*router.post('/quote', function(req,res){
-
-        
-
-  if(req.files.upfile){
-    var file = req.files.upfile,
-      name = file.name,
-      type = file.mimetype;
-      console.log(name);
-    var uploadpath = __dirname + '/uploads/' + name;
-    //fullpath=uploadpath;
-    file.mv(uploadpath,function(err){
-      if(err){
-        console.log("File Upload Failed",name,err);
-        res.send("Error Occured!")
-      }
-      else {
-        console.log("File Uploaded",name);
-        res.send('Done! Uploading files')
-      }
-    });
+            if(err){
+               console.log("File Upload Failed",name,err);
+             res.send("Error Occured!")
+            }
+            else {
+               console.log("File Uploaded",name);
+               res.send('Done! Uploading files')
+            }
+        });
+       /* var form = new formidable.IncomingForm();
+        form.parse(req, function (err, fields, files) {
+            res.write('File uploaded');
+            res.end();
+        });*/
+});
     
-    
- 
-   var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-                        res.write('File uploaded');
-                        res.end();
-                        }
-    );
-
-
-var fs = require('fs');
-
+/* 
+router.post('/quote',function(req,res){})
 // Vertex
 function Vertex (v1,v2,v3) {
     this.v1 = Number(v1);
@@ -327,12 +306,15 @@ function _parseSTLBinary (buf) {
 
     
 function NodeStl (stlPath) {
+    console.log(stlPath+'NODESTLLLLLLLLLLLL');
     var buf;
     if(Object.prototype.toString.call(stlPath)=='[object String]')
         buf = fs.readFileSync(stlPath);
     else if(Object.prototype.toString.call(stlPath)=='[object Uint8Array]')
         buf=stlPath;
+    //console.log(buf +' NODESTL FUNCTION');
     isAscii = true;
+    
         
     for (var i=0, len=buf.length; i<len; i++) {
         if (buf[i] > 127) { isAscii=false; break; }
@@ -344,29 +326,22 @@ function NodeStl (stlPath) {
         return _parseSTLBinary(buf);
 }
 
-module.exports = NodeStl;
-var stl = NodeStl(name);
+var stl = NodeStl('./uploads/'+name);
     console.log(stl.volume + 'cm^3');
     console.log(stl.weight + 'gm');
     var vol=stl.volume;
-    res.send('volume is ' +vol + ' and the price is '+vol*55 );
+    //res.send('volume is ' +vol + ' and the price is '+vol*55 );
     var pric=vol*55;
     //res.send ('blah');
     
     
-    
-  }
-})
 
 
-       
-            
-            */
-            
-        
-  
 
 
+    });*/
+
+   
 
     // Route to check if username chosen on registration page is taken
     router.post('/checkusername', function(req, res) {
