@@ -56,7 +56,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/app/views/pages/index.html#home" style="padding:10px;">
+                    <a class="navbar-brand" href="/" style="padding:10px;">
                         <img src="assets/images/brahm.png" onmouseover="zoomin(this)" onmouseout="zoomout(this)" style="height:95%;">
                     </a>
                     <script type="text/JavaScript">
@@ -75,7 +75,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="">
-                        <a class="page-scroll" href="/app/views/pages/index.html#home">HOME</a>
+                        <a class="page-scroll" href="/">HOME</a>
                     </li>
                     <li class="">
                         <a class="page-scroll" href="/app/views/pages/index.html#services">SERVICES</a>
@@ -112,13 +112,13 @@ padding:0;">
     <!-- Header -->
     <header id="home" ng-show="main.home">
         
-        <div class="container" >
+        <div class="container">
             <div class="intro-text">
                 <div class="intro-heading">Start Creating</div>
 				<p class="large"> We are  a creative agency with a passion for design and Developing</p>
                 <br/>
-                <a ng-show="!main.isLoggedIn" href="/login" class="page-scroll btn btn-xl">LOGIN</a>
-                <a ng-show="!main.isLoggedIn" href="/register" class="page-scroll btn twitterbtn">Register</a>
+                <a ng-show="!main.isLoggedIn" href="/login" class="page-scroll btn btn-xl">Get Quote</a>
+                <!--<a ng-show="!main.isLoggedIn" href="/register" class="page-scroll btn twitterbtn">Register</a>-->
                 <a ng-show="main.isLoggedIn" href="#" ng-click="main.logout();" class="page-scroll btn btn-xl">Logout</a>
                 <a ng-show="main.isLoggedIn && main.authorized" href="/management" class="page-scroll btn facebookbtn">View</a>
 
@@ -145,7 +145,7 @@ padding:0;">
 
 
     <section ng-hide="main.home" style="margin:0px; padding-top: 50px;" >
-        <div class="container-fluid" style="margin-right:15px; padding:0px;">
+        <div class="container-fluid" style="margin-right:15px; margin-left:15px; padding:0px;">
             <div class="row">
 
                 <!-- Angular View -->
@@ -157,7 +157,7 @@ padding:0;">
     </section>
 
         <!--HOME -->
-    <section ng-show="main.home" >
+    <section ng-show="main.home" id="services">
          <div class="container"> 
         <div class="row text-center" >
             <div class="container">
