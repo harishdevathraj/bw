@@ -14,13 +14,13 @@ var app = angular.module('appRoutes', ['ngRoute'])
     //Route: myprojects
     .when('/dashmyprojects',{
         templateUrl: 'app/views/pages/users/dashmyprojects.html',
-        authenticated: false
+       
     })
 
     //Route: workflow
     .when('/dashworkflow', {
         templateUrl: 'app/views/pages/users/dashworkflow.html',
-        authenticated: false
+    
     })
 
     // Route: User Registration

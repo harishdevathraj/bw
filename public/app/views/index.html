@@ -40,69 +40,120 @@
     <link rel="icon" href="assets/images/brahm.png">
 
 
-    <!-- Navigation -->            
-    <nav class="navbar navbar-inverse navbar-fixed-top navbar-shrink">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                </button>
-                            
-            </div>  
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/" style="padding:10px;">
-                        <img src="assets/images/brahm.png" onmouseover="zoomin(this)" onmouseout="zoomout(this)" style="height:95%;">
+<style type="text/css">
+    /* CSS used here will be applied after bootstrap.css */
+html,body {
+  height:100%;
+    
+}
+
+.first {
+  padding-top:140px;
+  height:100vh;
+  min-height:400px;
+  background-size:cover;
+}
+
+.affix {
+    border-color:#646464;
+    background-color: #222;
+    opacity: 10%;
+    padding: 5px;
+    -webkit-transition:padding 0.2s ease-out;
+  -moz-transition:padding 0.2s ease-out;  
+  -o-transition:padding 0.2s ease-out;         
+  transition:padding 0.2s ease-out;
+
+}
+
+.affix-top {
+  /* navbar style at top */
+  background:transparent;
+  border-color:transparent;
+  padding: 10px;
+  -webkit-transition:all 0.5s ease;
+  -moz-transition:all 0.5s ease; 
+  -o-transition:all 0.5s ease;         
+  transition:all 0.5s ease;  
+}
+
+.affix-top .nav>li>a {
+   color: #F0F0F0;
+}
+
+.affix-top .navbar-collapse {
+   border-color:#646464;
+   box-shadow:initial;
+}
+
+</style>
+
+<div class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="730" style="height: 61px">
+  <div class="container-fluid" style="padding-right: 50px; padding-left: 50px;">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/" >
+                        <img src="assets/images/brahm.png" onmouseover="zoomin(this)" onmouseout="zoomout(this)" style="height:30px;">
                     </a>
                     <script type="text/JavaScript">
                         function zoomin(x){
-                            x.style.height = "100%";
+                            x.style.height = "35px";
                         }
                         function zoomout(x){
-                            x.style.height = "95%";
+                            x.style.height = "30px";
                                         
                         }
                     </script>
-                    <!--<a class="navbar-brand" href="/">Brahm Works</a>-->
-                </div>
-                <ul class="nav navbar-nav smooth-scroll list-unstyled">
-                    <li class="hidden active">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="">
-                        <a class="page-scroll" href="/">HOME</a>
-                    </li>
-                    <li class="">
-                        <a class="page-scroll" href="/app/views/pages/index.html#services">SERVICES</a>
-                    </li>
-                    <li class="">
-                        <a class="page-scroll" href="/app/views/pages/index.html#about">ABOUT</a>
-                    </li>
-                </ul>
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/app/views/pages/index.html#services">Services</a></li>
+        <li><a href="/app/views/pages/index.html#about">About</a></li>
+      </ul>
+      <ul class="nav navbar-right navbar-nav">
+        
+            <style type="text/css">
+                .btn-transparent
+               {
+    background: transparent;
+    color: #F2F2F2;
+    -webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -o-transition: background .2s ease-in-out, border .2s ease-in-out;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+    border: 2px solid #F2F2F2;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: 150px;    
+}
 
-                <ul class="nav navbar-nav navbar-right ">
-                    <li class="">
-                        <a ng-show="main.isLoggedIn" class="page-scroll" href="#" ng-click="main.logout();">LOGOUT</a>
-                    </li>
-                    <li class="">
-                        <a ng-show="main.isLoggedIn && main.authorized" class="page-scroll" href="/management">MANAGEMENT</a>
-                    </li>
-                    <li class="">
-                        <a ng-show="main.isLoggedIn" class="page-scroll" href="/profile"><span class="glyphicon glyphicon-user"></span> ACCOUNT</a>
-                    </li>
-                    <li><a ng-show="!main.isLoggedIn" href="/login"><span class="glyphicon glyphicon-log-in"></span>    Login</a></li>
-                    <li><a ng-show="!main.isLoggedIn" href="/register"><span class="glyphicon glyphicon-user"></span>    Sign Up</a></li>       
-                </ul>
-            </div>
-        </div>
-    <!-- /.navbar-collapse -->
-    </nav>
-<!-- /.container-fluid -->
+    .btn-transparent:hover{
+        color: white;
+        background-color: rgba(255,255,255,0.2);
+    }
+    .btn:focus,
+    .btn.focus {
+    color: #f5f5f5;
+    text-decoration: none;
+}
+            </style>
+        <li>  
+            <a ng-show="!main.isLoggedIn" href="/login" style="padding-top: 8px;">
+          <button type="button" class="btn btn-transparent">LOGIN</button>
+            </a>
+        </li>
+        <li>  
+          <a ng-show="!main.isLoggedIn" href="/register" style="padding-top: 8px;">
+          <button type="button" class="btn btn-transparent">REGISTER</button>
+            </a>
+        </li>
+      </ul>
+    </div>      
+  </div>
+</div><!-- /.navbar -->
 
 
 </head>
@@ -114,7 +165,7 @@ padding:0;">
         
         <div class="container">
             <div class="intro-text">
-                <div class="intro-heading">Start Creating</div>
+                <div class="intro-heading" style="font-family: 'Segoe UI',Arial,sans-serif;">Start Creating</div>
 				<p class="large"> We are  a creative agency with a passion for design and Developing</p>
                 <br/>
                 <a ng-show="!main.isLoggedIn" href="/login" class="page-scroll btn btn-xl">Get Quote</a>

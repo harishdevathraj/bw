@@ -306,7 +306,7 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
     outline: 0;
-    color: #1ee2e7;
+    color: #EB7823;
 }
 
 .navbar-default .navbar-nav>.active>a {
@@ -363,8 +363,8 @@ header {
 }
 
 header .intro-text {
-    padding-top: 100px;
-    padding-bottom: 60px;
+    padding-top: 300px;
+    padding-bottom: 250px;
 }
 
 header .intro-text .intro-lead-in {
