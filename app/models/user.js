@@ -40,8 +40,9 @@ var usernameValidator = [
         message: 'Username should be between {ARGS[0]} and {ARGS[1]} characters'
     }),
     validate({
-        validator: 'isAlphanumeric',
-        message: 'Username must contain letters and numbers only'
+        validator: 'matches',
+        arguments: /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/,
+        message: 'Name must be at least 3 characters, max 40, no special characters or numbers, must have space in between name.'
     })
 ]; 
 

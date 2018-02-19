@@ -37,7 +37,7 @@ angular.module('userControllers', ['userServices'])
             app.disabled = false; // If error occurs, remove disable lock from form
             app.loading = false; // Stop bootstrap loading icon
             $scope.alert = 'alert alert-danger'; // Set class for message
-            app.errorMsg = 'Please ensure form is filled our properly'; // Display error if valid returns false
+            app.errorMsg = 'Please ensure form is filled out properly'; // Display error if valid returns false
         }
     };
 

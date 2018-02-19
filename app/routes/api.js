@@ -51,6 +51,14 @@ module.exports = function(router) {
             // Save new user to database
             user.save(function(err) {
                 if (err) {
+                        // Check if duplication error exists
+                        if (err.code == 11000) {
+                            if (err.errmsg[61] == "u") {
+                                res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
+                            } else if (err.errmsg[61] == "e") {
+                                res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
+                            }
+                    } else if (err) {
                     // Check if any validation errors exists (from user model)
                     if (err.errors !== null) {
                         if (err.errors.name) {
@@ -66,16 +74,9 @@ module.exports = function(router) {
                         } else {
                             res.json({ success: false, message: err }); // Display any other errors with validation
                         }
-                    } else if (err) {
-                        // Check if duplication error exists
-                        if (err.code == 11000) {
-                            if (err.errmsg[61] == "u") {
-                                res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
-                            } else if (err.errmsg[61] == "e") {
-                                res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
-                            }
+
                         } else {
-                            res.json({ success: false, message: err }); // Display any other error
+                            res.json({ success: false, message: 'Something went wrong!!' }); // Display any other error
                         }
                     }
                 } else {
