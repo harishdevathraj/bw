@@ -35,6 +35,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/team.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
 
 
 
@@ -88,8 +90,8 @@ html,body {
 }
 
 </style>
-
-<div class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="730" style="height: 61px">
+<!--navbar-->
+<div class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="730" style="height: 61px" >
   <div class="container-fluid" style="padding-right: 50px; padding-left: 50px;">
     <div class="navbar-header">
       <a class="navbar-brand" href="/" >
@@ -110,7 +112,7 @@ html,body {
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
+        <li><a href="/">BRAHM WORKS</a></li>
        <!-- <li><a href="/app/views/pages/index.html#services">Services</a></li>
         <li><a href="/app/views/pages/index.html#about">About</a></li>-->
       </ul>
@@ -151,6 +153,15 @@ html,body {
           <button type="button" class="btn btn-transparent">REGISTER</button>
             </a>
         </li>
+        <li>
+            <div class="stroke">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Downloads</a></li>
+              <li><a href="#">More</a></li>
+              <li><a href="#">Nice staff</a></li>
+            </div>
+      </li>
       </ul>
     </div>      
   </div>
@@ -163,8 +174,6 @@ html,body {
 <body ng-app="userApp" ng-controller="mainCtrl as main" ng-show="main.loadme" ng-cloak style="margin:0;
 padding:0; max-width: 100%;
     overflow-x: hidden;"> 
-
-
     <!-- Header -->
     <header id="home" ng-show="main.home">
         

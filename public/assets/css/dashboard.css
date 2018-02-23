@@ -199,6 +199,7 @@ li,ul{
 .display-table-row {
     display: table-row;
     height: 100%;
+    
    
 }
 
@@ -333,7 +334,7 @@ li,ul{
 }
 
 header {
-    background: #ffffff none repeat scroll 0 0;
+    
     box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
     display: inline-block !important;
     line-height: 23px;

@@ -1,4 +1,5 @@
 var User = require('../models/user'); // Import User Model
+var Project = require('../models/project'); // Import Project Model
 var formidable = require('formidable');
 var upload = require('express-fileupload');
 var express = require('express'); // ExperssJS Framework
@@ -11,7 +12,7 @@ var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
 
 
-
+//delete and check for the below line. 
 app.use(upload()); 
 module.exports = function(router) {
 
@@ -103,6 +104,10 @@ module.exports = function(router) {
         }
     });
 
+
+
+
+
     //Route to email the contact form
     router.post('/contact', function(req, res){
    
@@ -146,6 +151,15 @@ module.exports = function(router) {
         var file = req.files.file,
         name = file.name,
         type = file.mimetype;
+      
+
+
+        //enter project details
+        var project = new Project(); 
+        //project.username = users.username;
+        project.filename= file.name;
+        project.save();
+        
         
         var uploadpath ='./uploads/'+name;
         console.log(uploadpath);
@@ -164,8 +178,11 @@ module.exports = function(router) {
             res.write('File uploaded');
             res.end();
         });*/
-});
-    
+
+       
+});   
+
+
 /* 
 router.post('/quote',function(req,res){})
 // Vertex
@@ -1089,6 +1106,7 @@ var stl = NodeStl('./uploads/'+name);
         });
     });
 
+
     // Route to update/edit a user
     router.put('/edit', function(req, res) {
         var editUser = req.body._id; // Assign _id from user to be editted to a variable
@@ -1382,6 +1400,9 @@ var stl = NodeStl('./uploads/'+name);
             }
         });
     });
+
+
+
 
     return router; // Return the router object to server
 };

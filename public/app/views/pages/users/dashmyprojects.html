@@ -1,51 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<!--#EB7823-->
-<head >
 
-    <title>Brahm Works - Lean Manufacturing Company</title>
-    <link rel="icon" href="assets/images/brahm.png">
-
+<div class="home" style="margin:0px; padding:0; " ng-controller="dashCtrl" ng-model="demo" id="demo">
+    <script src="http://code.angularjs.org/1.2.2/angular.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
-
-        <!-- Main Angular Files -->
-    <script src="assets/js/jquery-3.1.1.min.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/jquery.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-   $('[data-toggle="offcanvas"]').click(function(){
-       $("#navigation").toggleClass("hidden-xs");
-   });
-});
-
-
-    </script>
-</head>
-<body class="home" style="margin:0px; padding:0; ">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    <div class="container-fluid display-table" >
-        <div class="row display-table-row" >
-            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-
-                <div class="navi">
-                    <ul>
-                        <li><a href="/dashworkflow"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a></li>
-                        <li class="active"><a href="/dashmyprojects"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">My projects</span></a></li>
-                        <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cart</span></a></li>
-                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Checkout</span></a></li>
-                        <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
-                    </ul>
-                </div>
-            </div>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <div class="container-fluid display-table">
+        <div class="row display-table-row">
+            
             <div id="workflow" class="col-md-10 col-sm-11 display-table-cell v-align">
                 <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
                 <div class="row">
-                    <header>
+                    <header> 
                         <div class="col-md-7">
-                            <nav class="navbar-default pull-left">
+                           <nav class="navbar-default pull-left">
                                 <div class="navbar-header">
                                     <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
                                         <span class="sr-only">Toggle navigation</span>
@@ -84,10 +50,6 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </header>
                 </div>
 
@@ -115,6 +77,10 @@
             </thead>
             <tbody>
               <tr>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                 <td>1</td>
                 <td>Sample</td>
                 <td>abc.stl</td>
@@ -163,65 +129,6 @@
           </table>
         </div>
 
-
-     
-    <script src="http://code.angularjs.org/1.2.2/angular.min.js"></script>
-<!--
-<form  role="form" ng-controller="dashCtrl">
-                          <h1>Upload File Here</h1>
-                          <input type="file" file-input="files" multiple />
-                          <button ng-Click="upload()">Submit file</button>
-                          <li ng-repeat="file in files">{{file.name}}</li>
-                        </form>
-
-
-
-
-                    <div class="row">
-                        <div class="col-md-5 col-sm-5 col-xs-12 gutter">
-
-                            <div class="sales">
-                                <h2>Your Sale</h2>
-
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>Period:</span> Last Year
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="#">2012</a>
-                                        <a href="#">2014</a>
-                                        <a href="#">2015</a>
-                                        <a href="#">2016</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-7 col-sm-7 col-xs-12 gutter">
-
-                            <div class="sales report">
-                                <h2>Report</h2>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span>Period:</span> Last Year
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="#">2012</a>
-                                        <a href="#">2014</a>
-                                        <a href="#">2015</a>
-                                        <a href="#">2016</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
--->
-
     <!-- Modal -->
     <div id="add_project" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -232,35 +139,25 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h4 class="modal-title">Add Project</h4>
                 </div>
+                <form  role="form" ng-controller="dashCtrl">
                 <div class="modal-body">
                     <h5>Project Name</h5>
                     <input type="text" placeholder="Project Name" name="name">
-                        <form  role="form" ng-controller="dashCtrl">
+                        
                           <h5>Upload a .stl file</h5>
                           <input type="file" file-input="files" multiple />
                           <!--<button ng-Click="upload()">Submit file</button>-->
                           <li ng-repeat="file in files">{{file.name}}</li>
-                        </form>
+                        
                         <h5>Description(optional)</h5>
                         <textarea placeholder="Desicrption"></textarea>
                     </div>
-                <div class="modal-footer">
+                    <div class="modal-footer">
                     <button type="button" class="cancel" data-dismiss="modal">Close</button>
-                    <button type="button" class="add-project" data-dismiss="modal">Save</button>
+                    <button type="Submit" class="add-project" data-dismiss="modal" ng-Click="upload()">Save</button>
                 </div>
             </div>
-
+        </form>
         </div>
     </div>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
+</div>
