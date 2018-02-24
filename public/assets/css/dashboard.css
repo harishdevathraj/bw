@@ -333,7 +333,7 @@ li,ul{
     color: #8492af;
 }
 
-header {
+.dashheader {
     
     box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
     display: inline-block !important;
