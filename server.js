@@ -13,6 +13,9 @@ var path = require('path'); // Import path module
 var passport = require('passport'); // Express-compatible authentication middleware for Node.js.
 var social = require('./app/passport/passport')(app, passport); // Import passport.js End Points/API
 var fs = require('fs');
+var engines = require('consolidate');
+var assert = require('assert');
+var MongoClient = require('mongodb').MongoClient;
 
 app.use(upload()); // configure middleware
 app.use(morgan('dev')); // Morgan Middleware
@@ -20,6 +23,8 @@ app.use(bodyParser.json()); // Body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 app.use(express.static(__dirname + '/public')); // Allow front end to access public folder
 app.use('/api', appRoutes); // Assign name to end points (e.g., '/api/management/', '/api/users' ,etc. )
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
 
 
 // 

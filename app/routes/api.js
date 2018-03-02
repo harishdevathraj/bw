@@ -12,6 +12,12 @@ var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
 
 
+
+/*function errorHandler(err, req, res, next) {
+    console.error(err.message);
+    console.error(err.stack);
+    res.status(500).render("error_template", { error: err});
+}*/
 //delete and check for the below line. 
 app.use(upload()); 
 module.exports = function(router) {
@@ -36,6 +42,8 @@ module.exports = function(router) {
     // End Sendgrid Configuration Settings  
 
     // Route to register new users  
+
+
     router.post('/users', function(req, res) {
         var user = new User(); // Create new User object
         user.username = req.body.email; // Save username from request to User object
@@ -144,6 +152,63 @@ module.exports = function(router) {
   });
 
   });
+
+
+
+    router.get('/records', function(req, res, next) {
+        // console.log("Received get /records request");
+        records_collection.find({}).toArray(function(err, records){
+            if(err) throw err;
+
+            if(records.length < 1) {
+                console.log("No records found.");
+            }
+            // console.log(records);
+            res.json(records);
+        });
+    });
+
+    app.post('/records', function(req, res, next){
+        console.log(req.body);
+        var pro = new Project();
+        pro.project=req.body.project;
+        pro.description=req.body.description;
+        pro.save(function (err) {
+                if (err) return handleError(err);
+            })
+        console.log('complete');
+        /*
+            records_collection.insert(req.body, function(err, doc) {
+            if(err) throw err;
+            console.log(doc);
+            res.json(doc);
+        });*/
+    });
+
+    router.delete('/records/:id', function(req, res, next){
+        var id = req.params.id;
+        console.log("delete " + id);
+        records_collection.deleteOne({'_id': new ObjectId(id)}, function(err, results){
+            console.log(results);
+            res.json(results);
+        });
+    });
+
+    router.put('/records/:id', function(req, res, next){
+        var id = req.params.id;
+        records_collection.updateOne(
+            {'_id': new ObjectId(id)},
+            { $set: {
+                'name' : req.body.name,
+                'email': req.body.email,
+                'phone': req.body.phone
+                }
+            }, function(err, results){
+                console.log(results);
+                res.json(results);
+        });
+    });
+
 
    
     router.post('/upload', function(req,res){
@@ -1400,9 +1465,12 @@ var stl = NodeStl('./uploads/'+name);
             }
         });
     });
-
-
-
+    
+/*    router.use(errorHandler);
+    var server = router.listen(process.env.PORT || 3000, function() {
+        var port = server.address().port;
+        console.log('Express server listening on port %s.', port);
+    })*/
 
     return router; // Return the router object to server
 };
