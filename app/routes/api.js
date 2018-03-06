@@ -13,11 +13,11 @@ var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer
 
 
 
-/*function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res, next) {
     console.error(err.message);
     console.error(err.stack);
     res.status(500).render("error_template", { error: err});
-}*/
+}
 //delete and check for the below line. 
 app.use(upload()); 
 module.exports = function(router) {
@@ -114,8 +114,6 @@ module.exports = function(router) {
 
 
 
-
-
     //Route to email the contact form
     router.post('/contact', function(req, res){
    
@@ -144,54 +142,46 @@ module.exports = function(router) {
           return console.log(error);
       }
       
-      console.log('Message sent:');   
-      
-
-      
+      console.log('Message sent:');        
   
   });
 
   });
 
 
-
     router.get('/records', function(req, res, next) {
-        // console.log("Received get /records request");
-        records_collection.find({}).toArray(function(err, records){
-            if(err) throw err;
-
-            if(records.length < 1) {
-                console.log("No records found.");
+        Project.find({})
+        .exec(function(err, data){
+            if(err){
+                res.json(err)
+            } else {
+                res.json(data)
             }
-            // console.log(records);
-            res.json(records);
         });
     });
 
-    app.post('/records', function(req, res, next){
+    router.post('/records', function(req, res, next){
+        console.log('inside post');
         console.log(req.body);
         var pro = new Project();
         pro.project=req.body.project;
         pro.description=req.body.description;
         pro.save(function (err) {
-                if (err) return handleError(err);
-            })
-        console.log('complete');
-        /*
-            records_collection.insert(req.body, function(err, doc) {
-            if(err) throw err;
-            console.log(doc);
-            res.json(doc);
-        });*/
+            console.log('inside save');
+            res.json('POST records clear');
+            }); 
     });
 
     router.delete('/records/:id', function(req, res, next){
         var id = req.params.id;
         console.log("delete " + id);
-        records_collection.deleteOne({'_id': new ObjectId(id)}, function(err, results){
-            console.log(results);
-            res.json(results);
+        Project.findByIdAndRemove(req.params.id, (err, todo) => {  
+            console.log('inside function');
+        // As always, handle any potential errors:
+        if (err) return res.status(500).send(err);
+            res.json('deleted');
         });
+
     });
 
     router.put('/records/:id', function(req, res, next){

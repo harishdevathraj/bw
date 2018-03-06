@@ -59,7 +59,7 @@ angular.module('dashCtrl',[])
             vm.addRecord = function() {
                 console.log(vm.record);
                 $http.post('/api/records', vm.record).then(function(response){
-                    console.log('all clear111');
+                    console.log(response);
                     vm.record = {};
                     vm.getAllRecords();
                     
@@ -70,7 +70,7 @@ angular.module('dashCtrl',[])
             }
 
             vm.updateRecord = function() {
-                $http.put('/records/' + vm.record._id, vm.record).then(function(response){
+                $http.put('/api/records/' + vm.record._id, vm.record).then(function(response){
                     vm.record = {};
                     vm.getAllRecords();
                     vm.editMode = false;
@@ -85,7 +85,7 @@ angular.module('dashCtrl',[])
             }
 
             vm.deleteRecord = function(recordid) {
-                $http.delete('/records/'+recordid).then(function(response){
+                $http.delete('/api/records/'+recordid).then(function(response){
                     console.log("Deleted");
                     vm.getAllRecords();
                 }, function(response){
