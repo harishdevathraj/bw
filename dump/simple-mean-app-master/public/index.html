@@ -1,9 +1,14 @@
 <!DOCTYPE>
+
+
+
 <html ng-app="app">
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
         <title>
             MEAN - Records
         </title>
@@ -41,6 +46,47 @@
                 </tr>
             </table>
         </div>
+		
+		                        <select id="groups">
+                            <option value='--All--'>--Select a process--</option>
+                            <option value='Group1'>sla</option>
+                            <option value='Group2'>sls</option>
+                            <option value='Group3'>rrr</option>
+                        <select>
+                            
+                        <select id="sub_groups">
+                            <option data-group='all' value='0'>--Select--</option>
+                            <option data-group='Group1' value='one'>one</option>
+                            <option data-group='Group1' value='two'>two</option>
+                            <option data-group='Group2' value='three'>three</option>
+                            <option data-group='Group2' value='four'>four</option>
+                            <option data-group='Group3' value='five'>five</option>
+                            <option data-group='Group3' value='Six'>six</option>
+                        <select>
+
+                        <script type="text/javascript">
+        $(function(){
+        $('#groups').on('change', function(){
+        var val = $(this).val();
+        var sub = $('#sub_groups');
+        if(val == '--All--') {
+            $('#sub_groups').find('option').show();
+        }
+        else {
+            sub.find('option').not(':first').hide();
+            $('option', sub).filter(function(){
+                if($(this).attr('data-group') == val){
+                    $(this).show();
+                }
+            });
+        }
+        sub.val(0);
+        });
+    });
+
+                        </script>
+		
+		
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>

@@ -6,7 +6,10 @@ var validate = require('mongoose-validator'); // Import Mongoose Validator Plugi
 var projectschema= new Schema({
 	//username: {type: String},
 	project: {type: String},
-	description: {type: String}
+	description: {type: String},
+	filename: {type: String},
+	material: {type: String},
+	process: {type: String}
 	
 
 });

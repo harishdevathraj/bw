@@ -11,15 +11,13 @@ var secret = 'harrypotter'; // Create custom secret for use in JWT
 var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
 
-
+var fname;//to display file name
 
 function errorHandler(err, req, res, next) {
     console.error(err.message);
     console.error(err.stack);
     res.status(500).render("error_template", { error: err});
 }
-//delete and check for the below line. 
-app.use(upload()); 
 module.exports = function(router) {
 
     // Start Sendgrid Configuration Settings (Use only if using sendgrid)
@@ -142,9 +140,8 @@ module.exports = function(router) {
           return console.log(error);
       }
       
-      console.log('Message sent:');        
-  
-  });
+      console.log('Message sent:');  
+    });
 
   });
 
@@ -161,23 +158,22 @@ module.exports = function(router) {
     });
 
     router.post('/records', function(req, res, next){
-        console.log('inside post');
         console.log(req.body);
         var pro = new Project();
         pro.project=req.body.project;
         pro.description=req.body.description;
+        pro.filename=fname;
+        pro.process=req.body.process;
         pro.save(function (err) {
-            console.log('inside save');
             res.json('POST records clear');
             }); 
+        fname= "";
     });
 
     router.delete('/records/:id', function(req, res, next){
         var id = req.params.id;
         console.log("delete " + id);
         Project.findByIdAndRemove(req.params.id, (err, todo) => {  
-            console.log('inside function');
-        // As always, handle any potential errors:
         if (err) return res.status(500).send(err);
             res.json('deleted');
         });
@@ -186,7 +182,7 @@ module.exports = function(router) {
 
     router.put('/records/:id', function(req, res, next){
         var id = req.params.id;
-        records_collection.updateOne(
+        Project.updateOne(
             {'_id': new ObjectId(id)},
             { $set: {
                 'name' : req.body.name,
@@ -206,15 +202,7 @@ module.exports = function(router) {
         var file = req.files.file,
         name = file.name,
         type = file.mimetype;
-      
-
-
-        //enter project details
-        var project = new Project(); 
-        //project.username = users.username;
-        project.filename= file.name;
-        project.save();
-        
+        fname=name;        
         
         var uploadpath ='./uploads/'+name;
         console.log(uploadpath);
@@ -225,7 +213,7 @@ module.exports = function(router) {
             }
             else {
                console.log("File Uploaded",name);
-               res.send('Done! Uploading files')
+               res.send('Done uploading files');
             }
         });
        /* var form = new formidable.IncomingForm();

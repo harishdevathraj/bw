@@ -4,11 +4,40 @@ angular.module('dashCtrl',[])
 
         var vm = this;
         vm.fields = [
-            {label: 'Project', key: 'project'},
-            {label: 'Description', key: 'description'}
+            {label: 'Project Title', key: 'project'},
+            {label: 'Description', key: 'description'},
+            {label: 'File name', key: 'filename'},
+            {label: 'Process', key: 'process'},
+            {label: 'Material', key: 'material'}
+            
         ];
         vm.record = {};
         vm.records = [];
+        console.log('record details');
+        console.log(vm.record);
+        
+    $scope.branches = [
+      { id: 'FDM', name: 'FDM'},
+      { id: 'SLS', name: 'SLS'},
+      { id: 'SLA', name: 'SLA'},
+      { id: 'FDM', name: 'Don\'t know'}
+    ];
+
+  $scope.locations = [
+      { id: 1, branchId: 'FDM', name: 'PLA'},
+      { id: 2, branchId: 'FDM', name: 'ABS'},
+      { id: 3, branchId: 'SLS', name: 'PA 2200'},
+      { id: 4, branchId: 'SLS', name: 'NYLON 12'},
+      { id: 5, branchId: 'SLA', name: 'VISIJET'},
+      { id: 6, branchId: 'SLA', name: 'Accura 25'},
+      { id: 7, branchId: 'SLA', name: 'Accura 60'}
+    ];
+
+    $scope.loadLocations = function(branchId) {
+      console.log('Selected BranchId: ' + branchId);
+      vm.record.process= branchId; 
+      vm.record.material= 'TEST';
+    }
 
         $scope.filesChanged=function(elm){
             $scope.files=elm.files
@@ -25,11 +54,9 @@ angular.module('dashCtrl',[])
                 headers:{'Content-Type':undefined}
             })
             .success(function(d){
-                console.log(d)
+                console.log(d);
             })
         }
-
-
 
             vm.handleError = function(response) {
                 console.log(response.status + " - " + response.statusText + " - " + response.data);
@@ -48,6 +75,7 @@ angular.module('dashCtrl',[])
 
             vm.editMode = false;
             vm.saveRecord = function() {
+                console.log(vm.record);
 
                 if(vm.editMode) {
                     vm.updateRecord();
@@ -64,7 +92,6 @@ angular.module('dashCtrl',[])
                     vm.getAllRecords();
                     
                 }, function(response){
-                    console.log('all clear222');
                     vm.handleError(response);
                 });
             }
