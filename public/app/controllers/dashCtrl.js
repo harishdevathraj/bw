@@ -24,19 +24,23 @@ angular.module('dashCtrl',[])
     ];
 
   $scope.locations = [
-      { id: 1, branchId: 'FDM', name: 'PLA'},
-      { id: 2, branchId: 'FDM', name: 'ABS'},
-      { id: 3, branchId: 'SLS', name: 'PA 2200'},
-      { id: 4, branchId: 'SLS', name: 'NYLON 12'},
-      { id: 5, branchId: 'SLA', name: 'VISIJET'},
-      { id: 6, branchId: 'SLA', name: 'Accura 25'},
-      { id: 7, branchId: 'SLA', name: 'Accura 60'}
+      { id: 'PLA', branchId: 'FDM', name: 'PLA'},
+      { id: 'ABS', branchId: 'FDM', name: 'ABS'},
+      { id: 'PA 2200', branchId: 'SLS', name: 'PA 2200'},
+      { id: 'Nylon 12', branchId: 'SLS', name: 'Nylon 12'},
+      { id: 'Visijet', branchId: 'SLA', name: 'Visijet'},
+      { id: 'Accura 25', branchId: 'SLA', name: 'Accura 25'},
+      { id: 'Accura 60', branchId: 'SLA', name: 'Accura 60'}
     ];
 
     $scope.loadLocations = function(branchId) {
       console.log('Selected BranchId: ' + branchId);
       vm.record.process= branchId; 
-      vm.record.material= 'TEST';
+    }
+
+        $scope.loadMaterial = function(material) {
+      console.log('Selected material: ' + material);
+      vm.record.material= material; 
     }
 
         $scope.filesChanged=function(elm){

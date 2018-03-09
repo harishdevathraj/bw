@@ -164,6 +164,7 @@ module.exports = function(router) {
         pro.description=req.body.description;
         pro.filename=fname;
         pro.process=req.body.process;
+        pro.material=req.body.material;
         pro.save(function (err) {
             res.json('POST records clear');
             }); 

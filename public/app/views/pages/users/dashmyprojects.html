@@ -58,7 +58,8 @@
                     <h5>Material</h5> 
                     <select ng-options="location.id as location.name for location in locations | filter: { branchId: selectedBranchId }"
                             ng-model="selectedLocationId"
-                            ng-disabled="!selectedBranchId">
+                            ng-disabled="!selectedBranchId"
+                            ng-change="loadMaterial(selectedLocationId)">
                       <option value="">Select Material</option>
                     </select>
 
