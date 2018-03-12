@@ -9,7 +9,8 @@ var projectschema= new Schema({
 	description: {type: String},
 	filename: {type: String},
 	material: {type: String},
-	process: {type: String}
+	process: {type: String},
+	email: {type: String}
 	
 
 });

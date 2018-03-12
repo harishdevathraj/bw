@@ -126,19 +126,21 @@
   content: counter(serial-number);  /* Display the counter */
 }
     </style>
+
                     <table class="table css-serial">
                 <thead>
                     <tr>
                         <th>
                             Sl no.
                         </th>
-                        <th ng-repeat="field in ctrl.fields">
+                        <th ng-repeat="field in ctrl.fields | limitTo:5">
                             {{field.label}}
                         </th>
                         <th>
                             Quote
                         </th>
                         <th>
+
                         </th>
                     </tr>
                 </thead>
@@ -148,7 +150,7 @@
 
                     </td>
 
-                    <td ng-repeat="field in ctrl.fields">
+                    <td ng-repeat="field in ctrl.fields | limitTo:5">
                         {{record[field.key]}}
                     </td>
                     <td>
@@ -160,4 +162,6 @@
                     </td>
                 </tr>
             </table>
+           
+                
 </div>

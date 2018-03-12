@@ -17,6 +17,7 @@ angular.module('mainController', ['authServices', 'userServices'])
                 $location.path('/'); // Redirect to home page
                 app.loadme = true; // Allow loading of page
             }
+            
         });
     }
 
