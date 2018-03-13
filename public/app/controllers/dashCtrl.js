@@ -49,16 +49,13 @@ angular.module('dashCtrl',[])
             $scope.$apply();
         }
 
-        $scope.upload=function(){
-            var fd= new FormData()
+        vm.upload=function(data){
+            console.log(data);
+           /* var fd= new FormData()
             angular.forEach($scope.files,function(file){
                 fd.append('file',file)
-            })
-            $http.post('api/upload',fd,
-            {
-                transformRequest: angular.identity,
-                headers:{'Content-Type':undefined}
-            })
+            })*/
+            $http.post('api/upload',data)
             .success(function(d){
                 console.log(d);
             })
@@ -99,7 +96,7 @@ angular.module('dashCtrl',[])
             $http.post('/api/records', vm.record).then(function(response){
                 console.log(response);
                 vm.record = {};
-                vm.getAllRecords();            
+                vm.getAllRecords();           
             }, function(response){
                 vm.handleError(response);
             });
