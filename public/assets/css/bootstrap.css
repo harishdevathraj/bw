@@ -3478,6 +3478,8 @@ input[type="button"].btn-block {
 }
 .collapse.in {
   display: block;
+  background-color: #1b1c21e0;
+  border-radius: 4px;
 }
 tr.collapse.in {
   display: table-row;
