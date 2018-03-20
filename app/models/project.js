@@ -10,7 +10,8 @@ var projectschema= new Schema({
 	filename: {type: String},
 	material: {type: String},
 	process: {type: String},
-	email: {type: String}
+	email: {type: String},
+	cost: {type: String}
 	
 
 });

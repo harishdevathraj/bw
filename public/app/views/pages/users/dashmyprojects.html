@@ -9,6 +9,7 @@
     box-shadow: 0px 0px 18px 1px black;" ng-controller="dashCtrl as ctrl">
     <div class="user-dashboard">
     <h2>My projects</h2>
+    {{cost}}    
     <div class="header-rightside">
         <ul class="list-inline header-top pull-right">
             <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Add Project</a></li>
@@ -137,7 +138,7 @@
                         <th>
                             Sl no.
                         </th>
-                        <th ng-repeat="field in ctrl.fields | limitTo:5">
+                        <th ng-repeat="field in ctrl.fields | limitTo:6">
                             {{field.label}}
                         </th>
                         <th>
@@ -154,11 +155,11 @@
 
                     </td>
 
-                    <td ng-repeat="field in ctrl.fields | limitTo:5">
+                    <td ng-repeat="field in ctrl.fields | limitTo:6">
                         {{record[field.key]}}
                     </td>
                     <td>
-                        <span class="btn btn-sm btn-primary" ng-click="ctrl.upload(record._id)" aria-hidden="true">Get Quote</span>
+                        <span class="btn btn-sm btn-primary" ng-click="ctrl.quote(record._id)" aria-hidden="true">Get Quote</span>
                     </td>
                     <td>
                         <span ng-click="ctrl.editRecord(record)" class="glyphicon glyphicon-pencil" aria-hidden="true" style="padding-right: 10px;"></span>
@@ -166,6 +167,5 @@
                     </td>
                 </tr>
             </table>
-           
-                
+
 </div>

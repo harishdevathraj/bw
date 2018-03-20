@@ -43,6 +43,7 @@
     <style type="text/css">
         html,body {
           height:100%;
+
             
         }
 
@@ -87,8 +88,9 @@
     </style>
 
     <!--navbar-->
+    <div class="container-fluid">
     <div class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="730" style="height: 61px" >
-      <div class="container-fluid" style="padding-right: 50px; padding-left: 50px;">
+      
         <div class="navbar-header">
             <a class="navbar-brand" href="/" >
                 <img src="assets/images/brahm.png" onmouseover="zoomin(this)" onmouseout="zoomout(this)" style="height:30px; margin-bottom: 10px;">
@@ -168,9 +170,10 @@
 
 
 
-<body ng-app="userApp" ng-controller="mainCtrl as main" ng-show="main.loadme" ng-cloak style="margin:0;
-padding:0; max-width: 100%;
-    overflow-x: hidden;"> 
+<body ng-app="userApp" ng-controller="mainCtrl as main" ng-show="main.loadme" ng-cloak style="          width: 100%;
+          margin: 0px;
+          padding: 0px;
+          overflow-x: hidden;" "> 
     <!-- Header -->
     <header id="home" ng-show="main.home">
         
@@ -309,7 +312,7 @@ padding:0; max-width: 100%;
                 <div class="col-sm-3 col-xs-6">
                     <div class="number">
                         <i class="glyphicon glyphicon-plane"></i>
-                        <h3 class="white-text"><span class="counter">5</span>K</h3>
+                        <h3 class="white-text"><span class="counter">5</span></h3>
                         <span class="white-text">Countries worked with</span>
                     </div>
                 </div>
@@ -439,12 +442,12 @@ padding:0; max-width: 100%;
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h2 class="section-heading">Location</h2>
+                   <!-- <h2 class="section-heading">Location</h2>
                     
                     <p style="font-style: italic; font-size: 18px"> You can find us here.</p>
                     <div class="card" >
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.930009807151!2d77.62358631478621!3d13.040126990810968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae176b9014a6a5%3A0xdd31201ee7e8c888!2sDesign+.+Manufacture+.+Innovation+-+Brahm+Works!5e0!3m2!1sen!2sin!4v1517246378087" width="550" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </div>
+                    </div>-->
                 </div><br/>
                 
 
@@ -481,6 +484,7 @@ function myFunction() {
     location.reload();
 }
 </script>
+</div>
 </div>
 </div>
 </div>

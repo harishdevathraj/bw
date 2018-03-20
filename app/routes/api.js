@@ -41,7 +41,6 @@ module.exports = function(router) {
 
     // Route to register new users  
 
-
     router.post('/users', function(req, res) {
         var user = new User(); // Create new User object
         user.username = req.body.email; // Save username from request to User object
@@ -112,7 +111,7 @@ module.exports = function(router) {
 
 
 
-    //Route to email the contact form
+    //Route to contact form
     router.post('/contact', function(req, res){
    
 
@@ -132,9 +131,9 @@ module.exports = function(router) {
                 <h3>Message</h3>
                 <p> ${req.body.text}</p>
                 `
-      };
+    };
 
-      // send mail with defined transport object
+    // send mail with defined transport object
       client.sendMail(email, function(error, info) {
           if (error) {
               return console.log(error);
@@ -142,12 +141,9 @@ module.exports = function(router) {
           
           console.log('Message sent:');  
         });
-
     });
 
-
-
-   
+ 
 
     // Route to check if username chosen on registration page is taken
     router.post('/checkusername', function(req, res) {
@@ -1192,7 +1188,7 @@ module.exports = function(router) {
 
 
 
-        router.get('/records', function(req, res, next) {
+    router.get('/records', function(req, res, next) {
             console.log("demo");
             console.log(req.query.name);
         Project.find({email : req.query.name})
@@ -1215,6 +1211,7 @@ module.exports = function(router) {
         pro.process=req.body.process;
         pro.material=req.body.material;
         pro.email=req.body.email;
+        pro.cost=req.body.cost;
         pro.save(function (err) {
             res.json('POST records clear');
             }); 
@@ -1255,7 +1252,7 @@ module.exports = function(router) {
         type = file.mimetype;
         fname=name;        
         
-        var uploadpath ='./uploads/'+name;
+        var uploadpath ='./uploads/' +name;
         console.log(uploadpath);
         file.mv(uploadpath,function(err){
             if(err){
@@ -1277,181 +1274,223 @@ module.exports = function(router) {
 
 
     
-    router.post('/quote',function(req,res){
+    router.post('/quote/:id',function(req,res,next){
+        var id = req.params.id;
+        console.log(id);
+        var f,m, pro, p,d,c,e,multiplier;
 
-    // Vertex
-    function Vertex (v1,v2,v3) {
-        this.v1 = Number(v1);
-        this.v2 = Number(v2);
-        this.v3 = Number(v3);
-    }
+        Project.findById(id,function(err,doc){
+            f=doc.filename;
+            m= doc.material;
+            pro= doc.process;
+            p=doc.project;
+            d=doc.description;
+            c=doc.cost;
+            e=doc.email; 
 
-    // Vertex Holder
-    function VertexHolder (vertex1,vertex2,vertex3) {
-        this.vert1 = vertex1;
-        this.vert2 = vertex2;
-        this.vert3 = vertex3;
-    }
-
-    // transforming a Node.js Buffer into a V8 array buffer
-    function _toArrayBuffer (buffer) {
-        var 
-        ab = new ArrayBuffer(buffer.length),
-        view = new Uint8Array(ab);
-        
-        for (var i = 0; i < buffer.length; ++i) {
-            view[i] = buffer[i];
-        }
-        return ab;
-    }
-
-    // calculation of the triangle volume
-    // source: http://stackoverflow.com/questions/6518404/how-do-i-calculate-the-volume-of-an-object-stored-in-stl-files
-    function _triangleVolume (vertexHolder) {
-        var 
-        v321 = Number(vertexHolder.vert3.v1 * vertexHolder.vert2.v2 * vertexHolder.vert1.v3),
-        v231 = Number(vertexHolder.vert2.v1 * vertexHolder.vert3.v2 * vertexHolder.vert1.v3),
-        v312 = Number(vertexHolder.vert3.v1 * vertexHolder.vert1.v2 * vertexHolder.vert2.v3),
-        v132 = Number(vertexHolder.vert1.v1 * vertexHolder.vert3.v2 * vertexHolder.vert2.v3),
-        v213 = Number(vertexHolder.vert2.v1 * vertexHolder.vert1.v2 * vertexHolder.vert3.v3),
-        v123 = Number(vertexHolder.vert1.v1 * vertexHolder.vert2.v2 * vertexHolder.vert3.v3);
-      // 
-        return Number(1.0/6.0)*(-v321 + v231 + v312 - v132 - v213 + v123);
-    }
-
-    function _boundingBox (vertexes) {
-      if (vertexes.length === 0) return [0,0,0]
-      
-      var minx = Infinity,  maxx = -Infinity,  miny = Infinity,  maxy = -Infinity,  minz = Infinity,  maxz = -Infinity;
-      var tminx = Infinity, tmaxx = -Infinity, tminy = Infinity, tmaxy = -Infinity, tminz = Infinity, tmaxz = -Infinity;
-
-      vertexes.forEach(function(vertexHolder) {
-        tminx = Math.min(vertexHolder.vert1.v1, vertexHolder.vert2.v1, vertexHolder.vert3.v1)
-        minx  = tminx < minx ? tminx : minx
-        tmaxx = Math.max(vertexHolder.vert1.v1, vertexHolder.vert2.v1, vertexHolder.vert3.v1)
-        maxx  = tmaxx > maxx ? tmaxx : maxx
-
-
-        tminy = Math.min(vertexHolder.vert1.v2, vertexHolder.vert2.v2, vertexHolder.vert3.v2)
-        miny  = tminy < miny ? tminy : miny
-        tmaxy = Math.max(vertexHolder.vert1.v2, vertexHolder.vert2.v2, vertexHolder.vert3.v2)
-        maxy  = tmaxy > maxy ? tmaxy : maxy
-
-
-        tminz = Math.min(vertexHolder.vert1.v3, vertexHolder.vert2.v3, vertexHolder.vert3.v3)
-        minz  = tminz < minz ? tminz : minz
-        tmaxz = Math.max(vertexHolder.vert1.v3, vertexHolder.vert2.v3, vertexHolder.vert3.v3)
-        maxz  = tmaxz > maxz ? tmaxz : maxz
-      });
-
-      return [maxx - minx, maxy - miny, maxz - minz];
-    }
-
-    // parsing an STL ASCII string
-    function _parseSTLString (stl) {
-        var totalVol = 0;
-        // yes, this is the regular expression, matching the vertexes
-        // it was kind of tricky but it is fast and does the job
-        var vertexes = stl.match(/facet\s+normal\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+outer\s+loop\s+vertex\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+vertex\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+vertex\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+endloop\s+endfacet/g);
-
-      var preVertexHolder;
-      var verteces = Array(vertexes.length)
-        vertexes.forEach(function (vert, i) {
-            preVertexHolder = new VertexHolder();
-            vert.match(/vertex\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s/g).forEach(function (vertex, i) {
-                var tempVertex  = vertex.replace('vertex', '').match(/[-+]?[0-9]*\.?[0-9]+/g);
-                var preVertex   = new Vertex(tempVertex[0],tempVertex[1],tempVertex[2]);
-                preVertexHolder['vert'+(i+1)] = preVertex;
-            });
-            var partVolume = _triangleVolume(preVertexHolder);
-            totalVol += Number(partVolume);
-        verteces[i] = preVertexHolder
-        })
-
-        var volumeTotal = Math.abs(totalVol)/1000;
-        return {
-            volume: volumeTotal,            // cubic cm
-            weight: volumeTotal * 1.04, // gm
-        boundingBox: _boundingBox(verteces),
-        }
-    }
-
-    // parsing an STL Binary File
-    // (borrowed some code from here: https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/STLLoader.js)
-    function _parseSTLBinary (buf) {
-        buf = _toArrayBuffer(buf);
-
-        var 
-        headerLength    = 80,
-        dataOffset      = 84,
-        faceLength      = 12*4 + 2,
-        le = true; // is little-endian
-
-        var 
-        dvTriangleCount = new DataView(buf, headerLength, 4),
-        numTriangles    = dvTriangleCount.getUint32(0, le),
-        totalVol        = 0;
-
-      var verteces = Array(numTriangles)
-        for (var i = 0; i < numTriangles; i++) {
-            var 
-            dv          = new DataView(buf, dataOffset + i*faceLength, faceLength),
-            normal      = new Vertex(dv.getFloat32(0, le), dv.getFloat32(4, le), dv.getFloat32(8, le)),
-            vertHolder  = new VertexHolder();
-            for(var v = 3; v < 12; v+=3) {
-                var vert = new Vertex(dv.getFloat32(v*4, le), dv.getFloat32((v+1)*4, le), dv.getFloat32( (v+2)*4, le ) );
-                vertHolder['vert'+(v/3)] = vert;
+            switch (m){
+                case 'PLA'      :multiplier=35;break;
+                case 'ABS'      :multiplier=40;break;
+                case 'PA 2200'  :multiplier=150;break;
+                case 'Nylon 12' :multiplier=150;break;
+                case 'Visijet'  :multiplier=125;break;
+                case 'Accura 25':multiplier=125;break;
+                case 'Accura 60':multiplier=125;break;
             }
-            totalVol += _triangleVolume(vertHolder);
-        verteces[i] = vertHolder;
-        }
+            var stl = NodeStl('./uploads/'+ f);
+            console.log(stl.volume + ' cm^3');
+            if(stl.volume>8000){
+                res.send("file too large");
+            }
+            else{
+                function precisionRound(number, precision) {
+                    var factor = Math.pow(10, precision);
+                    return Math.round(number * factor) / factor;
+                }
 
-        var volumeTotal = Math.abs(totalVol)/1000;
-        return {
-            volume: volumeTotal,            // cubic cm
-            weight: volumeTotal * 1.04, // gm
-        boundingBox: _boundingBox(verteces),
-        }
-    }
-
-    // NodeStl
-
-        
-    function NodeStl (stlPath) {
-        console.log(stlPath+'NODESTLLLLLLLLLLLL');
-        var buf;
-        if(Object.prototype.toString.call(stlPath)=='[object String]')
-            buf = fs.readFileSync(stlPath);
-        else if(Object.prototype.toString.call(stlPath)=='[object Uint8Array]')
-            buf=stlPath;
-        //console.log(buf +' NODESTL FUNCTION');
-        isAscii = true;
-        
-            
-        for (var i=0, len=buf.length; i<len; i++) {
-            if (buf[i] > 127) { isAscii=false; break; }
-        }
-
-        if (isAscii)
-            return _parseSTLString(buf.toString());
-        else
-            return _parseSTLBinary(buf);
-    }
-    console.log(req.files.file);
-    var stl = NodeStl('./uploads/'+name);
-        console.log(stl.volume + 'cm^3');
-        console.log(stl.weight + 'gm');
-        var vol=stl.volume;
-        //res.send('volume is ' +vol + ' and the price is '+vol*55 );
-        var pric=vol*55;
-        //res.send ('blah');
-        
-        
-
-
-
-
+                var res=stl.volume*multiplier;
+                var cost=precisionRound(res, 2);
+                console.log(cost);
+                res.json(cost);  
+                updatecost(cost);
+            }
+            //var idO = mongoose.Types.ObjectId(id);
         });
+
+        function updatecost(cost){
+        Project.findByIdAndUpdate(id, { $set: {
+            project: p,
+            filename: f,
+            material: m,
+            process: pro,
+            description: d,
+            email: e,
+            cost:cost,
+            }}, { new: true }, 
+
+            function (err, tank) {
+                if (err) return handleError(err);
+                console.log(tank);
+        });
+    }
+     
+
+
+        // Vertex
+        function Vertex (v1,v2,v3) {
+            this.v1 = Number(v1);
+            this.v2 = Number(v2);
+            this.v3 = Number(v3);
+        }
+
+        // Vertex Holder
+        function VertexHolder (vertex1,vertex2,vertex3) {
+            this.vert1 = vertex1;
+            this.vert2 = vertex2;
+            this.vert3 = vertex3;
+        }
+
+        // transforming a Node.js Buffer into a V8 array buffer
+        function _toArrayBuffer (buffer) {
+            var 
+            ab = new ArrayBuffer(buffer.length),
+            view = new Uint8Array(ab);
+            
+            for (var i = 0; i < buffer.length; ++i) {
+                view[i] = buffer[i];
+            }
+            return ab;
+        }
+
+        // calculation of the triangle volume
+        // source: http://stackoverflow.com/questions/6518404/how-do-i-calculate-the-volume-of-an-object-stored-in-stl-files
+        function _triangleVolume (vertexHolder) {
+            var 
+            v321 = Number(vertexHolder.vert3.v1 * vertexHolder.vert2.v2 * vertexHolder.vert1.v3),
+            v231 = Number(vertexHolder.vert2.v1 * vertexHolder.vert3.v2 * vertexHolder.vert1.v3),
+            v312 = Number(vertexHolder.vert3.v1 * vertexHolder.vert1.v2 * vertexHolder.vert2.v3),
+            v132 = Number(vertexHolder.vert1.v1 * vertexHolder.vert3.v2 * vertexHolder.vert2.v3),
+            v213 = Number(vertexHolder.vert2.v1 * vertexHolder.vert1.v2 * vertexHolder.vert3.v3),
+            v123 = Number(vertexHolder.vert1.v1 * vertexHolder.vert2.v2 * vertexHolder.vert3.v3);
+          // 
+            return Number(1.0/6.0)*(-v321 + v231 + v312 - v132 - v213 + v123);
+        }
+
+        function _boundingBox (vertexes) {
+          if (vertexes.length === 0) return [0,0,0]
+          
+          var minx = Infinity,  maxx = -Infinity,  miny = Infinity,  maxy = -Infinity,  minz = Infinity,  maxz = -Infinity;
+          var tminx = Infinity, tmaxx = -Infinity, tminy = Infinity, tmaxy = -Infinity, tminz = Infinity, tmaxz = -Infinity;
+
+          vertexes.forEach(function(vertexHolder) {
+            tminx = Math.min(vertexHolder.vert1.v1, vertexHolder.vert2.v1, vertexHolder.vert3.v1)
+            minx  = tminx < minx ? tminx : minx
+            tmaxx = Math.max(vertexHolder.vert1.v1, vertexHolder.vert2.v1, vertexHolder.vert3.v1)
+            maxx  = tmaxx > maxx ? tmaxx : maxx
+
+
+            tminy = Math.min(vertexHolder.vert1.v2, vertexHolder.vert2.v2, vertexHolder.vert3.v2)
+            miny  = tminy < miny ? tminy : miny
+            tmaxy = Math.max(vertexHolder.vert1.v2, vertexHolder.vert2.v2, vertexHolder.vert3.v2)
+            maxy  = tmaxy > maxy ? tmaxy : maxy
+
+
+            tminz = Math.min(vertexHolder.vert1.v3, vertexHolder.vert2.v3, vertexHolder.vert3.v3)
+            minz  = tminz < minz ? tminz : minz
+            tmaxz = Math.max(vertexHolder.vert1.v3, vertexHolder.vert2.v3, vertexHolder.vert3.v3)
+            maxz  = tmaxz > maxz ? tmaxz : maxz
+          });
+
+          return [maxx - minx, maxy - miny, maxz - minz];
+        }
+
+        // parsing an STL ASCII string
+        function _parseSTLString (stl) {
+            var totalVol = 0;
+            // yes, this is the regular expression, matching the vertexes
+            // it was kind of tricky but it is fast and does the job
+            var vertexes = stl.match(/facet\s+normal\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+outer\s+loop\s+vertex\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+vertex\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+vertex\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+endloop\s+endfacet/g);
+
+          var preVertexHolder;
+          var verteces = Array(vertexes.length)
+            vertexes.forEach(function (vert, i) {
+                preVertexHolder = new VertexHolder();
+                vert.match(/vertex\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s+([-+]?\b(?:[0-9]*\.)?[0-9]+(?:[eE][-+]?[0-9]+)?\b)\s/g).forEach(function (vertex, i) {
+                    var tempVertex  = vertex.replace('vertex', '').match(/[-+]?[0-9]*\.?[0-9]+/g);
+                    var preVertex   = new Vertex(tempVertex[0],tempVertex[1],tempVertex[2]);
+                    preVertexHolder['vert'+(i+1)] = preVertex;
+                });
+                var partVolume = _triangleVolume(preVertexHolder);
+                totalVol += Number(partVolume);
+            verteces[i] = preVertexHolder
+            })
+
+            var volumeTotal = Math.abs(totalVol)/1000;
+            return {
+                volume: volumeTotal,            // cubic cm
+                weight: volumeTotal * 1.04, // gm
+            boundingBox: _boundingBox(verteces),
+            }
+        }
+
+        // parsing an STL Binary File
+        // (borrowed some code from here: https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/STLLoader.js)
+        function _parseSTLBinary (buf) {
+            buf = _toArrayBuffer(buf);
+
+            var 
+            headerLength    = 80,
+            dataOffset      = 84,
+            faceLength      = 12*4 + 2,
+            le = true; // is little-endian
+
+            var 
+            dvTriangleCount = new DataView(buf, headerLength, 4),
+            numTriangles    = dvTriangleCount.getUint32(0, le),
+            totalVol        = 0;
+
+          var verteces = Array(numTriangles)
+            for (var i = 0; i < numTriangles; i++) {
+                var 
+                dv          = new DataView(buf, dataOffset + i*faceLength, faceLength),
+                normal      = new Vertex(dv.getFloat32(0, le), dv.getFloat32(4, le), dv.getFloat32(8, le)),
+                vertHolder  = new VertexHolder();
+                for(var v = 3; v < 12; v+=3) {
+                    var vert = new Vertex(dv.getFloat32(v*4, le), dv.getFloat32((v+1)*4, le), dv.getFloat32( (v+2)*4, le ) );
+                    vertHolder['vert'+(v/3)] = vert;
+                }
+                totalVol += _triangleVolume(vertHolder);
+            verteces[i] = vertHolder;
+            }
+
+            var volumeTotal = Math.abs(totalVol)/1000;
+            return {
+                volume: volumeTotal,            // cubic cm
+                weight: volumeTotal * 1.04, // gm
+            boundingBox: _boundingBox(verteces),
+            }
+        }
+
+        // NodeStl     
+        function NodeStl (stlPath) {
+            console.log(stlPath);
+            var buf;
+            if(Object.prototype.toString.call(stlPath)=='[object String]')
+                buf = fs.readFileSync(stlPath);
+            else if(Object.prototype.toString.call(stlPath)=='[object Uint8Array]')
+                buf=stlPath;
+            //console.log(buf +' NODESTL FUNCTION');
+            isAscii = true;    
+            for (var i=0, len=buf.length; i<len; i++) {
+                if (buf[i] > 127) { isAscii=false; break; }
+            }
+
+            if (isAscii)
+                return _parseSTLString(buf.toString());
+            else
+                return _parseSTLBinary(buf);
+        }
+    });
  
     
 /*    router.use(errorHandler);

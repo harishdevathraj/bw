@@ -9,7 +9,9 @@ angular.module('dashCtrl',[])
             {label: 'File name', key: 'filename'},
             {label: 'Process', key: 'process'},
             {label: 'Material', key: 'material'},
-            {label: 'Email', key: 'email'}   
+            {label: 'Cost', key: 'cost'},
+            {label: 'Email', key: 'email'}
+              
         ];
 
         vm.record = {};
@@ -49,13 +51,16 @@ angular.module('dashCtrl',[])
             $scope.$apply();
         }
 
-        vm.upload=function(data){
-            console.log(data);
-           /* var fd= new FormData()
-            angular.forEach($scope.files,function(file){
+        $scope.upload = function(){
+            var fd= new FormData()
+            angular.forEach($scope.files, function(file){
                 fd.append('file',file)
-            })*/
-            $http.post('api/upload',data)
+            })
+            $http.post('api/upload',fd,{
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+
+            })
             .success(function(d){
                 console.log(d);
             })
@@ -76,6 +81,14 @@ angular.module('dashCtrl',[])
                     vm.handleError(response);
                 });
             })
+        }
+
+        vm.quote=function(data){
+            $http.post('api/quote/'+data).then(function(response){
+                console.log(response.data);
+                vm.getAllRecords();
+            })
+
         }
 
         vm.getAllRecords();
