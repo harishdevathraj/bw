@@ -25,10 +25,12 @@
     <script src="app/controllers/managementCtrl.js"></script>
     <script src="app/controllers/contactCtrl.js"></script>
     <script src="app/controllers/dashCtrl.js"></script>
+    <script src="app/controllers/checkoutCtrl.js"></script>
 
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
+    <script src="app/services/checkoutService.js"></script>
 
     <!-- Cascade Style Sheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
@@ -158,7 +160,7 @@
             <li><a ng-show="main.isLoggedIn" href="/dashworkflow">WORKFLOW</a></li>
             <li><a ng-show="main.isLoggedIn" href="/dashmyprojects">PROJECTS</a></li>
             <li><a ng-show="main.isLoggedIn" href="/dashorders">ORDERS</a></li>
-            <li><a ng-show="main.isLoggedIn" href="/dashcart">CART</a></li>
+            <li><a ng-show="main.isLoggedIn" href="/dashcheckout">CHECKOUT</a></li>
 
 
           </ul>

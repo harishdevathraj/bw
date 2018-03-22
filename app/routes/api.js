@@ -1271,8 +1271,6 @@ module.exports = function(router) {
         });*/
 
     });   
-
-
     
     router.post('/quote/:id',function(req,res,next){
         var id = req.params.id;
@@ -1311,7 +1309,7 @@ module.exports = function(router) {
                 var res=stl.volume*multiplier;
                 var cost=precisionRound(res, 2);
                 console.log(cost);
-                res.json(cost);  
+                
                 updatecost(cost);
             }
             //var idO = mongoose.Types.ObjectId(id);
@@ -1330,7 +1328,7 @@ module.exports = function(router) {
 
             function (err, tank) {
                 if (err) return handleError(err);
-                console.log(tank);
+                res.json(tank);
         });
     }
      
@@ -1490,6 +1488,16 @@ module.exports = function(router) {
             else
                 return _parseSTLBinary(buf);
         }
+    });
+
+
+    router.post('/checkout/:id',function(req,res,next){
+        console.log(req.params.id);
+        Project.findById(req.params.id, function(err,next){
+            console.log(next);
+            res.json(next);
+        })
+
     });
  
     

@@ -74,50 +74,7 @@
                     <button type="button" class="cancel" data-dismiss="modal">Close</button>
                     <button type="Submit" class="add-project" data-dismiss="modal" ng-click="ctrl.saveRecord()">Save </button>
                     </div>
-
-
-
-<!--
-
-<div class="container" ng-controller="appCtrl as ctrl">
-            <h1>MEAN - Records app</h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th ng-repeat="field in ctrl.fields">
-                            {{field.label}}
-                        </th>
-                        <th>
-                        </th>
-                    </tr>
-                </thead>
-                <tr>
-                    <td ng-repeat="field in ctrl.fields">
-                        <input ng-model="ctrl.record[field.key]" class="form-control" placeholder="{{field.label}}"/>
-                    </td>
-                    <td>
-                        <button ng-click="ctrl.saveRecord()" class="btn btn-primary">Save</button>
-                        <button ng-click="ctrl.cancelEdit()" class="btn btn-warning">Cancel</button>
-                    </td>
-                </tr>
-                <tr ng-repeat = "record in ctrl.records">
-                    <td ng-repeat="field in ctrl.fields">
-                        {{record[field.key]}}
-                    </td>
-                    <td>
-                        <span ng-click="ctrl.editRecord(record)" class="glyphicon glyphicon-pencil" aria-hidden="true" style="padding-right: 10px;"></span>
-                        <span ng-click="ctrl.deleteRecord(record._id)" class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-        <script src="app.js"></script> -->
-
-
-            </div>
+          </div>
         
         </div>
     </div>
@@ -145,6 +102,9 @@
                             Quote
                         </th>
                         <th>
+                            Checkout
+                        </th>
+                        <th>
 
                         </th>
                     </tr>
@@ -160,6 +120,9 @@
                     </td>
                     <td>
                         <span class="btn btn-sm btn-primary" ng-click="ctrl.quote(record._id)" aria-hidden="true">Get Quote</span>
+                    </td>
+                    <td>
+                        <a href="/dashcheckout"><span class="btn btn-sm btn-primary" ng-click="ctrl.checkout(record._id)" aria-hidden="true">Submit</span></a>
                     </td>
                     <td>
                         <span ng-click="ctrl.editRecord(record)" class="glyphicon glyphicon-pencil" aria-hidden="true" style="padding-right: 10px;"></span>

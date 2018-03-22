@@ -1,18 +1,15 @@
- <head>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
 
- </head>
-
- <body>
+ <div ng-controller="checkoutCtrl">
  	<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
 <div class="home" style="margin:0px; padding:0; ">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <div class="user-dashboard">
         <h2>REVIEW YOUR ORDER</h2>
-    </div>
+    
 
 </div>
 <div class="container">
@@ -38,6 +35,7 @@
         <div class="col-xs-12">
             <div class="col-md-12 well text-center">
                 <h1> STEP 1</h1>
+                <h5 style="text-align: center;">{{project}}</h5>
                 <button id="activate-step-2" class="btn btn-primary btn-lg">Activate Step 2</button>
             </div>
         </div>
@@ -46,6 +44,7 @@
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 2</h1>
+                <button id="activate-step-3" class="btn btn-primary btn-lg">Activate Step 3</button>
             </div>
         </div>
     </div>
@@ -57,36 +56,5 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-    
-    var navListItems = $('ul.setup-panel li a'),
-        allWells = $('.setup-content');
-
-    allWells.hide();
-
-    navListItems.click(function(e)
-    {
-        e.preventDefault();
-        var $target = $($(this).attr('href')),
-            $item = $(this).closest('li');
-        
-        if (!$item.hasClass('disabled')) {
-            navListItems.closest('li').removeClass('active');
-            $item.addClass('active');
-            allWells.hide();
-            $target.show();
-        }
-    });
-    
-    $('ul.setup-panel li.active a').trigger('click');
-    
-    // DEMO ONLY //
-    $('#activate-step-2').on('click', function(e) {
-        $('ul.setup-panel li:eq(1)').removeClass('disabled');
-        $('ul.setup-panel li a[href="#step-2"]').trigger('click');
-        $(this).remove();
-    })    
-});
-</script>
-</body>
+</div>
+</div>

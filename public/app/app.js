@@ -1,4 +1,4 @@
-angular.module('userApp', ['appRoutes', 'userControllers','contactCtrl','userServices', 'ngAnimate', 'mainController', 'authServices', 'emailController', 'managementController','dashCtrl'])
+angular.module('userApp', ['appRoutes', 'userControllers','contactCtrl','userServices', 'ngAnimate', 'mainController', 'authServices', 'emailController', 'managementController','dashCtrl','checkoutCtrl','checkoutService'])
 
 
 .directive('fileInput',['$parse',function($parse){
