@@ -38,6 +38,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/team.css">
 
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <title>Brahm Works - Lean Manufacturing Company</title>
     <link rel="icon" href="assets/images/brahm.png">
 
@@ -60,7 +65,7 @@
             border-color:#646464;
             background-color: #1C1D21;
             opacity: 10%;
-            padding: 5px;
+            padding: 6px;
             -webkit-transition:padding 0.2s ease-out;
           -moz-transition:padding 0.2s ease-out;  
           -o-transition:padding 0.2s ease-out;         
@@ -72,7 +77,7 @@
           /* navbar style at top */
           background:transparent;
           border-color:transparent;
-          padding: 5px;
+          padding: 6px;
           -webkit-transition:all 0.5s ease;
           -moz-transition:all 0.5s ease; 
           -o-transition:all 0.5s ease;         
@@ -421,7 +426,7 @@
 
 
     <!-- Portfolio Grid Section -->
-    <section ng-show="main.home" id="about" >
+    <section ng-show="main.home" id="about" class="bg-light-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -440,24 +445,170 @@
     </section>
 
 
+    <style type="text/css">
+   .h2{
+  text-align:center;
+  padding: 20px;
+}
+/* Slider */
+
+.slick-slide {
+    margin: 0px 20px;
+}
+
+.slick-slide img {
+    width: 100%;
+}
+
+.slick-slider
+{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+</style>
+<div class="container" ng-show="main.home" >
+    <br>
+    <h2 class="section-heading" style="text-align: center;">Our Clients</h2>
+   <section class="customer-logos slider" >
+      <div class="slide"><img src="assets/images/clients/Shell_logo.svg.png"></div>
+      <div class="slide"><img src="assets/images/clients/alstom.png"></div>
+      <div class="slide"><img src="assets/images/clients/Nokia_logo.png"></div>
+      <div class="slide"><img src="assets/images/clients/logo_drdo_gtre.png"></div>
+      <div class="slide"><img src="assets/images/clients/itc.png"></div>
+      <div class="slide"><img src="assets/images/clients/qEDM5_-D_400x400.png"></div>
+      <div class="slide"><img src="assets/images/clients/somfy_logo.png"></div>
+      <div class="slide"><img src="assets/images/clients/poclain-powertrain.png"></div>
+      <div class="slide"><img src="assets/images/clients/Drivamp.png"></div>
+      <div class="slide"><img src="assets/images/clients/nfotec.jpg"></div>
+      <div class="slide"><img src="assets/images/clients/Radiant.png"></div>
+      <div class="slide"><img src="assets/images/clients/vasmed-logo.png"></div>
+      <div class="slide"><img src="assets/images/clients/UniQtronics.jpg"></div>
+      <div class="slide"><img src="assets/images/clients/melangesystems.png"></div>
+      <div class="slide"><img src="assets/images/clients/Aqua Layer.png"></div>
+   </section>
+</div>
+
+
+
     <!--Location and contact-->
-    <section ng-controller="conCtrl as con" ng-show="main.home" id="location" class="bg-light-gray" >
-        <div class="container">
+    <section ng-controller="conCtrl as con" ng-show="main.home"  class="bg-light-gray" >
+        <div class="container" id="location">
             <div class="row">
                 <div class="col-lg-6">
-                   <!-- <h2 class="section-heading">Location</h2>
+                    <h2 class="section-heading">Location</h2>
                     
                     <p style="font-style: italic; font-size: 18px"> You can find us here.</p>
                     <div class="card" >
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.930009807151!2d77.62358631478621!3d13.040126990810968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae176b9014a6a5%3A0xdd31201ee7e8c888!2sDesign+.+Manufacture+.+Innovation+-+Brahm+Works!5e0!3m2!1sen!2sin!4v1517246378087" width="550" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </div>-->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.930009807151!2d77.62358631478621!3d13.040126990810968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae176b9014a6a5%3A0xdd31201ee7e8c888!2sDesign+.+Manufacture+.+Innovation+-+Brahm+Works!5e0!3m2!1sen!2sin!4v1517246378087" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
                 </div><br/>
                 
 
 
-                <div class="container">
+                <div class="container" id="contact">
 <div class="col-md-6">
-        <h2 class="section-heading">Contact Us</h2>
+        <h2 class="section-heading" >Contact Us</h2>
                     <p style="font-style: italic; font-size: 18px">Dreams don't work unless you do. Let's start Creating.</p>
     <div class="form-area">  
         <form role="form" ng-submit="con.conUser(conData);" id="contactUs">
@@ -495,6 +646,158 @@ function myFunction() {
     </section>
 
 
+
+
+
+<!-- Footer -->
+
+    <style type="text/css">
+        /* Footer */
+    @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    section {
+        padding: 60px 0;
+    }
+
+    section .section-title {
+        text-align: center;
+        color: #007b5e;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+    }
+    #footer {
+        background: #1c1d21 !important;
+    }
+    #footer h5{
+        padding-left: 10px;
+        border-left: 3px solid #eeeeee;
+        padding-bottom: 6px;
+        margin-bottom: 20px;
+        color:#ffffff;
+    }
+      #footer p{
+        text-align: left;
+            font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color:#ffffff;
+        margin: 0px;
+        margin-left: 15px;
+    }
+    #footer a {
+        color: #ffffff;
+        text-decoration: none !important;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+    }
+    #footer ul.social li{
+        padding: 3px 0;
+    }
+    #footer ul.social li a i {
+        margin-right: 5px;
+        font-size:25px;
+        -webkit-transition: .5s all ease;
+        -moz-transition: .5s all ease;
+        transition: .5s all ease;
+    }
+    #footer ul.social li:hover a i {
+        font-size:30px;
+        margin-top:-10px;
+    }
+    #footer ul.social li a,
+    #footer ul.quick-links li a{
+        color:#ffffff;
+    }
+    #footer ul.social li a:hover{
+        color:#eeeeee;
+    }
+    #footer ul.quick-links li{
+        padding: 3px 0;
+        -webkit-transition: .5s all ease;
+        -moz-transition: .5s all ease;
+        transition: .5s all ease;
+    }
+    #footer ul.quick-links li:hover{
+        padding: 3px 0;
+        margin-left:5px;
+        font-weight:700;
+    }
+    #footer ul.quick-links li a i{
+        margin-right: 5px;
+    }
+    #footer ul.quick-links li:hover a i {
+        font-weight: 700;
+    }
+
+    @media (max-width:767px){
+        #footer h5 {
+        padding-left: 0;
+        border-left: transparent;
+        padding-bottom: 0px;
+        margin-bottom: 10px;
+    }
+    }
+
+    </style>
+    <section id="footer" ng-show="main.home">
+        <div class="container">
+            <div class="row text-center text-xs-center text-sm-left text-md-left">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5 style="text-align: left; font-size: 17px"> <img src="assets/images/brahm.png" style="height: 40px; width: 30px; padding-bottom: 10px;"> Brahm Works</br>Design . Manufacture . Innovation</h5>
+                  
+                    <p>#8 Nagavara Village, Kasaba Hobli, 5th Block  </p>
+                    <p>Ashwath Nagar, HBR layout </p>
+                    <p>Bangalore, Karnataka - 560045</p> 
+                </br>
+                <p>+91 9902831848</p>
+                <p>sanjay@brahm.works</p>
+
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4" style="padding-left:100px;">
+                    <h5 style="text-align: left; font-size: 17px"">Company</h5>
+                    <ul class="list-unstyled quick-links" style="text-align: left;">
+                        <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                        <li><a href="#services"><i class="fa fa-angle-double-right"></i>Services</a></li>
+                        <li><a href="#about"><i class="fa fa-angle-double-right"></i>About</a></li>
+                        <li><a href="#contact"><i class="fa fa-angle-double-right"></i>Contact</a></li>
+                        <li><a href="#location"><i class="fa fa-angle-double-right"></i>Location</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5 style="text-align: left; font-size: 17px">Services</h5>
+                    <ul class="list-unstyled quick-links" style="text-align: left;">
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>3D Printing</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Laser cutting</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Rapid Prototyping</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>3D Designing</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Sheet metal cutting</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>CNC machining</a></li>
+                    </ul>
+                </div>
+            </div>
+            </br></br></br>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                    <ul class="list-unstyled list-inline social text-center" >
+                        <li class="list-inline-item"><a href="https://www.facebook.com/brahm.works/" target="#"><i class="fa fa-facebook"></i></a></li>&nbsp;&nbsp;
+                        <li class="list-inline-item"><a href="https://twitter.com/brahmworks" target="#"><i class="fa fa-twitter"></i></a></li>&nbsp;&nbsp;
+                        <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>&nbsp;&nbsp;
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/company/brahmworks/" target="#"><i class="fa fa-linkedin"></i></a></li>&nbsp;&nbsp;
+                    </ul>
+                </div>
+                </hr>
+            </div> 
+            </br> 
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p style="text-align: center;">@ 2018 Brahm Works - Lean Manufacturing Company | Proto 3DP</p>
+                    <p class="h6" style="text-align: center;">&copy All right Reversed.</p>
+                </div>
+                </hr>
+            </div>  
+        </div>
+    </section>
+    <!-- ./Footer -->
+
+
+<!--
     <footer ng-show="main.home" style="background-color: #1C1D21">
         <div class="container">
             <div class="row">
@@ -525,7 +828,7 @@ function myFunction() {
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>-->
 
     <!-- BootstrapJS Modal -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -562,6 +865,12 @@ function myFunction() {
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery-3.1.1.min.js"></script>
     <script src="assets/js/bootstrap.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+
+<script src="assets/js/carousel.js"></script>
+
+
 </body>
 
 </html>

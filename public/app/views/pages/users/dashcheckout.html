@@ -2,16 +2,16 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
 
- <div ng-controller="checkoutCtrl">
+ <div ng-controller="dashCtrl as ctrl">
  	<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
 <div class="home" style="margin:0px; padding:0; ">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <div class="user-dashboard">
         <h2>REVIEW YOUR ORDER</h2>
-    
-
+   
 </div>
+<h5> {{checkdata[0].project}}</h5>
 <div class="container">
     <div class="row form-group">
         <div class="col-xs-12">
@@ -35,7 +35,17 @@
         <div class="col-xs-12">
             <div class="col-md-12 well text-center">
                 <h1> STEP 1</h1>
-                <h5 style="text-align: center;">{{project}}</h5>
+                <h5 style="text-align: center;">{{record.project}}</h5>
+
+                <table class="table css-serial">
+                	<tr ng-repeat = "record in ctrl.records">
+
+                    <td ng-repeat="field in ctrl.fields | limitTo:6">
+                        {{record[field.key]}}{{checkdata}}
+
+                </table>
+                <h5> {{checkdata}}</h5>
+
                 <button id="activate-step-2" class="btn btn-primary btn-lg">Activate Step 2</button>
             </div>
         </div>
