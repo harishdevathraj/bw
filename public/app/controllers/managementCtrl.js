@@ -9,7 +9,7 @@ angular.module('managementController', [])
     app.errorMsg = false; // Clear any error messages
     app.editAccess = false; // Clear access on load
     app.deleteAccess = false; // CLear access on load
-    app.limit = 5; // Set a default limit to ng-repeat
+    app.limit = 100; // Set a default limit to ng-repeat
     app.searchLimit = 0; // Set the default search page results limit to zero
 
     // Function: get all the users from database

@@ -1,3 +1,5 @@
+ <link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
+ <br><br>
 <!-- Heading -->
 <div class="row text-center">
     <div class="container">
@@ -17,14 +19,6 @@
 <!-- Loading Icon (Bootstrap) -->
 
 <br>
-
-<!-- Username Search Box -->
-<div class="navbar-form">
-    <div class="form-group">
-        <input type="text" class="form-control" name="searchByUsername" placeholder="search by..." ng-model="searchByUsername">
-    </div>
-    <button type="button" class="btn btn-default">Username</button>
-</div>
 
 <!-- E-mail Search Box -->
 <div class="navbar-form">
@@ -55,8 +49,6 @@
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <ul class="dropdown-menu">
-            <!-- First Dropdown Option: Username -->
-            <li><a ng-click="management.sortOrder('username');" href="#">Username</a></li>
             <!-- Second Dropdown Option: E-mail -->
             <li><a ng-click="management.sortOrder('email');" href="#">E-mail</a></li>
             <!-- Third Dropdown Option: Name -->
@@ -89,12 +81,10 @@
     <table class="table">
         <tr>
             <th>Name</th>
-            <th>Username</th>
             <th>Email</th>
         </tr>
         <tr ng-repeat="person in management.users | filter: advancedSearchFilter | limitTo: management.searchLimit | orderBy: management.sort">
             <td>{{ person.name }}</td>
-            <td>{{ person.username }}</td>
             <td>{{ person.email }}</td>
             <td>
                 <!-- Edit Button -->

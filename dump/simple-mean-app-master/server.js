@@ -75,6 +75,11 @@ MongoClient.connect(process.env.MONGODB_URI || url,function(err, db){
         });
     });
 
+    app.get('/file',function(req,res){
+        consol.log('working');
+
+    });
+
     app.use(errorHandler);
     var server = app.listen(process.env.PORT || 3000, function() {
         var port = server.address().port;

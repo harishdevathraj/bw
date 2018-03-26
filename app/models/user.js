@@ -72,7 +72,7 @@ var UserSchema = new Schema({
     active: { type: Boolean, required: true, default: true },
     temporarytoken: { type: String, required: true },
     resettoken: { type: String, required: false },
-    permission: { type: String, required: true, default: 'moderator' }
+    permission: { type: String, required: true, default: 'user' }
 });
 
 // Middleware to ensure password is encrypted before saving user to database

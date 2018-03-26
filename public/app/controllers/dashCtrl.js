@@ -1,6 +1,7 @@
 angular.module('dashCtrl',[])
 
-    .controller('dashCtrl',['$scope','$http', 'checkoutService', function($scope,$http,checkoutService){
+
+    .controller('dashCtrl',['$scope','$http',function($scope,$http){
 
         var vm = this;
         vm.fields = [
@@ -178,18 +179,7 @@ angular.module('dashCtrl',[])
 
         vm.checkout = function(recordid) {
             console.log(recordid);
-            $http.post('api/checkout/'+recordid).then(function(response){
-                console.log('IN dashCtrl');
-                console.log(response.data);
-                $scope.checkdata = [
-
-                ];
-
-                //var recordss=response.data;
-                
-                //checkoutService.setdata(response.data);
-            })
-
+            $http.post('api/checkout/'+recordid);
 
         }
 

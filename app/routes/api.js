@@ -12,6 +12,7 @@ var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
 
 var fname;//to display file name
+var checkoutid;//to display record in the checkout page
 
 function errorHandler(err, req, res, next) {
     console.error(err.message);
@@ -1493,11 +1494,20 @@ module.exports = function(router) {
 
     router.post('/checkout/:id',function(req,res,next){
         console.log(req.params.id);
-        Project.findById(req.params.id, function(err,next){
+        checkoutid= req.params.id;
+
+    });
+
+    router.post('/checkoutrecord',function(req,res){
+        Project.findById(checkoutid, function(err,next){
+            if(err){
+                res.json(err);
+            }
+            else{
             console.log(next);
             res.json(next);
+            }
         })
-
     });
  
     

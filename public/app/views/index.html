@@ -30,7 +30,6 @@
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
-    <script src="app/services/checkoutService.js"></script>
 
     <!-- Cascade Style Sheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
@@ -40,8 +39,14 @@
 
 
 
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Checkout and stl viewer files-->
+    <script src="assets/js/three.min.js"></script>
+    <script src="assets/js/webgl_detector.js"></script>
+    <script src="assets/js/OrbitControls.js"></script>
+    <script src="assets/js/parser.js"></script>
+    <script src="assets/js/read_internal.js"></script>
+    <script src="assets/js/read_external.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <title>Brahm Works - Lean Manufacturing Company</title>
     <link rel="icon" href="assets/images/brahm.png">
@@ -353,7 +358,7 @@
             <h2 class="section-heading text-center ">Our team members</h2>
             <br/><br/>
             <div class="row" style="padding:0px 100px 0px;">
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <div class="card">
                         <img src="assets/images/sanjay.png" alt="Sanjay_img" style="width:100%">
                         <h4 style="text-align: center;">Sanjay M N</h4>
@@ -361,7 +366,7 @@
                          
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <div class="card" >
                         <img src="assets/images/hari.png" alt="Hari_img" style="width:100%">
                         <h4 style="text-align: center;">Hari Uchil</h4>
@@ -369,7 +374,7 @@
                          
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <div class="card" >
                         <img src="assets/images/puru.png" alt="Purvendra_img" style="width:100%">
                         <h4 style="text-align: center;">Purvendra R Kamate</h4>
@@ -377,7 +382,7 @@
                          
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <div class="card" >
                         <img src="assets/images/pince.png" alt="Prince_img" style="width:100%">
                         <h4 style="text-align: center;">Prince Gupta</h4>
@@ -388,7 +393,7 @@
             </div>
 
             <div class="row" style="padding:20px 100px 0px;">
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                      <div class="card" >
                         <img src="assets/images/savan.png" alt="Savan_img" style="width:100%">
                         <h4 style="text-align: center;">Savan Mehta</h4>
@@ -396,7 +401,7 @@
                          
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <div class="card" >
                         <img src="assets/images/harish.png" alt="Harish_img" style="width:100%">
                         <h4 style="text-align: center;">Harish Devathraj</h4>
@@ -404,7 +409,7 @@
                          
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <div class="card" >
                         <img src="assets/images/kushal.png" alt="Kushal_img" style="width:100%">
                         <h4 style="text-align: center;">Kushal K</h4>
@@ -412,7 +417,7 @@
                         
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <div class="card" >
                         <img src="assets/images/shravya.png" alt="Shravya_img" style="width:100%">
                         <h4 style="text-align: center;">Shravya</h4>
