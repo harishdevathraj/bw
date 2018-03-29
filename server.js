@@ -39,9 +39,14 @@ mongoose.connect('mongodb://localhost:27017/bwdatabase', function(err) {
 });
 
 // Set Application Static Layout
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/app/views/index.html')); // Set index.html as layout
 });
+
+app.get('/abc.stl', function(req, res) {
+    res.sendFile(path.join(__dirname + '/abc.stl')); // Set index.html as layout
+});
+
 
 // Start Server
 app.listen(port, function() {

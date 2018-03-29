@@ -9,12 +9,13 @@ angular.module('checkoutCtrl',[])
             });
 
 
-        function load_local_file(f)
+        document.getElementById('vs_iframe').onload=function()
+{   
+    //... your code here ...
 
-        {
-            console.log(f);
-            document.getElementById('vs_iframe').contentWindow.postMessage({msg_type:'load', file:f}, '*');
-        };
+    document.getElementById('vs_iframe').contentWindow.postMessage({msg_type:'load', url:'https://peaceful-journey-32238.herokuapp.com/abc.stl'}, '*');
+
+}
 
 
 
