@@ -16,12 +16,6 @@ function AppCtrl($scope, $http) {
     vm.record = {};
     vm.records = [];
 
-    document.getElementById('vs_iframe').onload=function()
-{   
-    //... your code here ...
-
-    document.getElementById('vs_iframe').contentWindow.postMessage({msg_type:'load', local_url:'http://localhost/Fat_Guy_Statue_Top.stl'}, '*');
-}
 
 
 

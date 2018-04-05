@@ -11,7 +11,8 @@ var projectschema= new Schema({
 	material: {type: String},
 	process: {type: String},
 	email: {type: String},
-	cost: {type: String}
+	cost: {type: String},
+	review: {type: Boolean, default : false  }
 	
 
 });

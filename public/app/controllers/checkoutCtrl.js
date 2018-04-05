@@ -1,21 +1,54 @@
 angular.module('checkoutCtrl',[])
 
 .controller('checkoutCtrl', ['$scope','$http',function($scope,$http){
-
+    var fname,id;
         $http.post('api/checkoutrecord/').then(function(response){
                 console.log('IN checkoutCtrl');
                 console.log(response.data);
                 $scope.data=response.data;
+                fname=response.data.filename;
+                id=response.data._id;
+                console.log(id);
             });
 
+/*
+    document.getElementById('vs_iframe').onload=function(){   
+    
+        function load_local_file(f)
+        {   console.log(f);
+            document.getElementById('vs_iframe').contentWindow.postMessage({msg_type:'load', file:f}, '*');
+        }
 
-        document.getElementById('vs_iframe').onload=function()
-{   
-    //... your code here ...
+    }
 
-    document.getElementById('vs_iframe').contentWindow.postMessage({msg_type:'load', url:'https://peaceful-journey-32238.herokuapp.com/abc.stl'}, '*');
 
-}
+    $http.get('/api/getfile', {params: {filename: fname}}).then(function(response){
+                    console.log(response);
+                    console.log(file);
+                        document.getElementById('vs_iframe').contentWindow.postMessage({msg_type:'load', file:response}, '*');
+                    
+
+
+                    
+                }, function(response){
+                    console.log(response);
+                });*/
+
+
+
+        $scope.review = function() {
+            console.log('under review function');
+            $http.put('/api/review/'+id).then(function(response){
+                console.log(response);
+            }, function(response){
+                console.log(response);
+            });
+        }
+    
+
+
+
+
 
 
 

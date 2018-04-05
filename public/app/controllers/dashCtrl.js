@@ -179,7 +179,9 @@ angular.module('dashCtrl',[])
 
         vm.checkout = function(recordid) {
             console.log(recordid);
-            $http.post('api/checkout/'+recordid);
+            $http.post('api/checkout/'+recordid).then(function(response){
+                console.log(response);
+            });
 
         }
 

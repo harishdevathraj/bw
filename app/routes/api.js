@@ -10,6 +10,7 @@ var fs = require('fs');
 var secret = 'harrypotter'; // Create custom secret for use in JWT
 var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
+var path = require('path');
 
 var fname;//to display file name
 var checkoutid;//to display record in the checkout page
@@ -1495,6 +1496,7 @@ module.exports = function(router) {
     router.post('/checkout/:id',function(req,res,next){
         console.log(req.params.id);
         checkoutid= req.params.id;
+        res.send(req.params.id);
 
     });
 
@@ -1505,9 +1507,95 @@ module.exports = function(router) {
             }
             else{
             console.log(next);
+            console.log(next.filename);
             res.json(next);
             }
         })
+    });
+
+    router.get('/getfile', function(req,res,next){
+        console.log("demo");
+        console.log(req.query.filename);
+
+        res.sendFile(path.join(__dirname, '../abc.stl'));
+
+
+    });
+
+
+    router.put('/review/:id',function(req,res){
+        console.log('in review');
+        var projectid = req.params.id;
+        var emailid = req.decoded.email;
+        var phone, name;
+        var filename;
+        Project.update({ _id: req.params.id }, { $set: { review: true }}, callback);
+        function callback(err,numAffected){
+            if(err){
+                console.log(err);
+            }
+            else{
+            console.log('1 ROW AFFECTED');
+
+
+            Project.find({ '_id': projectid }, function (err, docs) {                
+                    filename=docs[0].filename;
+                    User.find({'email': emailid}, function(err,docs){
+                        phone = docs[0].phone;
+                        name = docs[0].name;
+                        console.log(name);
+
+                    });
+                    var email = {
+                        from: 'Brahm Works staff, harish@brahm.works',
+                        to: ['k1u2s3h4a5l6@gmail.com', ''],
+                        subject: '[BW] There is a project under review',
+                        html: `<p>You have a new project for review</p>
+                                <h3> Details:</h3>
+                                <ul>
+                                <li>Name:${name}</li>
+                                <li>Email: ${docs[0].email}</li>
+                                <li>Phone:${phone}</li>
+                                <li>Process: ${docs[0].process}</li>
+                                <li>Material: ${docs[0].material}</li>
+                                
+                                <li>Description:${docs[0].description}</li>
+                                <li><b>Estimated cost: ${docs[0].cost}</b></li>
+                                <br>
+                                <a href="www.google.com">Click here to login</a>
+                                </ul>
+                                `,
+
+                       attachments: [
+                                {   // filename and content type is derived from path
+                                    path : 'uploads/'+filename 
+                                },
+
+                        ],
+                    };
+                    // Function to send e-mail to the user
+                    client.sendMail(email, function(err, info) {
+                        if (err) {
+                            res.send(err); // If error with sending e-mail, log to console/terminal
+                        } else {
+                            res.send(info); // Log success message to console if sent
+                            //console.log(user.email); // Display e-mail that it was sent to
+                        }
+                    });
+
+
+             });
+        }}
+    });
+
+    router.post('/getreview', function(req,res){
+        Project.find({ 'review': true }, function (err, docs) { 
+            if(err){
+                res.send(err);
+            }else{
+                res.send(docs);
+            }
+        });
     });
  
     

@@ -26,6 +26,7 @@
     <script src="app/controllers/contactCtrl.js"></script>
     <script src="app/controllers/dashCtrl.js"></script>
     <script src="app/controllers/checkoutCtrl.js"></script>
+    <script src="app/controllers/reviewCtrl.js"></script>
 
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
@@ -199,6 +200,7 @@
                 <!--<a ng-show="!main.isLoggedIn" href="/register" class="page-scroll btn twitterbtn">Register</a>-->
                 <a ng-show="main.isLoggedIn" href="#" ng-click="main.logout();" class="page-scroll btn btn-xl">Logout</a>
                 <a ng-show="main.isLoggedIn && main.authorized" href="/management" class="page-scroll btn facebookbtn">View</a>
+                <a ng-show="main.isLoggedIn && main.authorized" href="/review" class="page-scroll btn btn-xl">Review Projects</a>
             </div>
         </div>
         

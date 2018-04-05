@@ -30,7 +30,7 @@ app.set('views', __dirname + '/views');
 // 
 // <---------- REPLACE WITH YOUR MONGOOSE CONFIGURATION ---------->
 // 
-mongoose.connect('mongodb://dev:dev@ds125489.mlab.com:25489/mydatabase', function(err) {
+mongoose.connect('mongodb://localhost:27017/bwdatabase', function(err) {
     if (err) {
         console.log('Not connected to the database: ' + err); // Log to console if unable to connect to database   //mongodb://root:password@ds027215.mlab.com:27215/gugui3z24
     } else {
@@ -39,12 +39,10 @@ mongoose.connect('mongodb://dev:dev@ds125489.mlab.com:25489/mydatabase', functio
 });
 
 // Set Application Static Layout
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/app/views/index.html')); // Set index.html as layout
 });
-app.get('/abc.stl', function(req, res) {
-    res.sendFile(path.join(__dirname + '/abc.stl')); // Set index.html as layout
-});
+
 // Start Server
 app.listen(port, function() {
     console.log('Running the server on port ' + port); // Listen on configured port

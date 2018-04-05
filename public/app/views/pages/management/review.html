@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
+<div class="container" ng-controller="reviewCtrl as ctrl">
+	<h2 style="text-align: center;">Projects under review</h2>
+
+<style type="text/css">
+        .css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
+    </style>
+	<table class="table css-serial">
+                <thead>
+                    <tr>
+                        <th>
+                            Sl no.
+                        </th>
+
+                        <th ng-repeat="field in ctrl.fields | limitTo:6">
+                            {{field.label}}
+                        </th>
+                        <th>
+                            Checkout
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+
+                <tr ng-repeat = "record in ctrl.records">
+                    <td >
+
+                    </td>
+
+                    <td ng-repeat="field in ctrl.fields | limitTo:6">
+                        {{record[field.key]}}
+                    </td>
+
+                    <td>
+                        <a href="/dashcheckout"><span class="btn btn-sm btn-primary" ng-click="ctrl.checkout(record._id)" aria-hidden="true">Submit</span></a>
+                    </td>
+
+                </tr>
+            </table>
+
+
+
+
+
+
+
+
+
+
+
+</div>
