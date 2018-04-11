@@ -1524,28 +1524,30 @@ module.exports = function(router) {
 
 
     router.put('/review/:id',function(req,res){
-        console.log('in review');
         var projectid = req.params.id;
         var emailid = req.decoded.email;
-        var phone, name;
-        var filename;
+        var filename, pro,material,description,cost;
         Project.update({ _id: req.params.id }, { $set: { review: true }}, callback);
         function callback(err,numAffected){
             if(err){
-                console.log(err);
+                res.send(err);
             }
             else{
-            console.log('1 ROW AFFECTED');
+            res.send('1 ROW AFFECTED');
 
 
-            Project.find({ '_id': projectid }, function (err, docs) {                
+            /*Project.find({ '_id': projectid }, function (err, docs) {                
                     filename=docs[0].filename;
+                    pro=docs[0].process;
+                    material=docs[0].material;
+                    description=docs[0].description;
+                    cost=docs[0].cost;
                     User.find({'email': emailid}, function(err,docs){
                         phone = docs[0].phone;
                         name = docs[0].name;
                         console.log(name);
-
-                    });
+                    
+                   
                     var email = {
                         from: 'Brahm Works staff, harish@brahm.works',
                         to: ['k1u2s3h4a5l6@gmail.com', ''],
@@ -1553,14 +1555,14 @@ module.exports = function(router) {
                         html: `<p>You have a new project for review</p>
                                 <h3> Details:</h3>
                                 <ul>
-                                <li>Name:${name}</li>
+                                <li>Name:${docs[0].name}</li>
                                 <li>Email: ${docs[0].email}</li>
-                                <li>Phone:${phone}</li>
-                                <li>Process: ${docs[0].process}</li>
-                                <li>Material: ${docs[0].material}</li>
+                                <li>Phone:${docs[0].phone}</li>
+                                <li>Process: ${pro}</li>
+                                <li>Material: ${material}</li>
                                 
-                                <li>Description:${docs[0].description}</li>
-                                <li><b>Estimated cost: ${docs[0].cost}</b></li>
+                                <li>Description:${description}</li>
+                                <li><b>Estimated cost: ${cost}</b></li>
                                 <br>
                                 <a href="www.google.com">Click here to login</a>
                                 </ul>
@@ -1583,8 +1585,8 @@ module.exports = function(router) {
                         }
                     });
 
-
-             });
+                    });
+             });*/
         }}
     });
 
@@ -1597,8 +1599,32 @@ module.exports = function(router) {
             }
         });
     });
- 
+
+    router.post('/getreviewdone', function(req,res){
+        Project.find({ 'payment': true }, function (err, docs) { 
+            if(err){
+                res.send(err);
+            }else{
+                res.send(docs);
+            }
+        });
+    });
+
+    router.get('/setpayments/:id', function(req,res){
+        console.log(req.query.cost);
+        Project.update({ _id: req.params.id }, { $set: { review: false, payment: true, fcost: req.query.cost}}, callback);
+        function callback(err,numAffected){
+            if(err){
+                res.send(err);
+            }
+            else{
+                res.send('1 ROW AFFECTED');
+        }
+    }
+
     
+    });
+
 /*    router.use(errorHandler);
     var server = router.listen(process.env.PORT || 3000, function() {
         var port = server.address().port;

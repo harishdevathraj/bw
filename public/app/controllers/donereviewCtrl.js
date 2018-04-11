@@ -1,6 +1,6 @@
-angular.module('reviewCtrl',[])
+angular.module('donereviewCtrl',[])
 
-.controller('reviewCtrl',['$scope','$http',function($scope,$http){
+.controller('donereviewCtrl',['$scope','$http',function($scope,$http){
 	
         var vm = this;
         vm.fields = [
@@ -10,6 +10,7 @@ angular.module('reviewCtrl',[])
             {label: 'Process', key: 'process'},
             {label: 'Material', key: 'material'},
             {label: 'Estimated Cost', key: 'cost'},
+            {label: 'Final Cost', key: 'fcost'},
             {label: 'Email', key: 'email'},
             {label: 'Review', key: 'review'},
               
@@ -20,7 +21,7 @@ angular.module('reviewCtrl',[])
         $scope.value=0;  
         
         vm.getAllRecords = function() {
-        	$http.post('/api/getreview').then(function(response){
+        	$http.post('/api/getreviewdone').then(function(response){
                 vm.records=response.data;
                 console.log(response);
             }, function(response){
@@ -30,25 +31,6 @@ angular.module('reviewCtrl',[])
         }
 
 		vm.getAllRecords();
-
-		vm.setpayment = function(recordid,data){
-			console.log(recordid);
-			console.log(data);
-			$http.get('/api/setpayments/'+recordid , {params: {cost: data}}).then(function(response){
-				console.log(response);
-				vm.getAllRecords();
-			},function(response){
-				console.log(response);
-				vm.getAllRecords();
-			});
-		
-		}
-		
-
-
-
-
-
 
 }
 ]);

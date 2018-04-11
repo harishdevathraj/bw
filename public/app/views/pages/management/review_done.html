@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<div class="container" ng-controller="reviewCtrl as ctrl">
-	<h2 style="text-align: center;">Projects under review</h2>
+<div class="container" ng-controller="donereviewCtrl as ctrl">
+	<h2 style="text-align: center;">Reviewed Projects</h2>
 
 <style type="text/css">
         .css-serial {
@@ -26,9 +26,7 @@
                         <th>
                             Final cost
                         </th>
-                        <th>
-                            Checkout
-                        </th>
+
                         <th>
 
                         </th>
@@ -40,27 +38,18 @@
 
                     </td>
 
-                    <td ng-repeat="field in ctrl.fields | limitTo:6">
+                    <td ng-repeat="field in ctrl.fields | limitTo:7">
                         {{record[field.key]}}
                     </td>
-                    <td>
-                    	<input ng-model="value">
 
-                    </td>
 
-                    <td>
-                        <span class="btn btn-sm btn-primary" ng-click="ctrl.setpayment(record._id, value)" aria-hidden="true">Confirm</span>
-                    </td>
+
 
                 </tr>
 
             </table>
- 
-<div class="col-md-4"></div>            
-<div class="col-md-4 text-center">
-<a href="/review_done"><button class="btn btn-lg btn-warning" style="align-content: center;">Reviewed projects</button>
-</a>
-</div>
-<div class="col-md-4"></div> 
+            
+
+
 
 </div>

@@ -12,7 +12,9 @@ var projectschema= new Schema({
 	process: {type: String},
 	email: {type: String},
 	cost: {type: String},
-	review: {type: Boolean, default : false  }
+	review: {type: Boolean, default : false},
+	payment: {type: Boolean, default: false},
+	fcost: {type: String},
 	
 
 });

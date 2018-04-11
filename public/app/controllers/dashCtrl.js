@@ -10,7 +10,7 @@ angular.module('dashCtrl',[])
             {label: 'File name', key: 'filename'},
             {label: 'Process', key: 'process'},
             {label: 'Material', key: 'material'},
-            {label: 'Cost', key: 'cost'},
+            {label: 'Estimated Cost*', key: 'cost'},
             {label: 'Email', key: 'email'}
               
         ];
