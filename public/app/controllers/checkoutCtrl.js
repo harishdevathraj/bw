@@ -47,12 +47,10 @@ angular.module('checkoutCtrl',[])
     
 
 
-
-
 		$(document).ready(function() {
     
             var navListItems = $('ul.setup-panel li a'),
-                allWells = $('.setup-content');
+            allWells = $('.setup-content');
 
             allWells.hide();
 

@@ -14,20 +14,8 @@
         <ul class="list-inline header-top pull-left">
             <h2>My projects</h2>  
         </ul>
-        <ul class="list-inline header-top pull-right" style="vertical-align: text-bottom; padding-top: 23px;">
+        <ul class="list-inline header-top pull-right" style="vertical-align: text-bottom; padding-top: 20px;">
             <li class="hidden-xs"><a href="#" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#add_project" style="text-transform: capitalize; border-radius: 10px; font-size: 15px;">ADD PROJECT</a></li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src=" " alt="user"><b class="caret"></b></a></li>
-        </ul>
-        <ul class="dropdown-menu">
-            <li>
-                <div class="navbar-content">
-                <span>Kushal</span>
-                <p class="text-muted small">kushal@brahm.works</p>
-                <div class="divider">
-                </div>
-                <a href="#" class="view btn-sm active">View Profile</a>
-                </div>
-            </li>
         </ul>               
     </div>
     </div>
@@ -123,7 +111,7 @@
                             Checkout
                         </th>
                         <th>
-
+                            Delete Project
                         </th>
                     </tr>
                 </thead>
@@ -145,14 +133,12 @@
     font-weight: 700; width: 110px; border-radius: 5px">Submit</span></a>
                     </td>
                     <td>
-                        <span ng-click="ctrl.editRecord(record)" class="glyphicon glyphicon-pencil" aria-hidden="true" style="padding-right: 10px;"></span>
-                        <span ng-click="ctrl.deleteRecord(record._id)" class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <!--<span ng-click="ctrl.editRecord(record)" class="glyphicon glyphicon-pencil" aria-hidden="true" style="padding-right: 10px;"></span>-->
+                        <span ng-click="ctrl.deleteRecord(record._id)" class="glyphicon glyphicon-trash" aria-hidden="true" style="padding-left: 20px;"></span>
                     </td>
                 </tr>
             </table>
 
     <p style="font-size: 11px; margin-bottom: 0px; padding-bottom: 0px;border-bottom: 0px;">*Estimated cost may or maynot be the actual cost for 3D printing.</p>
     <p style="font-size: 11px; margin-top: 0px;padding-top: 0px">**Estimated cost will be revised and the actual cost will be provided in the next step.</p>
-
-
 </div>

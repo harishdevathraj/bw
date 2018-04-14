@@ -140,7 +140,13 @@ angular.module('mainController', ['authServices', 'userServices'])
                     app.isLoggedIn = true; // Variable to activate ng-show on index
                     app.username = data.data.username; // Get the user name for use in index
                     checkLoginStatus = data.data.username;
-                    app.useremail = data.data.email; // Get the user e-mail for us ein index
+                    app.useremail = data.data.email; // Get the user e-mail for use in index
+                    console.log(data.data.email);
+                    Auth.getuserdetails(data.data.email).then(function(data){
+                        $scope.name=data.data[0].name;
+                        $scope.phone=data.data[0].phone;    
+                    });
+                    $scope.useremail=app.useremail;
                     User.getPermission().then(function(data) {
                         if (data.data.permission === 'admin' || data.data.permission === 'moderator') {
                             app.authorized = true; // Set user's current permission to allow management

@@ -37,6 +37,17 @@ angular.module('authServices', [])
         }
     };
 
+    // Function to get current user's details
+    authFactory.getuserdetails = function(data) {
+        console.log(data);
+        // Check first if user has a token
+        if (AuthToken.getToken()) {
+            return $http.get('/api/getuserdetails', {params: {name: data}});
+        } else {
+            $q.reject({ message: 'User has no token' }); // Reject if no token exists
+        }
+    };
+
     // Function to logout the user
     authFactory.logout = function() {
         AuthToken.setToken(); // Removes token from local storage

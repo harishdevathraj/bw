@@ -184,7 +184,6 @@ angular.module('dashCtrl',[])
             });
 
         }
-
       
     }
 

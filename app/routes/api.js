@@ -490,8 +490,8 @@ module.exports = function(router) {
                                 from: 'Brahm Works staff, harish@brahm.works',
                                 to: user.email,
                                 subject: 'Reset Password Request',
-                                text: 'Hello ' + user.name + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://www.herokutestapp3z24.com/reset/' + user.resettoken,
-                                html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://www.herokutestapp3z24.com/reset/' + user.resettoken + '">http://www.herokutestapp3z24.com/reset/</a>'
+                                text: 'Hello ' + user.name + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://www.localhost:8080/reset/' + user.resettoken,
+                                html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://www.localhost:8080/reset/' + user.resettoken + '">http://www.localhost:8080/reset/</a>'
                             };
                             // Function to send e-mail to the user
                             client.sendMail(email, function(err, info) {
@@ -625,7 +625,19 @@ module.exports = function(router) {
 
     // Route to get the currently logged in user    
     router.post('/me', function(req, res) {
+        console.log(req.decoded);
         res.send(req.decoded); // Return the token acquired from middleware
+    });
+
+    router.get('/getuserdetails', function(req, res, next) {
+        User.find({email : req.query.name})
+        .exec(function(err, data){
+            if(err){
+                res.json(err)
+            } else {
+                res.json(data)
+            }
+        });
     });
 
     // Route to provide the user with a new token to renew session
@@ -1620,9 +1632,7 @@ module.exports = function(router) {
             else{
                 res.send('1 ROW AFFECTED');
         }
-    }
-
-    
+    }    
     });
 
 /*    router.use(errorHandler);

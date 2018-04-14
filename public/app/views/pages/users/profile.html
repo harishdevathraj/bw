@@ -1,28 +1,50 @@
+ <link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
 <!-- Heading -->
-<div class="row text-center">
+<div class="row text-center" style="margin-top: 50px;">
     <div class="container">
-        <h2 class="section-heading">Profile</h2>
-        <h3 class="section-subheading text-muted">This page allows you to view your user profile.</h3>
+        <h2 class="section-heading">my Profile</h2>
     </div>
 </div>
+</br></br></br>
 <!-- Heading -->
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align: center;">{{name}}</div>
+            <div class="panel-body">
 
-<div class="panel panel-info">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <td>Name</td>
+                        <td>{{name}}</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Email-Id</td>
+                        <td>{{main.useremail}}</td>
+                      </tr>
+                      <tr>
+                        <td>Phone</td>
+                        <td>{{phone}}</td>
+                      </tr>
+                      <tr>
+                        <td>Password</td>
+                        <td>**********</td>
+                      </tr>
+                    </tbody>
+                </table>
 
-    <!-- Default panel contents -->
-    <div class="panel-heading" style="text-align: center;"><strong>User Profile</strong></div>
 
-    <!-- Table -->
-    <table class="table">
-        <tr>
-            <td><strong>Username</strong></td>
-            <td><strong>Email Address</strong></td>
-            <td><strong>Password</strong></td>
-        </tr>
-        <tr>
-            <td>{{ main.username }}</td>
-            <td>{{ main.useremail }}</td>
-            <td>****************</td>
-        </tr>
-    </table>
+
+            </div>
+        </div>
+
+        <a href="/resetpassword"> <button class="btn btn-warning" style="width:100%; margin-bottom:5px;">CHANGE PASSWORD</button></a>
+        <a href="/resetpassword"> <button class="btn btn-warning" style="width:100%; margin-top: 5px;">LOG OUT</button></a>
+        
+    </div>
+    <div class="col-md-4"></div>
 </div>

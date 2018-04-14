@@ -158,7 +158,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
         templateUrl: 'app/views/pages/users/reset/password.html',
         controller: 'passwordCtrl',
         controllerAs: 'password',
-        authenticated: false
+
     })
 
     // Route: User Enter New Password & Confirm
