@@ -27,6 +27,9 @@
                             Final cost
                         </th>
                         <th>
+                            Comment
+                        </th>
+                        <th>
                             Checkout
                         </th>
                         <th>
@@ -44,12 +47,15 @@
                         {{record[field.key]}}
                     </td>
                     <td>
-                    	<input ng-model="value">
+                    	<input type="number" ng-model="value">
 
                     </td>
-
                     <td>
-                        <span class="btn btn-sm btn-primary" ng-click="ctrl.setpayment(record._id, value)" aria-hidden="true">Confirm</span>
+                        <textarea name="message" rows="3" cols="30" ng-model="comment"></textarea>
+
+                    </td>
+                    <td>
+                        <span class="btn btn-sm btn-primary" ng-click="ctrl.setpayment(record._id, value, comment)" aria-hidden="true">Confirm</span>
                     </td>
 
                 </tr>

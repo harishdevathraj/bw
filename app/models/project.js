@@ -15,7 +15,7 @@ var projectschema= new Schema({
 	review: {type: Boolean, default : false},
 	payment: {type: Boolean, default: false},
 	fcost: {type: String},
-	
+	comment: {type: String},
 
 });
 

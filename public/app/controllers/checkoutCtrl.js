@@ -1,12 +1,12 @@
 angular.module('checkoutCtrl',[])
 
 .controller('checkoutCtrl', ['$scope','$http',function($scope,$http){
-    var fname,id;
+    var fname,id,review;
         $http.post('api/checkoutrecord/').then(function(response){
-                console.log('IN checkoutCtrl');
                 console.log(response.data);
                 $scope.data=response.data;
                 fname=response.data.filename;
+                review=response.data.review;
                 id=response.data._id;
                 console.log(id);
             });
@@ -54,6 +54,8 @@ angular.module('checkoutCtrl',[])
 
             allWells.hide();
 
+
+
             navListItems.click(function(e)
             {
                 e.preventDefault();
@@ -68,14 +70,26 @@ angular.module('checkoutCtrl',[])
                 }
             });
             
-            $('ul.setup-panel li.active a').trigger('click');
+            if(review==true){
+                $('ul.setup-panel li:eq(1)').removeClass('disabled');
+                $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+                $('#activate-step-2').remove();
+            }else{
+                $('ul.setup-panel li.active a').trigger('click');
+            }
             
-            // DEMO ONLY //
+            
             $('#activate-step-2').on('click', function(e) {
                 $('ul.setup-panel li:eq(1)').removeClass('disabled');
                 $('ul.setup-panel li a[href="#step-2"]').trigger('click');
                 $(this).remove();
             })    
+
+            $('#activate-step-3').on('click', function(e) {
+                $('ul.setup-panel li:eq(2)').removeClass('disabled');
+                $('ul.setup-panel li a[href="#step-3"]').trigger('click');
+                $(this).remove();
+            })
         });
 
 }]);

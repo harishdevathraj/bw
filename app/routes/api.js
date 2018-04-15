@@ -625,7 +625,6 @@ module.exports = function(router) {
 
     // Route to get the currently logged in user    
     router.post('/me', function(req, res) {
-        console.log(req.decoded);
         res.send(req.decoded); // Return the token acquired from middleware
     });
 
@@ -1624,7 +1623,8 @@ module.exports = function(router) {
 
     router.get('/setpayments/:id', function(req,res){
         console.log(req.query.cost);
-        Project.update({ _id: req.params.id }, { $set: { review: false, payment: true, fcost: req.query.cost}}, callback);
+        console.log(req.query.comment);
+        Project.update({ _id: req.params.id }, { $set: { review: false, payment: true, fcost: req.query.cost, comment: req.query.comment}}, callback);
         function callback(err,numAffected){
             if(err){
                 res.send(err);

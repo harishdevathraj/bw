@@ -31,10 +31,11 @@ angular.module('reviewCtrl',[])
 
 		vm.getAllRecords();
 
-		vm.setpayment = function(recordid,data){
+		vm.setpayment = function(recordid,data,comment){
 			console.log(recordid);
 			console.log(data);
-			$http.get('/api/setpayments/'+recordid , {params: {cost: data}}).then(function(response){
+            console.log(comment);
+			$http.get('/api/setpayments/'+recordid , {params: {cost: data, comment:comment}}).then(function(response){
 				console.log(response);
 				vm.getAllRecords();
 			},function(response){

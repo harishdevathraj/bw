@@ -11,6 +11,7 @@ angular.module('donereviewCtrl',[])
             {label: 'Material', key: 'material'},
             {label: 'Estimated Cost', key: 'cost'},
             {label: 'Final Cost', key: 'fcost'},
+            {label: 'Comment', key:'comment'},
             {label: 'Email', key: 'email'},
             {label: 'Review', key: 'review'},
               

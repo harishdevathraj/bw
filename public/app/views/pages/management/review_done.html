@@ -20,16 +20,10 @@
                             Sl no.
                         </th>
 
-                        <th ng-repeat="field in ctrl.fields | limitTo:6">
+                        <th ng-repeat="field in ctrl.fields | limitTo:8">
                             {{field.label}}
                         </th>
-                        <th>
-                            Final cost
-                        </th>
 
-                        <th>
-
-                        </th>
                     </tr>
                 </thead>
 
@@ -38,10 +32,12 @@
 
                     </td>
 
-                    <td ng-repeat="field in ctrl.fields | limitTo:7">
+                    <td ng-repeat="field in ctrl.fields | limitTo:8">
                         {{record[field.key]}}
                     </td>
-
+                    <td>
+                        
+                    </td>
 
 
 
