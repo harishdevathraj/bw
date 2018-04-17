@@ -1,8 +1,10 @@
 angular.module('dashCtrl',[])
 
 
-    .controller('dashCtrl',['$scope','$http',function($scope,$http){
+    .controller('dashCtrl',['$scope','$http','$rootScope',function($scope,$http,$rootScope){
 
+
+ 
         var vm = this;
         vm.fields = [
             {label: 'Project Title', key: 'project'},
@@ -36,6 +38,8 @@ angular.module('dashCtrl',[])
             { id: 'Accura 25', branchId: 'SLA', name: 'Accura 25'},
             { id: 'Accura 60', branchId: 'SLA', name: 'Accura 60'}
         ];
+
+
 
 
         $scope.loadLocations = function(branchId) {
@@ -98,12 +102,30 @@ angular.module('dashCtrl',[])
         vm.editMode = false;
         
         vm.saveRecord = function() {
+
+            var fd= new FormData()
+            angular.forEach($scope.files, function(file){
+                fd.append('file',file)
+            })
+            $http.post('api/upload',fd,{
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+
+            })
+            .success(function(d){
+                console.log(d);
+            
+
+
             console.log(vm.record);
             if(vm.editMode) {
                 vm.updateRecord();
             } else {
                 vm.addRecord();
             }
+        
+        })
+
         }
 
         vm.addRecord = function() {
@@ -133,12 +155,16 @@ angular.module('dashCtrl',[])
         }
 
         vm.deleteRecord = function(recordid) {
+
+            var r = confirm("Delete project?\n");
+            if (r == true) {
             $http.delete('/api/records/'+recordid).then(function(response){
                 console.log("Deleted");
                 vm.getAllRecords();
             }, function(response){
                 vm.handleError(response);
             })
+            } 
         }
 
         vm.cancelEdit = function() {
@@ -149,10 +175,7 @@ angular.module('dashCtrl',[])
 
         vm.checkout = function(recordid) {
             console.log(recordid);
-            $http.post('api/checkout/'+recordid).then(function(response){
-                console.log(response);
-            });
-
+            $rootScope.rid=recordid;
         }
       
     }

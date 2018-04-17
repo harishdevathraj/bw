@@ -11,9 +11,9 @@ var secret = 'harrypotter'; // Create custom secret for use in JWT
 var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
 var path = require('path');
+var sha512 = require('js-sha512');//Payment encryption
 
 var fname;//to display file name
-var checkoutid;//to display record in the checkout page
 
 function errorHandler(err, req, res, next) {
     console.error(err.message);
@@ -1202,7 +1202,6 @@ module.exports = function(router) {
 
 
     router.get('/records', function(req, res, next) {
-            console.log("demo");
             console.log(req.query.name);
         Project.find({email : req.query.name})
         .exec(function(err, data){
@@ -1503,16 +1502,8 @@ module.exports = function(router) {
         }
     });
 
-
-    router.post('/checkout/:id',function(req,res,next){
-        console.log(req.params.id);
-        checkoutid= req.params.id;
-        res.send(req.params.id);
-
-    });
-
-    router.post('/checkoutrecord',function(req,res){
-        Project.findById(checkoutid, function(err,next){
+    router.post('/checkoutrecord/:id',function(req,res){
+        Project.findById(req.params.id, function(err,next){
             if(err){
                 res.json(err);
             }
@@ -1525,7 +1516,6 @@ module.exports = function(router) {
     });
 
     router.get('/getfile', function(req,res,next){
-        console.log("demo");
         console.log(req.query.filename);
 
         res.sendFile(path.join(__dirname, '../abc.stl'));
@@ -1634,6 +1624,19 @@ module.exports = function(router) {
         }
     }    
     });
+
+    router.post('/createHash', function (req, res) {
+        var salt = 'perqkBd267';
+        var hash = sha512(req.body.preHashString + salt);
+        console.log(hash);
+        res.send({success : true, hash: hash});
+    });
+
+    router.post('/PaymentStatus', function (req, res) {
+        console.log(req.body);
+        res.send(req.body.status);
+    });
+
 
 /*    router.use(errorHandler);
     var server = router.listen(process.env.PORT || 3000, function() {

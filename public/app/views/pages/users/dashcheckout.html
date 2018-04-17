@@ -66,12 +66,15 @@
             <div class="col-md-12 well">
                 <h1 class="text-center">Project review</h1>
                     <div class="alert alert-danger">
-                        <strong>Your project is still under review! </strong> Please allow atleast 1 business day for the review.
+                        <strong>Your project is under review! </strong> Please allow atleast 1 business day for the review.
                     </div>
-                    <div class="alert alert-success">
+                    <div class="alert alert-success invisible">
                         <strong>Success! </strong> Review is complete and below are the updated details.
-                    </div>
 
+                    
+                        <pre>Final cost : {{data.fcost}}</pre>
+                        <pre>Comment : {{data.comment}}</pre>
+                    </div>
                 <button id="activate-step-3" class="btn btn-primary btn-lg"> Proceed to Pay</button>
             </div>
         </div>
@@ -80,6 +83,29 @@
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 3</h1>
+                    <div class="jumbotron text-center" ng-controller="payCtrl">
+                        <h1>Payumoney Payment Gateway</h1>
+                        <h3> Rs {{amount}}</h3>
+                        <form id="paymentForm" action='https://sandboxsecure.payu.in/_payment' method='post'><!--secure.payu.in/_payment-->
+                            <input type="hidden" name="key" value="{{mkey}}" />
+
+                            <input type="hidden" name="txnid" value="{{txnid}}" />
+                            <input type="hidden" name="amount" value="{{amount}}" />
+                            <input type="hidden" name="productinfo" value="{{productInfo}}" />
+                            <input type="hidden" name="firstname" value="{{firstName}}" />
+                            <input type="hidden" name="udf1" value={{id}} />
+                            <input type="hidden" name="email" value="{{email}}" />
+                            <input type="hidden" name="phone" value="{{phone}}" />
+                            <input type="hidden" name="lastname" value="{{lastName}}" />
+                            <input type="hidden" name="surl" value="http://localhost:8080/PaymentStatus" />
+                            <input type="hidden" name="furl" value="http://localhost:8080/api/PaymentStatus" />
+                            <input type="hidden" name="hash" id="hash" value="{{hash}}">
+                            <input type="hidden" name="service_provider" value="{{service_provider}}">
+                            <div class="pay-now-button-outer">
+                                <button class="btn btn-primary fontBold" ng-click="presubmit()" type="button">PAY NOW</button>
+                            </div>
+                        </form>
+                    </div>
             </div>
         </div>
     </div>
