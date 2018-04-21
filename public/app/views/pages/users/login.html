@@ -253,8 +253,8 @@
     <br/>
   
         <form name="sentMessage" id="contactForm" ng-submit="main.doLogin(loginData);" novalidate>
-            <input  ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="text" name="username" placeholder="Email *" ng-model="main.loginData.username" autocomplete="off">
-            <input  ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="password" name="password" placeholder="Password *" ng-model="main.loginData.password" autocomplete="off">
+            <input  ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="text" name="username" placeholder="Email *" ng-model="main.loginData.username" autocomplete="on">
+            <input  ng-disabled="main.disabled || facebook.disabled || twitter.disabled || google.disabled" class="form-control" type="password" name="password" placeholder="Password *" ng-model="main.loginData.password" autocomplete="on">
   
            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a href="/resetpassword" >Forgot Password?</a>
             <button>Log in</button>

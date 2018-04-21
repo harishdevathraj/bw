@@ -3,8 +3,6 @@ angular.module('dashCtrl',[])
 
     .controller('dashCtrl',['$scope','$http','$rootScope',function($scope,$http,$rootScope){
 
-
- 
         var vm = this;
         vm.fields = [
             {label: 'Project Title', key: 'project'},

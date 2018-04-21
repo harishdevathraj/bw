@@ -41,6 +41,19 @@ module.exports = function(router) {
     // var client = nodemailer.createTransport(sgTransport(options)); // Use if using sendgrid configuration
     // End Sendgrid Configuration Settings  
 
+    //payumoney Status page
+    router.post('/PaymentStatus', function (req, res) {
+        console.log('Api payment status ');
+        console.log(req.body);
+        //res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
+        if(req.body.status== 'success'){
+        res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_success.html'));
+        res.send(req.body.status);
+        }else{
+            res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
+        }
+    });
+
     // Route to register new users  
 
     router.post('/users', function(req, res) {
@@ -1626,16 +1639,12 @@ module.exports = function(router) {
     });
 
     router.post('/createHash', function (req, res) {
-        var salt = 'perqkBd267';
+        var salt = 'qsjtako0im';
         var hash = sha512(req.body.preHashString + salt);
         console.log(hash);
         res.send({success : true, hash: hash});
     });
 
-    router.post('/PaymentStatus', function (req, res) {
-        console.log(req.body);
-        res.send(req.body.status);
-    });
 
 
 /*    router.use(errorHandler);
