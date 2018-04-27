@@ -3,13 +3,15 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
  <div ng-controller="checkoutCtrl">
  	<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
 <div class="home" style="margin:0px; padding:0; ">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <div class="user-dashboard">
-        <h2>REVIEW YOUR ORDER</h2>   
+       </br> 
 </div>
 
 
@@ -38,7 +40,7 @@
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12">
             <div class="col-md-12 well text-center">
-                <h1> STEP 1</h1>
+                <h1>CONFIRM</h1>
                 <p> Verify the below details and click on "submit" for review </p>
                 <div class="container-fluid">
 					  <div class="panel panel-default">
@@ -64,7 +66,7 @@
     <div class="row setup-content" id="step-2">
         <div class="col-xs-12">
             <div class="col-md-12 well">
-                <h1 class="text-center">Project review</h1>
+                <h1 class="text-center">REVIEW</h1>
                     <div class="alert alert-danger">
                         <strong>Your project is under review! </strong> Please allow atleast 1 business day for the review.
                     </div>
@@ -82,128 +84,234 @@
     <div class="row setup-content" id="step-3">
         <div class="col-xs-12">
             <div class="col-md-12 well">
-                <h1 class="text-center"> STEP 3</h1>
+                <h1 class="text-center">CHECKOUT</h1>
 
 
 
 
 
-  <div class="container-fluid">
-
-              <form  class="form-horizontal" id="paymentForm"  action='https://sandboxsecure.payu.in/_payment' method='post' style="align-items: center;"><!--secure.payu.in/_payment 
-
-                
-              -->
-
-            <!-- Form Name -->
-            <legend>Please provide the below details</legend>
 
 
 
-                                <input type="hidden" name="key" value="{{mkey}}" />
-                                <input type="hidden" name="txnid" value="{{txnid}}" />
-                                <input type="hidden" name="amount" value="{{amount}}" />
-                                <input type="hidden" name="productinfo" value="{{productInfo}}" />
-                                <input type="hidden" name="firstname" value="{{firstName}}" />
-                                <input type="hidden" name="email" value="{{email}}" />
-                                <input type="hidden" name="phone" value="{{phone}}" />
-                                <input type="hidden" name="surl" value="http://localhost:8080/api/PaymentStatus" />
-                                <input type="hidden" name="furl" value="http://localhost:8080/api/PaymentStatus" />
-                                <input type="hidden" name="hash" id="hash" value="{{hash}}">
-                                <input type="hidden" name="service_provider" value="{{service_provider}}">
+<style type="text/css">
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
 
+* {
+  box-sizing: border-box;
+}
 
+.row1 {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
 
-            <!-- Text input-->
-                  
-            <div class="form-group">
-              <label class="col-md-4 control-label">Address</label>  
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-              <textarea class="form-control" placeholder="Address" name="address1" ng-model="user.address1" required="true" value="{{user.address1}}"></textarea>
-                
-                </div>
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container1 {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+
+<div class="row1">
+  <div >
+    <div class="container1">
+      <form  class="form-horizontal" id="paymentForm"  action='https://sandboxsecure.payu.in/_payment' method='post' style="align-items: center;"><!--secure.payu.in/_payment -->
+
+        <input type="hidden" name="key" value="{{mkey}}" />
+        <input type="hidden" name="txnid" value="{{txnid}}" />
+        <input type="hidden" name="amount" value="{{amount}}" />
+        <input type="hidden" name="productinfo" value="{{productInfo}}" />
+        <input type="hidden" name="firstname" value="{{firstName}}" />
+        <input type="hidden" name="email" value="{{email}}" />
+        <input type="hidden" name="phone" value="{{phone}}" />
+        <input type="hidden" name="surl" value="http://localhost:8080/api/PaymentStatus" />
+        <input type="hidden" name="furl" value="http://localhost:8080/api/PaymentStatus" />
+        <input type="hidden" name="hash" id="hash" value="{{hash}}">
+        <input type="hidden" name="service_provider" value="{{service_provider}}">
+        
+        <div class="row1">
+          <div class="col-50">
+            <h3><b>Billing Address</b></h3>
+
+            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+            <input type="text" id="adr" placeholder="Address" name="address1" ng-model="user.address1" required="true" value="{{user.address1}}">
+
+            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <input name="city" placeholder="City" id="city"  type="text" ng-model="user.city" required="true" value="{{user.city}}" >
+
+            <div class="row1">
+              <div class="col-50">
+                <label for="state"><i class="fa fa-map"></i> State</label>
+                <input type="text" id="state" placeholder="Address" name="address2" ng-model="user.address2" required="true" value="{{user.address2}}">
+              </div>
+              <div class="col-50">
+                <label for="zip"><i class="fa fa-map-marker"></i> Zip</label>
+                <input type="text" id="zip" name="zip" placeholder="pincode">
               </div>
             </div>
 
-            <!-- Text input-->
-             
-            <div class="form-group">
-              <label class="col-md-4 control-label">City</label>  
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-              <input name="city" placeholder="city" class="form-control"  type="text" ng-model="user.city" required="true" value="{{user.city}}" >
-                </div>
+            <label for="country"><i class="fa fa-globe"></i> Country</label>
+            <input name="country" placeholder="Country" id="country"  type="text" ng-model="user.country" required="true" value="{{user.country}}" >
+
+            <label for="gst"><i class="fa fa-qrcode"></i> GST *</label>
+            <input name="udf1" placeholder="Company GST (optional)" id="gst"  type="text" ng-model="user.gst" required="true" value="{{user.gst}}" >
+         
+
+
+          </div>
+
+         <!-- <div class="col-50">
+           <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container1">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div> 
+          </div>-->
+          
+        </div>
+
+
+            <div class="icon-container1" style="float: right;">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-credit-card-alt" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-diners-club" style="color:orange;"></i>
+              <i class="fa fa-cc-amex" style="color:orange;"></i>
+            </div> 
+            <button type="submit" class="btn btn-warning" ng-click="presubmit()" >Continue to checkout <span class="glyphicon glyphicon-send"></span></button>
+      </form>
+    </div>
+  </div>
+  <div class="col-50">
+    <div class="container1">
+         <h3><b>CART</b> <i class="fa fa-shopping-cart"></i> <span class="price" style="color:black"></h3>
+
+         <div class="row1">
+           
+              <div class="col-50">
+                    
+                        <h4>{{project_name}}</h4>
+              </div>
+              <div class="col-50">
+                    
+                    <p>Sub total  <span class="price">&#x20B9 15</span></p>
+                    <p>CGST (9%)  <span class="price">+ &#x20B9  5</span></p>
+                    <p>SGST (9%)  <span class="price">+ &#x20B9  8</span></p>
+                    <hr>
+                    <p>Total <span class="price" style="color:black"><b>&#x20B9 {{amount}}</b></span></p>
               </div>
             </div>
+ 
 
-            <!-- Select Basic -->
-               
-            <div class="form-group"> 
-              <label class="col-md-4 control-label">State</label>
-                <div class="col-md-4 selectContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                    <input class="form-control" placeholder="State" type="text" name="state" ng-model="user.state" required="true" value="{{user.state}}">
+      
 
-              </div>
-            </div>
-            </div>
-
-            <div class="form-group"> 
-              <label class="col-md-4 control-label">Country</label>
-                <div class="col-md-4 selectContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-plane"></i></span>
-                    <input class="form-control" placeholder="Country" type="text" name="country" ng-model="user.country"  required="true" value="{{user.country}}"/>
-
-              </div>
-            </div>
-            </div>
-
-            <!-- Text input-->
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">Pin Code</label>  
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-search "></i></span>
-              <input name="zipcode" placeholder="Pincode" class="form-control"  type="number" ng-model="user.zipcode" required="true" value="{{user.zipcode}}">
-                </div>
-            </div>
-            </div>
+    </div>
+  </div>
+</div>
 
 
-            <div class="form-group">
-              <label class="col-md-4 control-label">GST *</label>  
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
-              <input name="udf1" placeholder="Company GST (optional)" class="form-control"  type="text" ng-model="user.gst" required="true" value="{{user.gst}}">
-                </div>
-            </div>
-            </div>
-            <h4> Rs {{amount}}</h4>
 
-            <!-- Success message -->
-            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
 
-            <!-- Button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label"></label>
-              <div class="col-md-4">
-                <button type="submit" class="btn btn-warning" ng-click="presubmit()" >PAYYYYY <span class="glyphicon glyphicon-send"></span></button>
-              </div>
-            </div>
 
-            </fieldset>
-            </form>
-            </div>
-    </div><!-- /.container -->
-  
-    
+
+
+
+
+
+
+
+
+
    
             </div>
         </div>

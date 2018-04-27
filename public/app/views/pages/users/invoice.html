@@ -1,0 +1,129 @@
+
+<div  class="html bodys" style="margin-top: 0px; ">
+
+<body class="body">
+
+
+	<div ng-controller="inCtrl as ctrl" >
+		<button class="btn btn-warning" ng-click="myFunction()">Print Invoice</button>
+	</br>
+		<head>
+	<title>INOVICE</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/invoice.css">
+</head>
+			</br>
+			<div id="content" style="position: relative;">
+    		<img src="assets/images/EB7823.png" style="width: 100%; height: 36px; ">
+    		<div style="position: absolute;
+    				top: 50%;
+    				left: 50%;
+    				transform: translate(-50%, -50%); font: bold 100% sans-serif; letter-spacing: 0.5em; text-align: center; text-transform: uppercase; text-align: center; color: white">
+       				invoice
+    		</div>
+	</div>
+<div style="float: right; margin-right: 5px;">
+	<h1 style="text-align: right; margin-bottom: 0px;  letter-spacing: 0rem;">Invoice Date: {{date}}</h1>
+	<h1 style="text-align: right;  margin-bottom: 0px; margin-top: 8px; color: grey; letter-spacing: 0rem;">Invoice#: {{inoviceno}}</h1>
+	<h1 style="text-align: right; margin-bottom: 0px; margin-top: 0px; margin-right: 0px; letter-spacing: 0rem; ">GSTIN: 29AAHCB3680K1Z9</h1>
+	<h1 style="text-align: right; margin-top: 0px; margin-right: 0px; letter-spacing: 0rem; ">Company ID: U29309KA2017PTC105102</h1>
+</div>
+<div class="header" style="margin:0px; align-content: left; margin-top: 5px;">
+			
+	<img alt="" src="assets/images/finalbrahm.png" height="140px;" width="240px" style="margin-top: 5px; margin-left: 10px; align-content: left;">
+
+</div>
+
+<address contenteditable style="text-align: left; padding-top: 0px">
+<pre style=" border-radius: 0x;  border:none; background-color: transparent; font:   100% sans-serif; letter-spacing: 0em;">
+<b>Brahm Works Private Limited</b>
+108/2, 3rd cross, 4th main,
+opp. Bachpan, Munireddy layout,
+Horamavu main road, Bangalore - 560043
+www.brahm.works</pre>
+</address>
+</br>
+</br>
+<article style="margin-left: 2px; margin-right: 5px;">
+			<p style="float: left;">Bill to</p>		
+<pre style=" border-radius: 0x;  border:none; background-color: transparent; font:   100% sans-serif; letter-spacing: 0em;">
+<b>{{name}}</b>
+{{address}}
+{{city}}
+{{state}}
+{{country}}
+{{zipcode}}</pre>
+
+	<p> Customer GSTIN: {{gst}}</p>
+	<p> Source of Supply : Karnataka (29)</p>
+	
+			<table class="inventory">
+				<thead>
+					<tr>
+						<th><span contenteditable>Item</span></th>
+						<th><span contenteditable>Description</span></th>
+						<th><span contenteditable>Rate</span></th>
+						<th><span contenteditable>Quantity</span></th>
+						<th><span contenteditable>CGST (9%)</span></th>
+						<th><span contenteditable>SGST (9%)</span></th>
+						<th><span contenteditable>Amount</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<td style="text-align: center;"><a class="cut">-</a><span contenteditable>{{item}}</span></td>
+						<td style="text-align: center;"><span contenteditable>Experience Review</span></td>
+						<td style="text-align: center;" ><span data-prefix>&#x20B9</span><span contenteditable>{{rate}}</span></td>
+						<td style="text-align: center;"><span contenteditable>{{quantity}}</span></td>
+						<td style="text-align: center;"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
+						<td style="text-align: center;"><span data-prefix>&#x20B9</span><span contenteditable>{{sgst}}</span></td>
+						<td style="text-align: center;"> <span data-prefix></span>&#x20B9<span><b>{{amount}}</b></span></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="balance">
+				<tr>
+					<th><span contenteditable>Sub Total</span></th>
+					<td><span data-prefix></span>&#x20B9<span>{{amount}}</span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>CGST (9%)</span></th>
+					<td><span data-prefix></span>&#x20B9<span>{{cgst}}</span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>SGST (9%)</span></th>
+					<td><span data-prefix></span>&#x20B9<span>{{sgst}}</span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable><b>Total  </b></span></th>
+					<td><span data-prefix></span><b>&#x20B9</b><span contenteditable><b>{{amounts}}</b></span></td>
+				</tr>
+				<tr>
+					<th><span contenteditable>Total in words:</span></th>
+					<td><span data-prefix></span><i>Rupees&nbsp;<span id="divDisplayWords" contenteditable></span></i></td>
+				<tr>
+    			
+			</table>
+		</article>
+	
+		<aside style="text-align: center;">
+			<h1><span contenteditable></span></h1>
+			<div contenteditable>
+				<p style="font-size: 1rem">Thank you for choosing Brahm Works. Looking forward for your business.</p>
+				
+			</div>
+		</aside>
+		
+		<!--<aside style="bottom: 0px;">
+			<h1 style="font-size: 1rem"><span contenteditable>Additional Notes</span></h1>
+			<div contenteditable>
+				<p style="font-size: 0.7rem">Our Bankers:</p>
+				<p style="font-size: 0.7rem">HDFC Bank</p>
+				<p style="font-size: 0.7rem">Account Name: Brahm Works Pvt Ltd</p>
+				<p style="font-size: 0.7rem">Account Number: 50200026426712</p>
+				<p style="font-size: 0.7rem">IFSC Code: HDFC0009097</p>
+			</div>
+		</aside>-->
+</div>
+
+</body>
+</div>

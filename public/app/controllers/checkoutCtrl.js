@@ -11,6 +11,8 @@ angular.module('checkoutCtrl',[])
                 payment=response.data.payment;
                 $scope.amount=response.data.fcost;
                 $scope.email=response.data.email;
+                $scope.quantity=response.data.quantity;
+                $scope.project_name=response.data.project;
                 
                 console.log(id);
 
@@ -130,7 +132,7 @@ angular.module('checkoutCtrl',[])
         
         var data = { preHashString: $scope.mkey + '|' + $scope.txnid + '|' + $scope.amount + '|' + $scope.productInfo + '|' + $scope.firstName + '|' + $scope.email + '|' + $scope.user.gst + '||||||||||' };
         //+ $scope.user.address1 + '|' + $scope.user.city + '|' + $scope.user.state + '|' + $scope.user.country + '|' + $scope.user.zipcode + '|' + $scope.user.gst + '|'
-
+        console.log($scope.user);
         console.log(data);
         $http.post('api/createHash', data).success(function (data, status) {
             console.log(status);

@@ -6,11 +6,12 @@ angular.module('dashCtrl',[])
         var vm = this;
         vm.fields = [
             {label: 'Project Title', key: 'project'},
-            {label: 'Description', key: 'description'},
+            {label: 'Description', key: 'description'}, 
             {label: 'File name', key: 'filename'},
             {label: 'Process', key: 'process'},
             {label: 'Material', key: 'material'},
             {label: 'Estimated Cost*', key: 'cost'},
+            {label: 'Quantity', key: 'quantity'},
             {label: 'Email', key: 'email'}
               
         ];

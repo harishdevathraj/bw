@@ -14,6 +14,7 @@ var path = require('path');
 var sha512 = require('js-sha512');//Payment encryption
 
 var fname;//to display file name
+var payment_data="";//to store payment data for invoice and myorders
 
 function errorHandler(err, req, res, next) {
     console.error(err.message);
@@ -41,17 +42,34 @@ module.exports = function(router) {
     // var client = nodemailer.createTransport(sgTransport(options)); // Use if using sendgrid configuration
     // End Sendgrid Configuration Settings  
 
+
+    router.post('/createHash', function (req, res) {
+        var salt = 'qsjtako0im';
+        var hash = sha512(req.body.preHashString + salt);
+        console.log(hash);
+        res.send({success : true, hash: hash});
+    });
+
     //payumoney Status page
     router.post('/PaymentStatus', function (req, res) {
         console.log('Api payment status ');
-        console.log(req.body);
+        payment_data=req.body;
         //res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
         if(req.body.status== 'success'){
-        res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_success.html'));
-        res.send(req.body.status);
+            res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_success.html'));
+        
         }else{
-            res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
+            //res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
+            res.send(req.body);
         }
+    });
+
+    //get payment data
+    router.post('/payment_data', function (req, res) {
+        console.log(payment_data);
+        res.send(payment_data);
+
+
     });
 
     // Route to register new users  
@@ -1237,6 +1255,7 @@ module.exports = function(router) {
         pro.material=req.body.material;
         pro.email=req.body.email;
         pro.cost=req.body.cost;
+        pro.quantity=req.body.quantity;
         pro.save(function (err) {
             res.json('POST records clear');
             }); 
@@ -1638,12 +1657,7 @@ module.exports = function(router) {
     }    
     });
 
-    router.post('/createHash', function (req, res) {
-        var salt = 'qsjtako0im';
-        var hash = sha512(req.body.preHashString + salt);
-        console.log(hash);
-        res.send({success : true, hash: hash});
-    });
+
 
 
 

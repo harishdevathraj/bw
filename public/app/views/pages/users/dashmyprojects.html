@@ -38,6 +38,11 @@
                             <input ng-model="ctrl.record[field.key]" class="form-control" placeholder="{{field.label}}"/>
                         </div>
                         
+
+                        <h5>Quantity</h5> 
+                            <input ng-model="ctrl.record.quantity" type="number" class="form-control" placeholder="Quantity"/>
+
+
                         <h5>Upload a .stl file</h5>
                         <input type="file" file-input="files" accept=".stl"/>
                         <li>{{file.name}}</li>
@@ -69,7 +74,7 @@
     </div>
             <style type="text/css">
                 .css-serial {
-                  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+                  counter-reset: serial-number;  /* Set the serial number counter to 0*/
                 }
 
                 .css-serial td:first-child:before {
@@ -98,7 +103,7 @@
                         <th>
                             Sl no.
                         </th>
-                        <th ng-repeat="field in ctrl.fields | limitTo:6">
+                        <th ng-repeat="field in ctrl.fields | limitTo:7">
                             {{field.label}}
                         </th>
                         <th>
@@ -118,7 +123,7 @@
 
                     </td>
 
-                    <td ng-repeat="field in ctrl.fields | limitTo:6">
+                    <td ng-repeat="field in ctrl.fields | limitTo:7">
                         {{record[field.key]}}
                     </td>
                     <td>
