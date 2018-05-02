@@ -44,28 +44,30 @@
 
 
                         <h5>Upload a .stl file</h5>
-                        <input type="file" file-input="files" accept=".stl"/>
+                        <input type="file" file-input="files" accept=".stl" id="reset3"/>
                         <li>{{file.name}}</li>
 
 
                          <h5>Process</h5>
                     <select ng-options="branch.id as branch.name for branch in branches"
                             ng-model="selectedBranchId"
-                            ng-change="loadLocations(selectedBranchId)">
+                            ng-change="loadLocations(selectedBranchId)"
+                            id="reset">
                       <option value="">Select Process</option>
                     </select>
                     <h5>Material</h5> 
                     <select ng-options="location.id as location.name for location in locations | filter: { branchId: selectedBranchId }"
                             ng-model="selectedLocationId"
                             ng-disabled="!selectedBranchId"
-                            ng-change="loadMaterial(selectedLocationId)">
+                            ng-change="loadMaterial(selectedLocationId)"
+                            id="reset2">
                       <option value="">Select Material</option>
                     </select>
 
 
                 </div>
                     <div class="modal-footer">
-                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="cancel" data-dismiss="modal" >Close</button>
                     <button type="Submit" class="add-project" data-dismiss="modal" ng-click="ctrl.saveRecord()">Save </button>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ angular.module('dashCtrl',[])
             {label: 'File name', key: 'filename'},
             {label: 'Process', key: 'process'},
             {label: 'Material', key: 'material'},
-            {label: 'Estimated Cost*', key: 'cost'},
+            {label: 'Estimated Cost per item*', key: 'cost'},
             {label: 'Quantity', key: 'quantity'},
             {label: 'Email', key: 'email'}
               
@@ -101,6 +101,9 @@ angular.module('dashCtrl',[])
         vm.editMode = false;
         
         vm.saveRecord = function() {
+            $('#reset').prop('selectedIndex',0);
+            $('#reset2').prop('selectedIndex',0);
+
 
             var fd= new FormData()
             angular.forEach($scope.files, function(file){
@@ -113,7 +116,9 @@ angular.module('dashCtrl',[])
             })
             .success(function(d){
                 console.log(d);
-            
+                var $el = $('#reset3');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
 
 
             console.log(vm.record);

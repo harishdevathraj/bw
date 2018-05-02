@@ -39,7 +39,6 @@ angular.module('inCtrl', [])
     $scope.inoviceno = $scope.inoviceno++;
     NumToWord($scope.amountss, 'divDisplayWords');
 /*
-
 $scope.amount = $scope.quantity*$scope.rate;   
 $scope.quantity = 4;
     
@@ -56,9 +55,9 @@ $scope.quantity = 4;
 
 $scope.myFunction = function () {
 
-	 window.print();
-	
-	}
+     window.print();
+    
+    }
 
 var today = new Date();
 
@@ -76,24 +75,24 @@ $scope.date = dd+'/'+mm+'/'+yyyy;
 //document.getElementById("date").innerHTML = today;
 
 $(document).ready(function(){
-	$('div.navbar').remove();
-		//window.print();
+    $('div.navbar').remove();
+        //window.print();
 
 
-	
+    
 
-	//var a= window.confirm("Save your Invoice Now");
-	//if (a) {
-		
+    //var a= window.confirm("Save your Invoice Now");
+    //if (a) {
+        
 
-	//NumToWord($scope.amountss, 'divDisplayWords');
+    //NumToWord($scope.amountss, 'divDisplayWords');
 
 })
 
 
 
 
-    	function onlyNumbers(evt) {
+        function onlyNumbers(evt) {
     var e = event || evt; // For trans-browser compatibility
     var charCode = e.which || e.keyCode;
 
