@@ -5,6 +5,7 @@ angular.module('inCtrl', [])
 
 
     $http.post('api/payment_data').then(function(response){
+        //data from payu's response status
         $scope.rate=response.data.amount;
         $scope.address= response.data.address1;
         $scope.city=response.data.city;
@@ -12,20 +13,43 @@ angular.module('inCtrl', [])
         $scope.country=response.data.country;
         $scope.zipcode=response.data.zipcode;
         $scope.gst=response.data.udf1;
+        $scope.objid=response.data.udf2;
+
+        //data from Project db
+        $http.post('api/checkoutrecord/'+$scope.objid).then(function(response){
+            console.log('inCtrl' + response.data);
+            $scope.amount1=response.data.fcost;
+            $scope.quantity=response.data.quantity;
+            $scope.project_name=response.data.project;
+            $scope.cost_pregst=response.data.fcost*response.data.quantity;
+            $scope.cgst= roundTo($scope.cost_pregst * 0.09 ,2);
+            $scope.sgst= roundTo($scope.cost_pregst * 0.09 ,2);
+            $scope.amountss= roundTo($scope.cost_pregst+ 2*$scope.cgst);
+        });
+
+        //data from User db
+        $scope.getuserdata= function(){
+            $http.get('api/getuserdata').then(function(response){
+            $scope.phone= response.data[0].phone;
+            $scope.firstName=response.data[0].name;
 
 
+            });
+        }
+    $scope.inoviceno = $scope.inoviceno++;
+    NumToWord($scope.amountss, 'divDisplayWords');
+/*
 
-
-    $scope.quantity = 4;
-    $scope.inoviceno = 'INV-' + '0000'+0+1;
-    $scope.amount = $scope.quantity*$scope.rate;
-    $scope.item = '3D print';
-    $scope.name= 'brahmworks';
+$scope.amount = $scope.quantity*$scope.rate;   
+$scope.quantity = 4;
+    
+    
+    
     $scope.cgst= $scope.amount * 0.09;
     $scope.sgst= $scope.amount * 0.09;
     $scope.amounts = $scope.cgst+ $scope.sgst + $scope.amount;
     $scope.amountss = Math.floor($scope.amounts);
-    NumToWord($scope.amountss, 'divDisplayWords');
+    NumToWord($scope.amountss, 'divDisplayWords');*/
     });
 
   

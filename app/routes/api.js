@@ -1231,7 +1231,7 @@ module.exports = function(router) {
 
 
 
-
+    
     router.get('/records', function(req, res, next) {
             console.log(req.query.name);
         Project.find({email : req.query.name})
@@ -1655,6 +1655,20 @@ module.exports = function(router) {
                 res.send('1 ROW AFFECTED');
         }
     }    
+    });
+
+    //get data from USER db using emailid
+    router.get('/getuserdata', function(req, res, next) {
+        console.log("demo");
+        console.log(req.decoded.email);
+        User.find({email : req.decoded.email})
+        .exec(function(err, data){
+            if(err){
+                res.json(err)
+            } else {
+                res.json(data)
+            }
+        });
     });
 
 
