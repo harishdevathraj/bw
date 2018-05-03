@@ -119,8 +119,7 @@ angular.module('checkoutCtrl',[])
 
 
         $scope.review = function() {
-            console.log('under review function');
-            $http.put('/api/review/'+id).then(function(response){
+            $http.put('/api/review/'+id1).then(function(response){
                 console.log(response);
             }, function(response){
                 console.log(response);

@@ -37,7 +37,6 @@ mongoose.connect('mongodb://dev:dev@ds125489.mlab.com:25489/mydatabase', functio
         console.log('Successfully connected to MongoDB'); // Log to console if able to connect to database
     }
 });
-
 // Set Application Static Layout
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/app/views/index.html')); // Set index.html as layout
