@@ -46,12 +46,13 @@ www.brahm.works</pre>
 <article style="margin-left: 2px; margin-right: 5px;">
 			<p style="float: left;">Bill to</p>		
 <pre style=" border-radius: 0x;  border:none; background-color: transparent; font:   100% sans-serif; letter-spacing: 0em;">
-<b>{{firstName}}</b>
+<b>{{firstname}}</b>
 {{address}}
 {{city}}
 {{state}}
 {{country}}
-{{zipcode}}</pre>
+{{zipcode}}
+(+91){{phone}}</pre>
 
 	<p> Customer GSTIN: {{gst}}</p>
 	<p> Source of Supply : Karnataka (29)</p>
@@ -75,7 +76,7 @@ www.brahm.works</pre>
 						<td style="text-align: center;" ><span data-prefix>&#x20B9</span><span contenteditable>{{amount1}}</span></td>
 						<td style="text-align: center;"><span contenteditable>{{quantity}}</span></td>
 						<td style="text-align: center;"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
-						<td style="text-align: center;"><span data-prefix>&#x20B9</span><span contenteditable>{{sgst}}</span></td>
+						<td style="text-align: center;"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
 						<td style="text-align: center;"> <span data-prefix></span>&#x20B9<span><b>{{cost_pregst}}</b></span></td>
 					</tr>
 				</tbody>
@@ -91,7 +92,7 @@ www.brahm.works</pre>
 				</tr>
 				<tr>
 					<th><span contenteditable>SGST (9%)</span></th>
-					<td><span data-prefix></span>&#x20B9<span>{{sgst}}</span></td>
+					<td><span data-prefix></span>&#x20B9<span>{{cgst}}</span></td>
 				</tr>
 				<tr>
 					<th><span contenteditable><b>Total  </b></span></th>
@@ -99,7 +100,7 @@ www.brahm.works</pre>
 				</tr>
 				<tr>
 					<th><span contenteditable>Total in words:</span></th>
-					<td><span data-prefix></span><i>Rupees&nbsp;<span id="divDisplayWords" contenteditable></span></i></td>
+					<td><span data-prefix></span><i>Rupees&nbsp;<span id="divDisplayWords" contenteditable></span> and <span id="divDisplayWord" contenteditable></span> paise</i></td>
 				<tr>
     			
 			</table>

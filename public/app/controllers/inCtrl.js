@@ -6,6 +6,7 @@ angular.module('inCtrl', [])
 
     $http.post('api/payment_data').then(function(response){
         //data from payu's response status
+        console.log(response);
         $scope.rate=response.data.amount;
         $scope.address= response.data.address1;
         $scope.city=response.data.city;
@@ -14,6 +15,7 @@ angular.module('inCtrl', [])
         $scope.zipcode=response.data.zipcode;
         $scope.gst=response.data.udf1;
         $scope.objid=response.data.udf2;
+        $scope.firstname=response.data.firstname;
 
         //data from Project db
         $http.post('api/checkoutrecord/'+$scope.objid).then(function(response){
@@ -22,22 +24,48 @@ angular.module('inCtrl', [])
             $scope.quantity=response.data.quantity;
             $scope.project_name=response.data.project;
             $scope.cost_pregst=response.data.fcost*response.data.quantity;
-            $scope.cgst= roundTo($scope.cost_pregst * 0.09 ,2);
-            $scope.sgst= roundTo($scope.cost_pregst * 0.09 ,2);
-            $scope.amountss= roundTo($scope.cost_pregst+ 2*$scope.cgst);
+            $scope.cgst= Math.round($scope.cost_pregst * 9)/100;
+            $scope.amountss= Math.round(($scope.cost_pregst+ 2*$scope.cgst)*100)/100;
+            //NumToWord($scope.amountss, 'divDisplayWords');
+            withDecimal($scope.amountss);
+
+//decimal to word
+function withDecimal(n) {
+    var nums = n.toString().split('.');
+    NumToWord(nums[0], 'divDisplayWords');
+    if (nums.length == 2) {
+        NumToWord(nums[1], 'divDisplayWord');
+    } /*else {
+        return whole;
+    }*/
+}
+
+
+
+
+
+
         });
 
+        console.log('fname'+$scope.firstName);
+        console.log('number'+$scope.phone);
+
+
+
         //data from User db
-        $scope.getuserdata= function(){
+        /*$scope.getuserdata= function(){
             $http.get('api/getuserdata').then(function(response){
             $scope.phone= response.data[0].phone;
-            $scope.firstName=response.data[0].name;
+            $scope.name=response.data[0].name;
+            console.log('fname'+$scope.firstName);
+            console.log('number'+$scope.phone);
 
 
             });
-        }
+        }*/
+        $scope.inoviceno=0;
     $scope.inoviceno = $scope.inoviceno++;
-    NumToWord($scope.amountss, 'divDisplayWords');
+    
 /*
 $scope.amount = $scope.quantity*$scope.rate;   
 $scope.quantity = 4;

@@ -15,33 +15,33 @@ angular.module('checkoutCtrl',[])
 
 
         $http.post('api/checkoutrecord/'+id1).then(function(response){
-                console.log(response.data);
-                $scope.data=response.data;
-                fname=response.data.filename;
-                review=response.data.review;
-                payment=response.data.payment;
+            console.log(response.data);
+            $scope.data=response.data;
+            fname=response.data.filename;
+            review=response.data.review;
+            payment=response.data.payment;
 
-                $scope.data=response.data;
-                $scope.amount1=response.data.fcost;
-                $scope.email=response.data.email;
-                $scope.quantity=response.data.quantity;
-                $scope.project_name=response.data.project;
-                $scope.cost_pregst=response.data.fcost*response.data.quantity;
-                $scope.cgst= roundTo($scope.cost_pregst * 0.09 ,2);
-                $scope.sgst= roundTo($scope.cost_pregst * 0.09 ,2);
-                $scope.amount= roundTo($scope.cost_pregst+ 2*$scope.cgst);
+            $scope.data=response.data;
+            $scope.amount1=response.data.fcost;
+            $scope.email=response.data.email;
+            $scope.quantity=response.data.quantity;
+            $scope.project_name=response.data.project;
+            $scope.cost_pregst=response.data.fcost*response.data.quantity;
+            $scope.cgst= roundTo($scope.cost_pregst * 0.09 ,2);
+            $scope.sgst= roundTo($scope.cost_pregst * 0.09 ,2);
+            $scope.amount= roundTo($scope.cost_pregst+ 2*$scope.cgst, 2);
                 
-                function roundTo(n, digits) {
-                    if (digits === undefined) {
-                        digits = 0;
-                    }
-                    var multiplicator = Math.pow(10, digits);
-                    n = parseFloat((n * multiplicator).toFixed(11));
-                    return (Math.round(n) / multiplicator).toFixed(2);
+            function roundTo(n, digits) {
+                if (digits === undefined) {
+                    digits = 0;
                 }
+                var multiplicator = Math.pow(10, digits);
+                n = parseFloat((n * multiplicator).toFixed(11));
+                return (Math.round(n) / multiplicator).toFixed(2);
+            }
 
 
-                $(document).ready(function() {
+            $(document).ready(function() {
         
                 var navListItems = $('ul.setup-panel li a'),
                 allWells = $('.setup-content');
@@ -73,6 +73,7 @@ angular.module('checkoutCtrl',[])
                     $('#activate-step-2').remove();
                     $('div.alert-success').removeClass('invisible');
                     $('div.alert-danger').remove();
+                    $('#activate-step-3').removeClass('invisible');
 
                 }
                 else{
@@ -91,6 +92,9 @@ angular.module('checkoutCtrl',[])
                     $('ul.setup-panel li a[href="#step-3"]').trigger('click');
                     $(this).remove();
                 })
+
+
+                
             });
         });
 
@@ -116,8 +120,6 @@ angular.module('checkoutCtrl',[])
                 }, function(response){
                     console.log(response);
                 });*/
-
-
         $scope.review = function() {
             $http.put('/api/review/'+id1).then(function(response){
                 console.log(response);
@@ -142,9 +144,8 @@ angular.module('checkoutCtrl',[])
     $scope.txnid = makeid();
     $scope.hash = '';
 
-    $scope.presubmit = function () {
-        
-        var data = { preHashString: $scope.mkey + '|' + $scope.txnid + '|' + $scope.amount + '|' + $scope.productInfo + '|' + $scope.firstName + '|' + $scope.email + '|' + $scope.user.gst + '|'+ $scope.id +'|||||||||' };
+    $scope.presubmit = function () {        
+        var data = { preHashString: $scope.mkey + '|' + $scope.txnid + '|' + $scope.amount + '|' + $scope.productInfo + '|' + $scope.firstname + '|' + $scope.email + '|' + $scope.user.gst + '|'+ $scope.id +'|||||||||' };
         //+ $scope.user.address1 + '|' + $scope.user.city + '|' + $scope.user.state + '|' + $scope.user.country + '|' + $scope.user.zipcode + '|' + $scope.user.gst + '|'
         console.log($scope.user);
         console.log(data);
