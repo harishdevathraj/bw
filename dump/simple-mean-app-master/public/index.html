@@ -288,8 +288,41 @@ function SetBilling(checked) {
 }  
   
 </script>
+<a id="cgst">This is CGST</a>
+
+<a id="cgst1">This is CGST1</a>
+
+<a id="sgst">This is SGST</a>
+
+<a id="sgst1">This is SGST1</a>
+
+<a id="igst">This is IGST</a>
+
+<a id="igst1">This is IGST1</a>
+
+<button onclick="reg();"> click me</button>
 
 
+<script type="text/javascript">
+  function reg(){
+    var str="karaaaaa";
+    var res = str.match(/(\b[k][a][r][n][a][t][a][k][a]\b)|(\b[k][a][r]\b)/gi);
+    console.log(res);
+    if(res){
+        $("#igst").hide();
+        $('#igst1').hide();
+        $('#igst2').hide();
+
+    }else{
+        $("#cgst").hide();
+        $("#cgst1").hide();
+        $("#cgst2").hide();
+        $("#sgst").hide();
+        $("#sgst1").hide();
+        $("#sgst2").hide();
+    }
+  }
+</script>
 
 
 

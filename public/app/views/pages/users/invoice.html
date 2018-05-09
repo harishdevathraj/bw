@@ -54,7 +54,7 @@ www.brahm.works</pre>
 {{zipcode}}
 (+91){{phone}}</pre>
 
-	<p> Customer GSTIN: {{gst}}</p>
+	<p> Customer GSTIN: </p>
 	<p> Source of Supply : Karnataka (29)</p>
 	
 			<table class="inventory">
@@ -64,8 +64,9 @@ www.brahm.works</pre>
 						<th><span contenteditable>Description</span></th>
 						<th><span contenteditable>Rate</span></th>
 						<th><span contenteditable>Quantity</span></th>
-						<th><span contenteditable>CGST (9%)</span></th>
-						<th><span contenteditable>SGST (9%)</span></th>
+						<th id="cgst"><span contenteditable>CGST (9%)</span></th>
+						<th id="sgst"><span contenteditable>SGST (9%)</span></th>
+						<th id="igst"><span contenteditable>IGST (18%)</span></th>
 						<th><span contenteditable>Amount</span></th>
 					</tr>
 				</thead>
@@ -75,8 +76,9 @@ www.brahm.works</pre>
 						<td style="text-align: center;"><span contenteditable>3D print</span></td>
 						<td style="text-align: center;" ><span data-prefix>&#x20B9</span><span contenteditable>{{amount1}}</span></td>
 						<td style="text-align: center;"><span contenteditable>{{quantity}}</span></td>
-						<td style="text-align: center;"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
-						<td style="text-align: center;"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
+						<td style="text-align: center;" id="cgst1"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
+						<td style="text-align: center;" id="sgst1"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
+						<td style="text-align: center;" id="igst1"><span data-prefix>&#x20B9</span><span contenteditable>{{igst}}</span></td>
 						<td style="text-align: center;"> <span data-prefix></span>&#x20B9<span><b>{{cost_pregst}}</b></span></td>
 					</tr>
 				</tbody>
@@ -86,13 +88,17 @@ www.brahm.works</pre>
 					<th><span contenteditable>Sub Total</span></th>
 					<td><span data-prefix></span>&#x20B9<span>{{cost_pregst}}</span></td>
 				</tr>
-				<tr>
+				<tr id="cgst2">
 					<th><span contenteditable>CGST (9%)</span></th>
 					<td><span data-prefix></span>&#x20B9<span>{{cgst}}</span></td>
 				</tr>
-				<tr>
+				<tr id="sgst2">
 					<th><span contenteditable>SGST (9%)</span></th>
 					<td><span data-prefix></span>&#x20B9<span>{{cgst}}</span></td>
+				</tr>
+				<tr id="igst2">
+					<th><span contenteditable>IGST (18%)</span></th>
+					<td><span data-prefix></span>&#x20B9<span>{{igst}}</span></td>
 				</tr>
 				<tr>
 					<th><span contenteditable><b>Total  </b></span></th>

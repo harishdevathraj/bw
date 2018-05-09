@@ -1,5 +1,6 @@
 var User = require('../models/user'); // Import User Model
 var Project = require('../models/project'); // Import Project Model
+var Orders = require('../models/orders');
 var formidable = require('formidable');
 var upload = require('express-fileupload');
 var express = require('express'); // ExperssJS Framework
@@ -1669,6 +1670,41 @@ module.exports = function(router) {
                 res.json(data)
             }
         });
+    });
+
+    //add records to order db
+    router.post('/addorders', function(req, res, next){
+        console.log(req.body);
+
+        var ord = new Orders();
+        ord.projectname=req.body.project_name;
+        ord.material=req.body.material;
+        ord.process=req.body.process;
+        ord.email=req.body.email;
+        ord.quantity=req.body.quantity;
+        ord.costpregst=req.body.cost_pregst;
+        //ord.paymentfinal=req.body.cost;
+        ord.costpostgst=req.body.amount;
+        //ord.invoiceno=req.body.quantity;
+
+        ord.objectid=req.body.objectid;
+        ord.gstnumber=req.body.gst;
+        ord.baddress=req.body.bstreet;
+        ord.bcity=req.body.bcity;
+        ord.bstate=req.body.bstate;
+        ord.bcountry=req.body.bcountry;
+        ord.bzip=req.body.bzip;
+
+        ord.saddress=req.body.sstreet;
+        ord.scity=req.body.scity;
+        ord.sstate=req.body.sstate;
+        ord.scountry=req.body.scountry;
+        ord.szip=req.body.szip;
+        
+        ord.save(function (err) {
+            res.json('POST records clear');
+            }); 
+        
     });
 
 

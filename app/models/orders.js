@@ -5,14 +5,30 @@ var validate = require('mongoose-validator'); // Import Mongoose Validator Plugi
 
 var orderschema= new Schema({
 	//username: {type: String},
-	project: {type: String},
-	description: {type: String},
-	filename: {type: String},
+	projectname: {type: String},
 	material: {type: String},
 	process: {type: String},
 	email: {type: String},
-	cost: {type: String},
-	comment: {type: String},
+	quantity: {type: Number},
+	costpregst: {type: String},
+	paymentfinal: {type: Boolean, default: false},
+	costpostgst: {type: String},
+	invoiceno: {type: String},
+	objectid:{ type: String},
+	gstnumber: { type: String},
+	baddress:{ type: String},
+	bcity:{ type: String},
+	bstate:{ type: String},
+	bcountry:{ type: String},
+	bzip:{ type: Number},
+	saddress:{ type: String},
+	scity:{ type: String},
+	sstate:{ type: String},
+	scountry:{ type: String},
+	szip:{ type: Number},
+
+
+
 
 });
 

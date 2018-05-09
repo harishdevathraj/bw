@@ -47,14 +47,13 @@
 					  <div class="panel panel-default">
 					    <div class="panel-heading">{{data.project}}</div>
 					    <div class="panel-body">  
-                        <!--
-                        <input type="file" value="internal file" id="fileselect" onchange="checkoutCtrl.load_local_file(this.files[0]);">-->
-
-                        <iframe id="vs_iframe" src="https://www.viewstl.com/?embedded" style="border:0;margin:0;width:100%;height:100%;"></iframe>
-
-    					<pre>Material : {{data.material}}</pre>
-    					<pre>Process : {{data.process}}</pre>
-    					<pre>Expected Cost : {{data.cost}}</pre>
+                <!--
+                <input type="file" value="internal file" id="fileselect" onchange="checkoutCtrl.load_local_file(this.files[0]);">-->
+                <iframe id="vs_iframe" src="https://www.viewstl.com/?embedded" style="border:0;margin:0;width:100%;height:100%;"></iframe>
+       
+    					 <pre>Material : {{data.material}}</pre>
+    					 <pre>Process : {{data.process}}</pre>
+    					 <pre>Expected Cost : {{data.cost}}</pre>
 
 					    </div>
 					  </div>
@@ -201,15 +200,14 @@
                            
                               <div class="col-50">
                                     
-                                        <h4 style="margin-top: 0px;">{{project_name}}</h4>
+                                        <h4 style="margin-top: 0px;">{{records.project_name}}</h4>
                               </div>
                               <div class="col-50">
 
-                                    <p>Cost per item <span class="price">&#x20B9 {{amount}}</span></p> 
-                                    <p>Quantity <span class="price"> {{quantity}}</span></p>
-                                    <p>Sub total  <span class="price">&#x20B9 {{cost_pregst}}</span></p>
-                                    <p>CGST (9%)  <span class="price">+ &#x20B9  {{cgst}}</span></p>
-                                    <p>SGST (9%)  <span class="price">+ &#x20B9  {{sgst}}</span></p>
+                                    <p>Cost per item <span class="price">&#x20B9 {{amount1}}</span></p> 
+                                    <p>Quantity <span class="price"> {{records.quantity}}</span></p>
+                                    <p>Sub total  <span class="price">&#x20B9 {{records.cost_pregst}}</span></p>
+                                    <p>GST (18%)  <span class="price">+ &#x20B9  {{igst}}</span></p>
                                     <hr>
                                     <p>Total <span class="price" style="color:black"><b>&#x20B9 {{amount}}</b></span></p>
                               </div>
@@ -229,7 +227,7 @@
         <input type="hidden" name="amount" value="{{amount}}" />
         <input type="hidden" name="productinfo" value="{{productInfo}}" />
         
-        <input type="hidden" name="email" value="{{email}}" />
+        <input type="hidden" name="email" value="{{records.email}}" />
         <input type="hidden" name="phone" value="{{phone}}" />
         <input type="hidden" name="surl" value="http://localhost:8080/api/PaymentStatus" />
         <input type="hidden" name="furl" value="http://peaceful-journey-32238.herokuapp.com/api/PaymentStatus" />
@@ -244,29 +242,29 @@
             <input type="text" id="user" placeholder="Name" name="firstname" ng-model="firstname" required="true" value="{{firstname}}">
 
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" placeholder="Address" name="address1" ng-model="user.address1" required="true" value="{{user.address1}}">
+            <input type="text" id="adr" placeholder="Address" name="address1" ng-model="records.bstreet" required="true" value="{{records.bstreet}}">
 
             <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input name="city" placeholder="City" id="city"  type="text" ng-model="user.city" required="true" value="{{user.city}}" >
+            <input name="city" placeholder="City" id="city"  type="text" ng-model="records.bcity" required="true" value="{{records.bcity}}" >
 
             <div class="row1">
               <div class="col-50">
                 <label for="state"><i class="fa fa-map"></i> State</label>
-                <input type="text" id="state" placeholder="State" name="address2" ng-model="user.address2" required="true" value="{{user.address2}}">
+                <input type="text" id="state" placeholder="State" name="address2" ng-model="records.bstate" required="true" value="{{records.bstate}}">
               </div>
               <div class="col-50">
                 <label for="zip"><i class="fa fa-map-marker"></i> Pincode</label>
-                <input type="number" id="zip" name="zipcode" placeholder="pincode">
+                <input type="number" style="width: 100%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" id="zip" name="zipcode" placeholder="pincode" ng-model="records.bzip" value="{{records.bzip}}">
               </div>
             </div>
 
             <label for="country"><i class="fa fa-globe"></i> Country</label>
-            <input name="country" placeholder="Country" id="country"  type="text" ng-model="user.country" required="true" value="{{user.country}}" >
+            <input name="country" placeholder="Country" id="country"  type="text" ng-model="records.bcountry" required="true" value="{{records.bcountry}}" >
 
             <label for="gst"><i class="fa fa-qrcode"></i> GST *</label>
-            <input name="udf1" placeholder="Company GST (optional)" id="gst"  type="text" ng-model="user.gst" value="{{user.gst}}" >
+            <input placeholder="Company GST (optional)" id="gst"  type="text" ng-model="records.gst" value="{{records.gst}}" >
       
-            <input type="hidden" name="udf2" value="{{id}}">
+            <input type="hidden" name="udf1" value="{{id}}">
 
           </div>
 
@@ -291,10 +289,13 @@
               <i class="fa fa-cc-diners-club" style="color:orange;"></i>
               <i class="fa fa-cc-amex" style="color:orange;"></i>
             </div> 
-           
-        <input type="checkbox" onclick="SetBilling(this.checked);"/>
+            <!--<input type="checkbox" ng-click="SetBilling(this.checked);"/>-->
+            <p><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.SetBilling(vm.myChkModel)"> Shipping address is the same as billing address.</p>
+
+            </div>
+            <button type="submit" class="btn btn-warning" ng-click="presubmit()" id="customergst">Continue to checkout <span class="glyphicon glyphicon-send"></span></button>
       </form>
-    </div>
+    
   </div>
 
 
@@ -302,86 +303,43 @@
   <!--billing-->
   <div class="col-50">
     <div class="container1">
-      <form  class="form-horizontal" id="paymentForm"  action='https://sandboxsecure.payu.in/_payment' method='post' style="align-items: center;"><!--secure.payu.in/_payment -->
-
-        <input type="hidden" name="key" value="{{mkey}}" />
-        <input type="hidden" name="txnid" value="{{txnid}}" />
-        <input type="hidden" name="amount" value="{{amount}}" />
-        <input type="hidden" name="productinfo" value="{{productInfo}}" />
-        
-        <input type="hidden" name="email" value="{{email}}" />
-        <input type="hidden" name="phone" value="{{phone}}" />
-        <input type="hidden" name="surl" value="http://localhost:8080/api/PaymentStatus" />
-        <input type="hidden" name="furl" value="http://peaceful-journey-32238.herokuapp.com/api/PaymentStatus" />
-        <input type="hidden" name="hash" id="hash" value="{{hash}}">
-        <input type="hidden" name="service_provider" value="{{service_provider}}">
+      <form  class="form-horizontal" id="paymentForm1" style="align-items: center;"><!--secure.payu.in/_payment -->
         
         <div class="row1">
           <div class="col-50">
             <h3><b>Shipping Address</b></h3>
             <!--<input type="hidden" name="firstname" value="{{firstName}}" />-->
-            <label for="user"><i class="fa fa-user"></i> Name</label>
-            <input type="text" id="user" placeholder="Name" name="firstname" ng-model="firstname" required="true" value="{{firstname}}">
 
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" placeholder="Address" name="address1" ng-model="user.address1" required="true" value="{{user.address1}}">
+            <input type="text" id="sadr" placeholder="Address"  ng-model="records.sstreet">
 
             <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input name="city" placeholder="City" id="city"  type="text" ng-model="user.city" required="true" value="{{user.city}}" >
+            <input  placeholder="City" id="scity"  type="text" ng-model="records.scity" >
 
             <div class="row1">
               <div class="col-50">
                 <label for="state"><i class="fa fa-map"></i> State</label>
-                <input type="text" id="state" placeholder="State" name="address2" ng-model="user.address2" required="true" value="{{user.address2}}">
+                <input type="text" id="sstate" placeholder="State" ng-model="records.sstate">
               </div>
               <div class="col-50">
                 <label for="zip"><i class="fa fa-map-marker"></i> Pincode</label>
-                <input type="number" id="zip" name="zipcode" placeholder="pincode">
+                <input type="number" style="width: 100%;margin-bottom: 20px;padding: 12px;border: 1px solid #ccc;border-radius: 3px;" id="szip" placeholder="pincode" ng-model="records.szip">
               </div>
             </div>
 
             <label for="country"><i class="fa fa-globe"></i> Country</label>
-            <input name="country" placeholder="Country" id="country"  type="text" ng-model="user.country" required="true" value="{{user.country}}" >
-
-            <label for="gst"><i class="fa fa-qrcode"></i> GST *</label>
-            <input name="udf1" placeholder="Company GST (optional)" id="gst"  type="text" ng-model="user.gst" value="{{user.gst}}" >
-      
-            <input type="hidden" name="udf2" value="{{id}}">
+            <input placeholder="Country" id="scountry"  type="text" ng-model="records.scountry">
 
           </div>
-
-         <!-- <div class="col-50">
-           <h3>Payment</h3>
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container1">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div> 
-          </div>-->
           
         </div>
 
-
-            <div class="icon-container1" style="float: right;">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-credit-card-alt" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-diners-club" style="color:orange;"></i>
-              <i class="fa fa-cc-amex" style="color:orange;"></i>
-            </div> 
-            <button type="submit" class="btn btn-warning" ng-click="presubmit()" id="customergst">Continue to checkout <span class="glyphicon glyphicon-send"></span></button>
       </form>
     </div>
   </div>
   <!--//billing-->
   
 </div>
-
-
-
-
 
 
 
