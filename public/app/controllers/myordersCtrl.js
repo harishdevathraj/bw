@@ -29,7 +29,7 @@ angular.module('myordersCtrl',[])
 
         $(document).ready(function() {
 //https://peaceful-journey-32238.herokuapp.com/
-        if(window.location == "https://peaceful-journey-32238.herokuapp.com//dashorders"){
+        if(window.location == "https://peaceful-journey-32238.herokuapp.com/dashorders"){
         
         vm.getAllRecords = function() {
         	$http.post('/api/getorders').then(function(response){
