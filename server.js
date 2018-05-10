@@ -30,7 +30,7 @@ app.set('views', __dirname + '/views');
 // 
 // <---------- REPLACE WITH YOUR MONGOOSE CONFIGURATION ---------->
 // dev:dev@ds125489.mlab.com:25489/mydatabase
-mongoose.connect('mongodb:dev:dev@ds125489.mlab.com:25489/mydatabase', function(err) {
+mongoose.connect('mongodb://dev:dev@ds125489.mlab.com:25489/mydatabase', function(err) {
     if (err) {
         console.log('Not connected to the database: ' + err); // Log to console if unable to connect to database   //mongodb://root:password@ds027215.mlab.com:27215/gugui3z24
     } else {
