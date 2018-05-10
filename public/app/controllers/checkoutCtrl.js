@@ -13,8 +13,6 @@ angular.module('checkoutCtrl',[])
     $http.get('api/getuserdata').then(function(response){
         $scope.phone= response.data[0].phone;
         $scope.firstName=response.data[0].name;
-        
-
     });
     }
 
@@ -62,7 +60,6 @@ angular.module('checkoutCtrl',[])
         $scope.records.project_name=response.data.project;
         $scope.records.cost_pregst=response.data.fcost*response.data.quantity;
         $scope.cgst= roundTo($scope.records.cost_pregst * 0.09 ,2);
-        $scope.sgst= roundTo($scope.records.cost_pregst * 0.09 ,2);
         $scope.igst=2*$scope.cgst;
         $scope.amount= roundTo($scope.records.cost_pregst+ 2*$scope.cgst, 2);
         $scope.records.amount=$scope.amount;
@@ -192,6 +189,18 @@ angular.module('checkoutCtrl',[])
     }
 
     function updateshippingaddr(){
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd;
+        } 
+        if(mm<10){
+            mm='0'+mm;
+        } 
+        $scope.records.date = dd+'/'+mm+'/'+yyyy;
+
         console.log($scope.records);
         $http.post('/api/addorders', $scope.records).then(function(response){
                 console.log(response);          

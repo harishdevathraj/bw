@@ -1,0 +1,44 @@
+<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<div class="home" style="border: 150px;
+    margin: 10px;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 18px 1px black;" ng-controller="myordersCtrl as ctrl">
+<div class="user-dashboard" >
+	<h2 >MY ORDERS</h2>
+	<style type="text/css">
+        .css-serial {
+  		counter-reset: serial-number;  /* Set the serial number counter to 0 */
+		}
+		.css-serial td:first-child:before {
+  		counter-increment: serial-number;  /* Increment the serial number counter */
+  		content: counter(serial-number);  /* Display the counter */
+		}
+    </style>
+	<table class="table css-serial">
+        <thead>
+        <tr>
+            <th>Sl no.</th>
+			<th ng-repeat="field in ctrl.fields | limitTo:9">{{field.label}}</th>
+			<th>Shipping Address</th>
+			<th>Invoice</th>
+		</tr>
+        </thead>
+
+        <tr ng-repeat = "record in ctrl.records">
+            <td ></td>
+			<td ng-repeat="field in ctrl.fields | limitTo:9">{{record[field.key]}}</td>
+            <td style="width: 250px;">
+            <pre>{{record.saddress}}
+{{record.scity}}
+{{record.sstate}}
+{{record.scountry}}
+{{record.szip}}
+</pre></td>
+			<td><a href="/invoice" ng-click="ctrl.getinvoicedetails(record._id)">Print invoice</a></td>
+		</tr>
+
+    </table>
+</div>
+</div>

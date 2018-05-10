@@ -1,14 +1,81 @@
-angular.module('inCtrl', [])
+angular.module('myordersCtrl',[])
 
-.controller('inCtrl', function ($scope,$http) {
+.controller('myordersCtrl',['$scope','$http','$rootScope',function($scope,$http,$rootScope){
+	
+        var vm = this;
+        
+        vm.fields = [
+            {label: 'Project Title', key: 'projectname'},
+            {label: 'Date', key: 'date'},
+            {label: 'Email', key: 'email'},
+            {label: 'Material', key: 'material'},
+            {label: 'Process', key: 'process'},
+            {label: 'Quantity', key: 'quantity'},
+            {label: 'Total', key: 'costpostgst'},  
+        ];
+
+        vm.record = {};
+        vm.records = [];
+          
 
 
-    $http.post('api/payment_data').then(function(response){
 
-        /*gsttype();
+          vm.getinvoicedetails = function(data){
+                console.log(data);
+                $rootScope.objid=data;
+                console.log($rootScope.objid);
+            }
+
+
+        $(document).ready(function() {
+
+        if(window.location == "http://localhost:8080/dashorders"){
+        
+        vm.getAllRecords = function() {
+        	$http.post('/api/getorders').then(function(response){
+                vm.records=response.data;
+                console.log(response);
+            }, function(response){
+                console.log(response);
+            });
+        }
+		vm.getAllRecords();
+        }
+       else{
+            $('div.navbar').hide();
+
+            $http.post('api/getinvoicedetails/'+$rootScope.objid).then(function(response){
+                console.log(response.data[0].baddress);
+                $scope.date=response.data[0].date;
+                $scope.projectname=response.data[0].projectname;
+                $scope.firstname=response.data[0].firstname;
+
+                $scope.baddress=response.data[0].baddress;
+                $scope.bcity=response.data[0].bcity;
+                $scope.bstate=response.data[0].bstate;
+                $scope.bcountry=response.data[0].bcountry;
+                $scope.bzip=response.data[0].bzip;
+
+                $scope.saddress=response.data[0].saddress;
+                $scope.scity=response.data[0].scity;
+                $scope.sstate=response.data[0].sstate;
+                $scope.scountry=response.data[0].scountry;
+                $scope.szip=response.data[0].szip;
+
+                $scope.gstnumber=response.data[0].gstnumber;
+                $scope.costpregst=response.data[0].costpregst;
+                $scope.quantity=response.data[0].quantity;
+                $scope.cgst=Math.round(response.data[0].costpregst * 9)/100;
+                $scope.igst=2*$scope.cgst;
+                $scope.rate=response.data[0].costpregst/response.data[0].quantity;
+                $scope.costpostgst=response.data[0].costpostgst;
+
+
+
+                gsttype();
 
         function gsttype(){
-            var res = state1.match(/(\b[k][a][r][n][a][t][a][k][a]\b)|(\b[k][a][r]\b)/gi);
+            var res = $scope.sstate.match(/(\b[k][a][r][n][a][t][a][k][a]\b)|(\b[k][a][r]\b)/gi);
             if(res){
                 $("#igst").hide();
                 $('#igst1').hide();
@@ -21,55 +88,29 @@ angular.module('inCtrl', [])
                 $("#sgst1").hide();
                 $("#sgst2").hide();
             }
-        }*/
-
-        //data from Project db
-        $http.post('api/checkoutrecord/'+$scope.objid).then(function(response){
-            console.log('inCtrl' + response.data);
-            $scope.amount1=response.data.fcost;
-            $scope.quantity=response.data.quantity;
-            $scope.project_name=response.data.project;
-            $scope.cost_pregst=response.data.fcost*response.data.quantity;
-            $scope.cgst= Math.round($scope.cost_pregst * 9)/100;
-            $scope.igst=2*$scope.cgst;
-            $scope.amountss= Math.round(($scope.cost_pregst+ 2*$scope.cgst)*100)/100;
-            //NumToWord($scope.amountss, 'divDisplayWords');
-            withDecimal($scope.amountss);
-
-            //decimal to word
-            function withDecimal(n) {
-                var nums = n.toString().split('.');
-                NumToWord(nums[0], 'divDisplayWords');
-                if (nums.length == 2) {
-                    NumToWord(nums[1], 'divDisplayWord');
-                } /*else {
-                    return whole;
-                }*/
-            }
-
-        });
+        }
 
 
-        $scope.inoviceno=0;
-        $scope.inoviceno = $scope.inoviceno++;
-    
+                withDecimal($scope.costpostgst);
+                
+            })
+        }
     });
 
-  
+      
+            
+        
 
-    $scope.myFunction = function () {
-        window.print();
-    }
-
-    $(document).ready(function(){
-        $('div.navbar').remove();
-        //window.print();
-        //var a= window.confirm("Save your Invoice Now");
-        //if (a) {      
-
-        //NumToWord($scope.amountss, 'divDisplayWords');
-
-    })
+        //decimal to word
+        function withDecimal(n) {
+            var nums = n.toString().split('.');
+            NumToWord(nums[0], 'divDisplayWords');
+            if (nums.length == 2) {
+                NumToWord(nums[1], 'divDisplayWord');
+            } /*else {
+                return whole;
+            }*/
+        }
 
 
     function NumToWord(inputNumber, outputControl) {
@@ -180,5 +221,5 @@ angular.module('inCtrl', [])
         }
         document.getElementById(outputControl).innerHTML = finalOutput;
     }
-   
-});
+
+}]);

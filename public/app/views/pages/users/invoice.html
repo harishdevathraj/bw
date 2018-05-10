@@ -4,7 +4,7 @@
 <body class="body">
 
 
-	<div ng-controller="inCtrl as ctrl" >
+	<div ng-controller="myordersCtrl as ctrl" >
 		<button class="btn btn-warning" ng-click="myFunction()">Print Invoice</button>
 	</br>
 		<head>
@@ -44,17 +44,34 @@ www.brahm.works</pre>
 </br>
 </br>
 <article style="margin-left: 2px; margin-right: 5px;">
+
+<div class="row">
+	<div class="col-sm-4">
 			<p style="float: left;">Bill to</p>		
 <pre style=" border-radius: 0x;  border:none; background-color: transparent; font:   100% sans-serif; letter-spacing: 0em;">
 <b>{{firstname}}</b>
-{{address}}
-{{city}}
-{{state}}
-{{country}}
-{{zipcode}}
+{{baddress}}
+{{bcity}}
+{{bstate}}
+{{bcountry}}
+{{bzip}}
 (+91){{phone}}</pre>
+</div>
+<div class="col-sm-4">
+			<p style="float: left;">Ship to</p>		
+<pre style=" border-radius: 0x;  border:none; background-color: transparent; font:   100% sans-serif; letter-spacing: 0em;">
+{{saddress}}
+{{scity}}
+{{sstate}}
+{{scountry}}
+{{szip}}
+(+91){{phone}}</pre>
+	</div>
+	<div class="col-sm-4"></div>
 
-	<p> Customer GSTIN: </p>
+</div>
+
+	<p> Customer GSTIN: {{gstnumber}}</p>
 	<p> Source of Supply : Karnataka (29)</p>
 	
 			<table class="inventory">
@@ -72,21 +89,21 @@ www.brahm.works</pre>
 				</thead>
 				<tbody>
 					<tr >
-						<td style="text-align: center;"><a class="cut">-</a><span contenteditable>{{project_name}}</span></td>
+						<td style="text-align: center;"><a class="cut">-</a><span contenteditable>{{projectname}}</span></td>
 						<td style="text-align: center;"><span contenteditable>3D print</span></td>
-						<td style="text-align: center;" ><span data-prefix>&#x20B9</span><span contenteditable>{{amount1}}</span></td>
+						<td style="text-align: center;" ><span data-prefix>&#x20B9</span><span contenteditable>{{rate}}</span></td>
 						<td style="text-align: center;"><span contenteditable>{{quantity}}</span></td>
 						<td style="text-align: center;" id="cgst1"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
 						<td style="text-align: center;" id="sgst1"><span data-prefix>&#x20B9</span><span contenteditable>{{cgst}}</span></td>
 						<td style="text-align: center;" id="igst1"><span data-prefix>&#x20B9</span><span contenteditable>{{igst}}</span></td>
-						<td style="text-align: center;"> <span data-prefix></span>&#x20B9<span><b>{{cost_pregst}}</b></span></td>
+						<td style="text-align: center;"> <span data-prefix></span>&#x20B9<span><b>{{costpregst}}</b></span></td>
 					</tr>
 				</tbody>
 			</table>
 			<table class="balance">
 				<tr>
 					<th><span contenteditable>Sub Total</span></th>
-					<td><span data-prefix></span>&#x20B9<span>{{cost_pregst}}</span></td>
+					<td><span data-prefix></span>&#x20B9<span>{{costpregst}}</span></td>
 				</tr>
 				<tr id="cgst2">
 					<th><span contenteditable>CGST (9%)</span></th>
@@ -102,7 +119,7 @@ www.brahm.works</pre>
 				</tr>
 				<tr>
 					<th><span contenteditable><b>Total  </b></span></th>
-					<td><span data-prefix></span><b>&#x20B9</b><span contenteditable><b>{{amountss}}</b></span></td>
+					<td><span data-prefix></span><b>&#x20B9</b><span contenteditable><b>{{costpostgst}}</b></span></td>
 				</tr>
 				<tr>
 					<th><span contenteditable>Total in words:</span></th>

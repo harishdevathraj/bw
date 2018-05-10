@@ -29,6 +29,11 @@ var app = angular.module('appRoutes', ['ngRoute'])
     
     })
 
+    .when('/dashorders', {
+        templateUrl: 'app/views/pages/users/dashorders.html',
+    
+    })
+
     // Route: User Registration
     .when('/register', {
         templateUrl: 'app/views/pages/users/register.html',

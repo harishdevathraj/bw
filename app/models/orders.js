@@ -4,7 +4,7 @@ var titlize = require('mongoose-title-case'); // Import Mongoose Title Case Plug
 var validate = require('mongoose-validator'); // Import Mongoose Validator Plugin
 
 var orderschema= new Schema({
-	//username: {type: String},
+	firstname: {type: String},
 	projectname: {type: String},
 	material: {type: String},
 	process: {type: String},
@@ -16,6 +16,7 @@ var orderschema= new Schema({
 	invoiceno: {type: String},
 	objectid:{ type: String},
 	gstnumber: { type: String},
+	date:{type: String},
 	baddress:{ type: String},
 	bcity:{ type: String},
 	bstate:{ type: String},

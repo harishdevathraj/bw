@@ -15,7 +15,7 @@ var path = require('path');
 var sha512 = require('js-sha512');//Payment encryption
 
 var fname;//to display file name
-var payment_data="";//to store payment data for invoice and myorders
+//var payment_data="";//to store payment data for invoice and myorders
 
 function errorHandler(err, req, res, next) {
     console.error(err.message);
@@ -54,11 +54,18 @@ module.exports = function(router) {
     //payumoney Status page
     router.post('/PaymentStatus', function (req, res) {
         console.log('Api payment status ');
-        payment_data=req.body;
-        //res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
+        //payment_data=req.body;
         if(req.body.status== 'success'){
-            res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_success.html'));
-        
+            Orders.update({ objectid: req.body.udf1 }, { $set: { paymentfinal: true}}, callback);
+            function callback(err,numAffected){
+                if(err){
+                    res.send(err);
+                }
+                else{
+                    res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_success.html'));
+                }
+            }
+            
         }else{
             //res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
             res.send(req.body);
@@ -66,12 +73,12 @@ module.exports = function(router) {
     });
 
     //get payment data
-    router.post('/payment_data', function (req, res) {
+    /*router.post('/payment_data', function (req, res) {
         console.log(payment_data);
         res.send(payment_data);
 
 
-    });
+    });*/
 
     // Route to register new users  
 
@@ -1686,7 +1693,7 @@ module.exports = function(router) {
         //ord.paymentfinal=req.body.cost;
         ord.costpostgst=req.body.amount;
         //ord.invoiceno=req.body.quantity;
-
+        ord.date=req.body.date;
         ord.objectid=req.body.objectid;
         ord.gstnumber=req.body.gst;
         ord.baddress=req.body.bstreet;
@@ -1694,22 +1701,41 @@ module.exports = function(router) {
         ord.bstate=req.body.bstate;
         ord.bcountry=req.body.bcountry;
         ord.bzip=req.body.bzip;
-
+        ord.firstname=req.body.firstname;
         ord.saddress=req.body.sstreet;
         ord.scity=req.body.scity;
         ord.sstate=req.body.sstate;
         ord.scountry=req.body.scountry;
         ord.szip=req.body.szip;
-        
+
         ord.save(function (err) {
             res.json('POST records clear');
             }); 
         
     });
 
+    //get order details to display in "my orders"
+    router.post('/getorders', function(req,res){
+        Orders.find({ 'paymentfinal': true }, function (err, docs) { 
+            if(err){
+                res.send(err);
+            }else{
+                res.send(docs);
+            }
+        });
+    });
 
-
-
+    //get data from orders to display in invoice
+    router.post('/getinvoicedetails/:id',function(req,res){
+        console.log(req.params.id);
+        Orders.find({ '_id': req.params.id }, function (err, docs) { 
+            if(err){
+                res.send(err);
+            }else{
+                res.send(docs);
+            }
+        });
+    });
 
 /*    router.use(errorHandler);
     var server = router.listen(process.env.PORT || 3000, function() {
