@@ -28,8 +28,8 @@ angular.module('myordersCtrl',[])
 
 
         $(document).ready(function() {
-
-        if(window.location == "http://localhost:8080/dashorders"){
+//https://peaceful-journey-32238.herokuapp.com/
+        if(window.location == "https://peaceful-journey-32238.herokuapp.com//dashorders"){
         
         vm.getAllRecords = function() {
         	$http.post('/api/getorders').then(function(response){
