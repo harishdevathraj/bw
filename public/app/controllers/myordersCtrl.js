@@ -42,7 +42,7 @@ angular.module('myordersCtrl',[])
 		vm.getAllRecords();
         }
        else{
-            $('div.navbar').hide();
+            //$('div.navbar').hide();
 
             $http.post('api/getinvoicedetails/'+$rootScope.objid).then(function(response){
                 console.log(response.data[0].baddress);

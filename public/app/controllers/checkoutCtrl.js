@@ -183,7 +183,7 @@ angular.module('checkoutCtrl',[])
             console.log(status);
             if (status == 200) {
                 document.getElementById('hash').value = data.hash;
-                document.getElementById('paymentForm').submit();
+                //document.getElementById('paymentForm').submit();
             }
         });
     }
