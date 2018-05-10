@@ -18,7 +18,9 @@ angular.module('myordersCtrl',[])
         vm.records = [];
           
 
-
+        $scope.myfunction=function(){
+            windows.print();
+        }
 
           vm.getinvoicedetails = function(data){
                 console.log(data);
