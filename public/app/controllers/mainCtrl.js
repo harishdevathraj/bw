@@ -1,7 +1,7 @@
 angular.module('mainController', ['authServices', 'userServices'])
 
 // Controller: mainCtrl is used to handle login and main index functions (stuff that should run on every page)  
-.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope, $window, $interval, User, AuthToken, $scope) {
+.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope, $window, $interval, User, AuthToken, $scope,$http) {
     var app = this;
     app.loadme = false; // Hide main HTML until data is obtained in AngularJS
     if ($window.location.pathname === '/') app.home = true; // Check if user is on home page to show home page div
@@ -20,6 +20,33 @@ angular.module('mainController', ['authServices', 'userServices'])
             
         });
     }
+
+
+    $(document).ready (function(){
+        $("#loader").hide();
+        $("#success-alert").hide();
+        $("#failure-alert").hide();
+        //route to send data from contact form
+        app.conUser= function(conData){
+            $("#loader").show();
+            $http.post('/api/contact', this.conData).then(function(response){
+                console.log(response);
+                $('#contactUs').trigger("reset");
+                $("#loader").hide();
+                $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+                $("#success-alert").slideUp(500);
+            });   
+            },function(response){
+                console.log(response);
+                $('#contactUs').trigger("reset");
+                $("#loader").hide();
+                $("#failure-alert").fadeTo(2000, 500).slideUp(500, function(){
+                $("#failure-alert").slideUp(500);
+            });
+            }
+        )};
+    });
+
 
     // Function to run an interval that checks if the user's token has expired
     app.checkSession = function() {

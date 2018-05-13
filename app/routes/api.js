@@ -14,8 +14,7 @@ var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer
 var path = require('path');
 var sha512 = require('js-sha512');//Payment encryption
 
-var fname;//to display file name
-//var payment_data="";//to store payment data for invoice and myorders
+var fname;//to display file name in dashcheckout
 
 function errorHandler(err, req, res, next) {
     console.error(err.message);
@@ -23,27 +22,18 @@ function errorHandler(err, req, res, next) {
     res.status(500).render("error_template", { error: err});
 }
 module.exports = function(router) {
-
-    // Start Sendgrid Configuration Settings (Use only if using sendgrid)
-    // var options = {
-    //     auth: {
-    //         api_user: 'dbrian332', // Sendgrid username
-    //         api_key: 'PAssword123!@#' // Sendgrid password
-    //     }
-    // };
     // Nodemailer options (use with g-mail or SMTP)
     var client = nodemailer.createTransport({
         service: 'Zoho',
         auth: {
-            user: 'harish@brahm.works', // Your email address
-            pass: 'harish94' // Your password
+            user: 'kushal@brahm.works', // Your email address
+            pass: 'kushal@bw' // Your password
         },
         tls: { rejectUnauthorized: false }
     });
-    // var client = nodemailer.createTransport(sgTransport(options)); // Use if using sendgrid configuration
-    // End Sendgrid Configuration Settings  
 
 
+    //Generate Hash for payumoney
     router.post('/createHash', function (req, res) {
         var salt = 'qsjtako0im';
         var hash = sha512(req.body.preHashString + salt);
@@ -54,7 +44,6 @@ module.exports = function(router) {
     //payumoney Status page
     router.post('/PaymentStatus', function (req, res) {
         console.log('Api payment status ');
-        //payment_data=req.body;
         if(req.body.status== 'success'){
             Orders.update({ objectid: req.body.udf1 }, { $set: { paymentfinal: true}}, callback);
             function callback(err,numAffected){
@@ -67,21 +56,11 @@ module.exports = function(router) {
             }
             
         }else{
-            //res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
-            res.send(req.body);
+            res.sendFile(path.join(__dirname + '../../../public/app/views/pages/users/payment_failure.html'));
         }
     });
 
-    //get payment data
-    /*router.post('/payment_data', function (req, res) {
-        console.log(payment_data);
-        res.send(payment_data);
-
-
-    });*/
-
     // Route to register new users  
-
     router.post('/users', function(req, res) {
         var user = new User(); // Create new User object
         user.username = req.body.email; // Save username from request to User object
@@ -129,11 +108,11 @@ module.exports = function(router) {
                 } else {
                     // Create e-mail object to send to user
                     var email = {
-                        from: 'Brahm Works staff, harish@brahm.works',
+                        from: 'Brahm Works staff, kushal@brahm.works',
                         to: [user.email, ''],
                         subject: 'Your Activation Link',
-                        text: 'Hello ' + user.name + ', thank you for registering at Brahm works. Please click on the following link to complete your activation: http://www.herokutestapp3z24.com/activate/' + user.temporarytoken,
-                        html: 'Hello<strong> ' + user.name + '</strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://www.herokutestapp3z24.com/activate/' + user.temporarytoken + '">http://www.herokutestapp3z24.com/activate/</a>'
+                        text: 'Hello ' + user.name + ', thank you for registering at Brahm works. Please click on the following link to complete your activation: https://peaceful-journey-32238.herokuapp.com/activate/' + user.temporarytoken,
+                        html: 'Hello<strong> ' + user.name + '</strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="https://peaceful-journey-32238.herokuapp.com/activate/' + user.temporarytoken + '">https://peaceful-journey-32238.herokuapp.com/activate/</a>'
                     };
                     // Function to send e-mail to the user
                     client.sendMail(email, function(err, info) {
@@ -150,19 +129,14 @@ module.exports = function(router) {
         }
     });
 
-
-
-    //Route to contact form
+    //Route to contact form in index.html
     router.post('/contact', function(req, res){
-   
-
         // setup email data with unicode symbols
-      var email = {
-          from: '"ADMIN", harish@brahm.works', // sender address
-          to: ['k1u2s3h4a5l6@gmail.com', ''],// list of receivers
-          subject: req.body.subject, // Subject line
-         
-          html: `<p>You have a new contact request from brahm.works</p>
+        var email = {
+            from: '"ADMIN", kushal@brahm.works', // sender address
+            to: ['k1u2s3h4a5l6@gmail.com', ''],// list of receivers
+            subject: req.body.subject, // Subject line
+            html: `<p>You have a new contact request from brahm.works</p>
                 <h3> Contact details</h3>
                 <ul><li>Name: ${req.body.name}</li>
                 <li>Email: ${req.body.email}</li>
@@ -172,19 +146,17 @@ module.exports = function(router) {
                 <h3>Message</h3>
                 <p> ${req.body.text}</p>
                 `
-    };
-
-    // send mail with defined transport object
-      client.sendMail(email, function(error, info) {
-          if (error) {
-              return console.log(error);
-          }
-          
-          console.log('Message sent:');  
+        };
+        // send mail with defined transport object
+        client.sendMail(email, function(error, info) {
+            if (error) {
+                res.send(error);
+            }else{
+                console.log('Message sent');
+                res.send('Message sent');  
+            }
         });
     });
-
- 
 
     // Route to check if username chosen on registration page is taken
     router.post('/checkusername', function(req, res) {
@@ -192,7 +164,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -224,7 +196,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -262,11 +234,11 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
-                    to: '',
+                    from: 'Brahm Works staff, kushal@brahm.works',
+                    to: 'k1u2s3h4a5l6@gmail.com',
                     subject: 'Error Logged',
-                    text: 'The following error has been reported in the MEAN Stack Application: ' + err,
-                    html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
+                    text: 'The following error has been reported:' + err,
+                    html: 'The following error has been reported:<br><br>' + err
                 };
                 // Function to send e-mail to myself
                 client.sendMail(email, function(err, info) {
@@ -312,8 +284,8 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
-                    to: '',
+                    from: 'Brahm Works staff, kushal@brahm.works',
+                    to: 'k1u2s3h4a5l6@gmail.com',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
                     html: 'The following error has been reported in the MEAN Stack Application:<br><br>' + err
@@ -346,7 +318,7 @@ module.exports = function(router) {
                             } else {
                                 // If save succeeds, create e-mail object
                                 var email = {
-                                    from: 'Brahm Works staff, harish@brahm.works',
+                                    from: 'Brahm Works staff, kushal@brahm.works',
                                     to: user.email,
                                     subject: 'Account Activated',
                                     text: 'Hello ' + user.name + ', Your account has been successfully activated!',
@@ -371,7 +343,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -416,7 +388,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -441,11 +413,11 @@ module.exports = function(router) {
                     } else {
                         // If user successfully saved to database, create e-mail object
                         var email = {
-                            from: 'Brahm Works staff, harish@brahm.works',
+                            from: 'Brahm Works staff, kushal@brahm.works',
                             to: user.email,
                             subject: 'Activation Link Request',
-                            text: 'Hello ' + user.name + ', You recently requested a new account activation link. Please click on the following link to complete your activation: https://immense-dusk-71112.herokuapp.com/activate/' + user.temporarytoken,
-                            html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You recently requested a new account activation link. Please click on the link below to complete your activation:<br><br><a href="http://www.herokutestapp3z24.com/activate/' + user.temporarytoken + '">http://www.herokutestapp3z24.com/activate/</a>'
+                            text: 'Hello ' + user.name + ', You recently requested a new account activation link. Please click on the following link to complete your activation: https://peaceful-journey-32238.herokuapp.com/activate/' + user.temporarytoken,
+                            html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You recently requested a new account activation link. Please click on the link below to complete your activation:<br><br><a href="https://peaceful-journey-32238.herokuapp.com/activate/' + user.temporarytoken + '">https://peaceful-journey-32238.herokuapp.com/activate/</a>'
                         };
                         // Function to send e-mail to user
                         client.sendMail(email, function(err, info) {
@@ -469,9 +441,9 @@ module.exports = function(router) {
                 } else {
                     // If e-mail found in database, create e-mail object
                     var email = {
-                        from: 'Localhost Staff, harish@brahm.works',
+                        from: 'Brahm Works Staff, kushal@brahm.works',
                         to: user.email,
-                        subject: 'Localhost Username Request',
+                        subject: 'Brahm Works Username Request',
                         text: 'Hello ' + user.name + ', You recently requested your username. Please save it in your files: ' + user.username,
                         html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You recently requested your username. Please save it in your files: ' + user.username
                     };
@@ -496,7 +468,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -526,11 +498,11 @@ module.exports = function(router) {
                         } else {
                             // Create e-mail object to send to user
                             var email = {
-                                from: 'Brahm Works staff, harish@brahm.works',
+                                from: 'Brahm Works staff, kushal@brahm.works',
                                 to: user.email,
                                 subject: 'Reset Password Request',
-                                text: 'Hello ' + user.name + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://www.localhost:8080/reset/' + user.resettoken,
-                                html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://www.localhost:8080/reset/' + user.resettoken + '">http://www.localhost:8080/reset/</a>'
+                                text: 'Hello ' + user.name + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="https://peaceful-journey-32238.herokuapp.com/reset/' + user.resettoken,
+                                html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="https://peaceful-journey-32238.herokuapp.com/reset/' + user.resettoken + '">http://www.localhost:8080/reset/</a>'
                             };
                             // Function to send e-mail to the user
                             client.sendMail(email, function(err, info) {
@@ -555,7 +527,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -595,7 +567,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -624,11 +596,11 @@ module.exports = function(router) {
                         } else {
                             // Create e-mail object to send to user
                             var email = {
-                                from: 'Brahm Works staff, harish@brahm.works',
+                                from: 'Brahm Works staff, kushal@brahm.works',
                                 to: user.email,
                                 subject: 'Password Recently Reset',
-                                text: 'Hello ' + user.name + ', This e-mail is to notify you that your password was recently reset at localhost.com',
-                                html: 'Hello<strong> ' + user.name + '</strong>,<br><br>This e-mail is to notify you that your password was recently reset at localhost.com'
+                                text: 'Hello ' + user.name + ', This e-mail is to notify you that your password was recently reset at https://peaceful-journey-32238.herokuapp.com',
+                                html: 'Hello<strong> ' + user.name + '</strong>,<br><br>This e-mail is to notify you that your password was recently reset at https://peaceful-journey-32238.herokuapp.com'
                             };
                             // Function to send e-mail to the user
                             client.sendMail(email, function(err, info) {
@@ -684,7 +656,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -718,7 +690,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -751,7 +723,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -772,7 +744,7 @@ module.exports = function(router) {
                     if (err) {
                         // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                         var email = {
-                            from: 'Brahm Works staff, harish@brahm.works',
+                            from: 'Brahm Works staff, kushal@brahm.works',
                             to: '',
                             subject: 'Error Logged',
                             text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -818,7 +790,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -848,7 +820,7 @@ module.exports = function(router) {
                             if (err) {
                                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                                 var email = {
-                                    from: 'Brahm Works staff, harish@brahm.works',
+                                    from: 'Brahm Works staff, kushal@brahm.works',
                                     to: '',
                                     subject: 'Error Logged',
                                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -881,7 +853,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -909,7 +881,7 @@ module.exports = function(router) {
                             if (err) {
                                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                                 var email = {
-                                    from: 'Brahm Works staff, harish@brahm.works',
+                                    from: 'Brahm Works staff, kushal@brahm.works',
                                     to: '',
                                     subject: 'Error Logged',
                                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -955,7 +927,7 @@ module.exports = function(router) {
             if (err) {
                 // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                 var email = {
-                    from: 'Brahm Works staff, harish@brahm.works',
+                    from: 'Brahm Works staff, kushal@brahm.works',
                     to: '',
                     subject: 'Error Logged',
                     text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -985,7 +957,7 @@ module.exports = function(router) {
                                 if (err) {
                                     // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                                     var email = {
-                                        from: 'Brahm Works staff, harish@brahm.works',
+                                        from: 'Brahm Works staff, kushal@brahm.works',
                                         to: '',
                                         subject: 'Error Logged',
                                         text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -1032,7 +1004,7 @@ module.exports = function(router) {
                                 if (err) {
                                     // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                                     var email = {
-                                        from: 'Brahm Works staff, harish@brahm.works',
+                                        from: 'Brahm Works staff, kushal@brahm.works',
                                         to: '',
                                         subject: 'Error Logged',
                                         text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -1079,7 +1051,7 @@ module.exports = function(router) {
                                 if (err) {
                                     // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                                     var email = {
-                                        from: 'Brahm Works staff, harish@brahm.works',
+                                        from: 'Brahm Works staff, kushal@brahm.works',
                                         to: '',
                                         subject: 'Error Logged',
                                         text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -1126,7 +1098,7 @@ module.exports = function(router) {
                                 if (err) {
                                     // Create an e-mail object that contains the error. Set to automatically send it to myself for troubleshooting.
                                     var email = {
-                                        from: 'Brahm Works staff, harish@brahm.works',
+                                        from: 'Brahm Works staff, kushal@brahm.works',
                                         to: '',
                                         subject: 'Error Logged',
                                         text: 'The following error has been reported in the MEAN Stack Application: ' + err,
@@ -1237,24 +1209,20 @@ module.exports = function(router) {
         });
     });
 
-
-
     
     router.get('/records', function(req, res, next) {
-            console.log(req.query.name);
         Project.find({email : req.query.name})
         .exec(function(err, data){
             if(err){
-                res.json(err)
+                res.json(err);
             } else {
-                res.json(data)
+                res.json(data);
             }
         });
     });
 
     router.post('/records', function(req, res, next){
         console.log(req.body);
-
         var pro = new Project();
         pro.project=req.body.project;
         pro.description=req.body.description;
@@ -1279,23 +1247,6 @@ module.exports = function(router) {
         });
 
     });
-
-    router.put('/records/:id', function(req, res, next){
-        var id = req.params.id;
-        Project.updateOne(
-            {'_id': new ObjectId(id)},
-            { $set: {
-                'name' : req.body.name,
-                'email': req.body.email,
-                'phone': req.body.phone
-                }
-            }, function(err, results){
-                console.log(results);
-                res.json(results);
-        });
-    });
-
-
    
     router.post('/upload', function(req,res){
         console.log(req.files.file);
@@ -1316,12 +1267,6 @@ module.exports = function(router) {
                res.send('Done uploading files');
             }
         });
-       /* var form = new formidable.IncomingForm();
-        form.parse(req, function (err, fields, files) {
-            res.write('File uploaded');
-            res.end();
-        });*/
-
     });   
     
     router.post('/quote/:id',function(req,res,next){
@@ -1383,9 +1328,6 @@ module.exports = function(router) {
                 res.json(tank);
         });
     }
-     
-
-
         // Vertex
         function Vertex (v1,v2,v3) {
             this.v1 = Number(v1);
@@ -1549,19 +1491,15 @@ module.exports = function(router) {
             }
             else{
             console.log(next);
-            console.log(next.filename);
             res.json(next);
             }
         })
     });
 
-    router.get('/getfile', function(req,res,next){
+    /*router.get('/getfile', function(req,res,next){
         console.log(req.query.filename);
-
         res.sendFile(path.join(__dirname, '../abc.stl'));
-
-
-    });
+    });*/
 
 
     router.put('/review/:id',function(req,res){
@@ -1575,9 +1513,7 @@ module.exports = function(router) {
             }
             else{
             res.send('1 ROW AFFECTED');
-
-
-            /*Project.find({ '_id': projectid }, function (err, docs) {                
+            Project.find({ '_id': projectid }, function (err, docs) {                
                     filename=docs[0].filename;
                     pro=docs[0].process;
                     material=docs[0].material;
@@ -1590,7 +1526,7 @@ module.exports = function(router) {
                     
                    
                     var email = {
-                        from: 'Brahm Works staff, harish@brahm.works',
+                        from: 'Brahm Works staff, kushal@brahm.works',
                         to: ['k1u2s3h4a5l6@gmail.com', ''],
                         subject: '[BW] There is a project under review',
                         html: `<p>You have a new project for review</p>
@@ -1627,7 +1563,7 @@ module.exports = function(router) {
                     });
 
                     });
-             });*/
+             });
         }}
     });
 

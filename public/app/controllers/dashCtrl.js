@@ -39,8 +39,6 @@ angular.module('dashCtrl',[])
         ];
 
 
-
-
         $scope.loadLocations = function(branchId) {
           console.log('Selected BranchId: ' + branchId);
           vm.record.process= branchId; 
@@ -97,8 +95,6 @@ angular.module('dashCtrl',[])
         }
 
         vm.getAllRecords();
-
-        vm.editMode = false;
         
         vm.saveRecord = function() {
             $('#reset').prop('selectedIndex',0);
@@ -122,11 +118,7 @@ angular.module('dashCtrl',[])
 
 
             console.log(vm.record);
-            if(vm.editMode) {
-                vm.updateRecord();
-            } else {
-                vm.addRecord();
-            }
+            vm.addRecord();
         
         })
 
@@ -143,21 +135,6 @@ angular.module('dashCtrl',[])
             });
         }
 
-        vm.updateRecord = function() {
-            $http.put('/api/records/' + vm.record._id, vm.record).then(function(response){
-                vm.record = {};
-                vm.getAllRecords();
-                vm.editMode = false;
-            }, function(response){
-                vm.handleError(response);
-            });
-        }
-
-        vm.editRecord = function(record) {
-            vm.record = record;
-            vm.editMode = true;
-        }
-
         vm.deleteRecord = function(recordid) {
 
             var r = confirm("Delete project?\n");
@@ -169,12 +146,6 @@ angular.module('dashCtrl',[])
                 vm.handleError(response);
             })
             } 
-        }
-
-        vm.cancelEdit = function() {
-            vm.editMode = false;
-            m.record = {};
-            vm.getAllRecords();
         }
 
         vm.checkout = function(recordid) {

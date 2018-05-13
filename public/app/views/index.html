@@ -23,7 +23,6 @@
     <script src="app/controllers/mainCtrl.js"></script>
     <script src="app/controllers/emailCtrl.js"></script>
     <script src="app/controllers/managementCtrl.js"></script>
-    <script src="app/controllers/contactCtrl.js"></script>
     <script src="app/controllers/dashCtrl.js"></script>
     <script src="app/controllers/checkoutCtrl.js"></script>
     <script src="app/controllers/reviewCtrl.js"></script>
@@ -380,7 +379,7 @@
                 <div class="col-sm-3 col-xs-6">
                     <div class="number">
                         <i class="glyphicon glyphicon-file"></i>
-                        <h3 class="white-text"><span class="counter">70</span></h3>
+                        <h3 class="white-text"><span class="counter">7</span></h3>
                         <span class="white-text">Total Years of Experience</span>
                     </div>
                 </div>
@@ -496,10 +495,7 @@
 
 
     <style type="text/css">
-    .h2{
-        text-align:center;
-        padding: 20px;
-    }
+
     /* Slider */
 
     .slick-slide {
@@ -642,7 +638,7 @@
 
 
     <!--Location and contact-->
-    <section ng-controller="conCtrl as con" ng-show="main.home"  class="bg-light-gray" >
+    <section ng-show="main.home"  class="bg-light-gray" >
         <div class="container" id="location">
             <div class="row">
                 <div class="col-lg-6" style="margin-bottom: 20px;">
@@ -658,33 +654,40 @@
         <h2 class="section-heading" >Contact Us</h2>
         <p style="font-style: italic; font-size: 18px">Dreams don't work unless you do. Let's start Creating.</p>
     <div class="form-area">  
-        <form role="form" ng-submit="con.conUser(conData);" id="contactUs">
+        <form role="form" ng-submit="main.conUser(conData);" id="contactUs">
         <br style="clear:both">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="con.conData.name" required>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="main.conData.name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="con.conData.email" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="main.conData.email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" ng-model="con.conData.mobile" required>
+                        <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" ng-model="main.conData.mobile" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" ng-model="con.conData.subject" required>
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" ng-model="main.conData.subject" required>
                     </div>
                     <div class="form-group">
-                    <textarea class="form-control" type="textarea" name="text" id="message" placeholder="Message" maxlength="140" rows="7" ng-model="con.conData.text"></textarea>
-                                           
+                    <textarea class="form-control" type="textarea" name="text" id="message" placeholder="Message" maxlength="140" rows="7" ng-model="main.conData.text"></textarea>                     
                     </div>
             
-                <button type="submit" id="submit" onclick="myFunction()" name="submit" class="btn btn-xl pull-right" style="padding: 10px 20px; font-size: 17px">Submit Form</button>
+                <button type="submit" id="submit" name="submit" class="btn btn-xl pull-right" style="padding: 10px 20px; font-size: 17px">Submit Form</button>
             </form>
-            <script>
-            function myFunction() {
-                location.reload();
-            }
-            </script>
+                <div class="alert alert-success" id="loader" >
+                    <div class="loader" style="margin-left: 220px;"></div>
+                </div>
+                <div class="alert alert-success" id="success-alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <strong>Success! </strong>
+                    Your message has been sent.
+                </div>
+                <div class="alert alert-danger" id="failure-alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <strong>Oops! </strong>
+                    Something went wrong. Try again later.
+                </div>
             </div>
             </div>
         </div>
@@ -815,8 +818,8 @@
                 </div>
             </div>
             </br></br></br>
-            <a href="/dashmyprojects" class="page-scroll btn btn-lg btn-transparent" >Get Quote</a>
-
+            <h6 ng-show="!main.isLoggedIn" style="text-align: center; color: #fff;">Click here to get an instant quote. <a href="/login" class="page-scroll btn btn-lg btn-transparent">Get Quote</a></h6>
+        </br>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                     <ul class="list-unstyled list-inline social text-center" >

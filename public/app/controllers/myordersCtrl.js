@@ -18,7 +18,7 @@ angular.module('myordersCtrl',[])
         vm.records = [];
           
 
-        $scope.myfunction=function(){
+        $scope.myFunction=function(){
             windows.print();
         }
 

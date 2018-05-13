@@ -69,7 +69,7 @@ var UserSchema = new Schema({
     email: { type: String, required: true, lowercase: true, unique: true, validate: emailValidator },
     /*project: {type:String},
     file: {type:String,unique:true},*/
-    active: { type: Boolean, required: true, default: true },
+    active: { type: Boolean, required: true, default: false },
     temporarytoken: { type: String, required: true },
     resettoken: { type: String, required: false },
     permission: { type: String, required: true, default: 'user' }

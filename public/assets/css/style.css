@@ -1168,3 +1168,20 @@ body { padding: 2em; }
   background-image: linear-gradient(#A9A9A9, #808080);
   /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
   text-shadow: 0 -1px 0 #354C8C;
+}
+
+
+.loader {
+    
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
