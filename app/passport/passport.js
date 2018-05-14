@@ -58,9 +58,9 @@ module.exports = function(app, passport) {
 
     // Twitter Strategy
     passport.use(new TwitterStrategy({
-            consumerKey: 'nAsRdF40TX5fQ7QivmuJGWWSj', // Replace with your Twitter Developer App consumer key
-            consumerSecret: 'WH4MaKulaiPzrBttgS5KlQzanXmZIKZ4hmAlflfwX8jk3WNTwA', // Replace with your Twitter Developer App consumer secret
-            callbackURL: "http://www.herokutestapp3z24.com/auth/twitter/callback", // Replace with your Twitter Developer App callback URL
+            consumerKey: 'N7HzOEAJdjjYr8OTuhoChjyit', // Replace with your Twitter Developer App consumer key
+            consumerSecret: '5jc3h5p8JcmFAlCQx65iqjzgjZrVNUbl2yIx1J89qsRcxgTECS', // Replace with your Twitter Developer App consumer secret
+            callbackURL: "https://peaceful-journey-32238.herokuapp.com/auth/twitter/callback", // Replace with your Twitter Developer App callback URL
             userProfileURL: "https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true"
         },
         function(token, tokenSecret, profile, done) {
