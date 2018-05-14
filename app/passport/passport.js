@@ -38,9 +38,9 @@ module.exports = function(app, passport) {
 
     // Facebook Strategy    
     passport.use(new FacebookStrategy({
-            clientID: '310132302703073', // Replace with your Facebook Developer App client ID
-            clientSecret: '2e94e77add384b6e2b2029947c3861b4', // Replace with your Facebook Developer client secret
-            callbackURL: "http://www.herokutestapp3z24.com/auth/facebook/callback", // Replace with your Facebook Developer App callback URL
+            clientID: '166719210669303', // Replace with your Facebook Developer App client ID
+            clientSecret: '01faea44fb1e583f81c10f61895fe7e6', // Replace with your Facebook Developer client secret
+            callbackURL: "https://peaceful-journey-32238.herokuapp.com/auth/facebook/callback", // Replace with your Facebook Developer App callback URL
             profileFields: ['id', 'displayName', 'photos', 'email']
         },
         function(accessToken, refreshToken, profile, done) {
