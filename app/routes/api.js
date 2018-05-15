@@ -1254,7 +1254,7 @@ module.exports = function(router) {
         name = file.name,
         type = file.mimetype;
         fname=name;        
-        
+        console.log('mimetype'+type);
         var uploadpath ='./uploads/' +name;
         console.log(uploadpath);
         file.mv(uploadpath,function(err){
