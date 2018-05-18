@@ -101,6 +101,26 @@ angular.module('dashCtrl',[])
             $('#reset2').prop('selectedIndex',0);
 
 
+    var fileInput = $('#reset3');
+    var maxSize = 157286400;
+    $('#add-project').click(function(e){
+        if(fileInput.get(0).files.length){
+            var fileSize = fileInput.get(0).files[0].size; // in bytes
+            if(fileSize>maxSize){
+                alert('file size is more then 150MB.\nReduce the resolution while exporting the stl file');
+                return false;
+            }else{
+
+
+                
+            }
+        }else{
+            alert('choose file, please');
+            return false;
+        }
+
+    });
+
             var fd= new FormData()
             angular.forEach($scope.files, function(file){
                 fd.append('file',file)
@@ -152,6 +172,12 @@ angular.module('dashCtrl',[])
             console.log(recordid);
             $rootScope.rid=recordid;
         }
+
+
+
+$(document).ready(function() {
+
+});
       
     }
 

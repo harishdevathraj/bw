@@ -4,7 +4,7 @@
     margin: 10px;
     margin-top: 20px;
     padding: 20px;
-    box-shadow: 0px 0px 18px 1px black;" ng-controller="myordersCtrl as ctrl">
+    box-shadow: 0px 0px 18px 1px black;" ng-controller="myordersCtrl as ctrl" ng-show="ctrl.myorders">
 <div class="user-dashboard" >
 	<h2 >MY ORDERS</h2>
 	<style type="text/css">
@@ -36,7 +36,7 @@
 {{record.scountry}}
 {{record.szip}}
 </pre></td>
-			<td><a href="/invoice" ng-click="ctrl.getinvoicedetails(record._id)">Print invoice</a></td>
+			<td><a href="/invoice" ng-click="ctrl.getinvoicedetails(record._id)">Display invoice</a></td>
 		</tr>
 
     </table>

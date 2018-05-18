@@ -1512,7 +1512,6 @@ module.exports = function(router) {
                 res.send(err);
             }
             else{
-            res.send('1 ROW AFFECTED');
             Project.find({ '_id': projectid }, function (err, docs) {                
                     filename=docs[0].filename;
                     pro=docs[0].process;
@@ -1618,7 +1617,6 @@ module.exports = function(router) {
     //add records to order db
     router.post('/addorders', function(req, res, next){
         console.log(req.body);
-
         var ord = new Orders();
         ord.projectname=req.body.project_name;
         ord.material=req.body.material;
@@ -1652,11 +1650,34 @@ module.exports = function(router) {
 
     //get order details to display in "my orders"
     router.post('/getorders', function(req,res){
-        Orders.find({ 'paymentfinal': true }, function (err, docs) { 
-            if(err){
-                res.send(err);
-            }else{
-                res.send(docs);
+        User.findOne({ username: req.decoded.username }, function(err, user) {
+            if (err) {
+                res.json('Something went wrong. This error has been logged and will be addressed by our staff. We apologize for this inconvenience!' );
+            } else {
+                // Check if username was found in database
+                if (!user) {
+                    res.json('No user was found'); // Return an error
+                } else {
+                    if(user.permission=='user'){
+                        Orders.find({ 'paymentfinal': true, 'email': req.decoded.username }, function (err, docs) { 
+                            if(err){
+                                res.send(err);
+                            }else{
+                                res.send(docs);
+                            }
+                        });
+                    }
+                    if(user.permission=='admin'){
+                        Orders.find({ 'paymentfinal' : true}, function(err,docs){
+                            if(err){
+                                res.send(err);
+                            }else{
+                                res.send(docs);
+                            }
+                        
+                        });
+                    }
+                }
             }
         });
     });

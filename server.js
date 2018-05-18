@@ -3,7 +3,7 @@ var app = express(); // Invoke express to variable for use in application
 var formidable = require('formidable');
 var upload = require('express-fileupload');
 const http = require('http');
-var port = process.env.PORT || 8080; // Set default port or assign a port in enviornment
+var port = process.env.PORT || 80; // Set default port or assign a port in enviornment
 var morgan = require('morgan'); // Import Morgan Package
 var mongoose = require('mongoose'); // HTTP request logger middleware for Node.js
 var bodyParser = require('body-parser'); // Node.js body parsing middleware. Parses incoming request bodies in a middleware before your handlers, available under req.body.
@@ -30,7 +30,7 @@ app.set('views', __dirname + '/views');
 // 
 // <---------- REPLACE WITH YOUR MONGOOSE CONFIGURATION ---------->
 // dev:dev@ds125489.mlab.com:25489/mydatabase
-//localhost/bwdatabase
+//localhost:27017/bwdatabase
 mongoose.connect('mongodb://dev:dev@ds125489.mlab.com:25489/mydatabase', function(err) {
     if (err) {
         console.log('Not connected to the database: ' + err); // Log to console if unable to connect to database   //mongodb://root:password@ds027215.mlab.com:27215/gugui3z24

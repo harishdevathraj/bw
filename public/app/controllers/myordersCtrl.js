@@ -1,9 +1,10 @@
 angular.module('myordersCtrl',[])
 
-.controller('myordersCtrl',['$scope','$http','$rootScope',function($scope,$http,$rootScope){
+.controller('myordersCtrl',['$scope','$http','$rootScope','$window',function($scope,$http,$rootScope,$window){
 	
         var vm = this;
-        
+        if ($window.location.pathname === '/dashorders') vm.myorders = true;
+        console.log($window.location.pathname);
         vm.fields = [
             {label: 'Project Title', key: 'projectname'},
             {label: 'Date', key: 'date'},
@@ -17,33 +18,26 @@ angular.module('myordersCtrl',[])
         vm.record = {};
         vm.records = [];
           
-
         $scope.myFunction=function(){
-            windows.print();
+            window.print();
         }
 
-          vm.getinvoicedetails = function(data){
-                console.log(data);
-                $rootScope.objid=data;
-                console.log($rootScope.objid);
-            }
+        vm.getinvoicedetails = function(data){
+            console.log(data);
+            $rootScope.objid=data;
+            console.log($rootScope.objid);    
+        }
 
-
-        $(document).ready(function() {
-//https://peaceful-journey-32238.herokuapp.com/
-        if(window.location == "https://peaceful-journey-32238.herokuapp.com/dashorders"){
-        
         vm.getAllRecords = function() {
-        	$http.post('/api/getorders').then(function(response){
+            $http.post('/api/getorders').then(function(response){
                 vm.records=response.data;
                 console.log(response);
             }, function(response){
                 console.log(response);
             });
         }
-		vm.getAllRecords();
-        }
-       else{
+        vm.getAllRecords();
+
             //$('div.navbar').hide();
 
             $http.post('api/getinvoicedetails/'+$rootScope.objid).then(function(response){
@@ -91,18 +85,11 @@ angular.module('myordersCtrl',[])
                 $("#sgst2").hide();
             }
         }
-
-
                 withDecimal($scope.costpostgst);
                 
             })
-        }
-    });
 
       
-            
-        
-
         //decimal to word
         function withDecimal(n) {
             var nums = n.toString().split('.');
