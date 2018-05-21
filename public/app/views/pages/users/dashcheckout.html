@@ -1,13 +1,13 @@
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
-<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
+<style type="text/css">.navbar-default {
+    background-color: #1c1d21;
+    border-color: #ffffff;
+}
+</style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
  <div ng-controller="checkoutCtrl">
- 	<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
 <div class="home" style="margin:0px; padding:0; ">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -44,7 +44,7 @@
                 <h1>CONFIRM</h1>
                 <p> Verify the below details and click on "submit" for review </p>
                 <div class="container-fluid">
-					  <div class="panel panel-default">
+					  <div class="panel panel-default" style="box-shadow: 0 0 07px 0px black;">
 					    <div class="panel-heading">{{data.project}}</div>
 					    <div class="panel-body">  
                 <!--
@@ -88,7 +88,6 @@
                 <style type="text/css">
                 body {
                   font-family: Arial;
-                  font-size: 17px;
                   padding: 8px;
                 }
 
@@ -229,7 +228,7 @@
         
         <input type="hidden" name="email" value="{{records.email}}" />
         <input type="hidden" name="phone" value="{{phone}}" />
-        <input type="hidden" name="surl" value="http://localhost:8080/api/PaymentStatus" /><!--http://localhost:8080/api/PaymentStatus-->
+        <input type="hidden" name="surl" value="http://peaceful-journey-32238.herokuapp.com/api/PaymentStatus" /><!--http://localhost:8080/api/PaymentStatus-->
         <input type="hidden" name="furl" value="http://peaceful-journey-32238.herokuapp.com/api/PaymentStatus" />
         <input type="hidden" name="hash" id="hash" value="{{hash}}">
         <input type="hidden" name="service_provider" value="{{service_provider}}">
